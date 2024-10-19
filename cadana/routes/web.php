@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+// registration routes
+Route::get('/donor-registration', [CadanaDashboardPages::class, 'donor_registration'])->name('donor_registration');
+
 Route::middleware('auth')->group(function () {
-    // 
+
     Route::get('/', [CadanaDashboardPages::class, 'dashboardindex'])->name('dashboardindex');
     Route::get('/dashboard', [CadanaDashboardPages::class, 'dashboardindex'])->name('dashboard');
 

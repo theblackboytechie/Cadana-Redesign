@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 class CadanaDashboardPages extends Controller
 {
+    // donor registration 
+    // donor_registration
+    public function donor_registration(Request $request)
+    {
+        $owner = "donor_registration";
+        $params = [];
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
     //
     public function dashboardindex(Request $request)
     {
