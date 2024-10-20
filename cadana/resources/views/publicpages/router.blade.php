@@ -792,12 +792,22 @@
     </div>
   </div>
 </header>
-
         <!-- ===== Header End ===== -->
 
         <!-- ===== Main Content Start ===== -->
         <main>
-            @if($owner == "viewdashboard")
+            @if (Auth::user()->accounttype == '')
+              <div style="margin-left: 2vw;margin-top: 5vh;">
+                <div><h2><b>Select Account type</b></h2></div>
+                <select name="" id="">
+                  <option value="">--</option>
+                  <option value="">Donor</option>
+                  <option value="">Professional</option>
+                  <option value="">Clinic</option>
+                  <option value="">Superadmin</option>
+                </select>
+              </div>
+            @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />
             @elseif($owner == "viewallusers")
                 <x-cadana-users />

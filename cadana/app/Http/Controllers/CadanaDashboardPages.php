@@ -73,4 +73,15 @@ class CadanaDashboardPages extends Controller
 
         return view('/publicpages/router', compact('owner', 'params'));
     }
+
+    // assignaccount
+    public function assignaccount(Request $request)
+    {
+        return "omooo!";
+        $owner = "viewauthenticatedsettings";
+        $params = [];
+        return "omooo!";
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
 }

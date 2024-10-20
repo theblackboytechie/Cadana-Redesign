@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [CadanaDashboardPages::class, 'dashboardindex'])->name('dashboardindex');
     Route::get('/dashboard', [CadanaDashboardPages::class, 'dashboardindex'])->name('dashboard');
 
+    Route::get('/assignaccount', [CadanaDashboardPages::class, 'assignaccount'])->name('assignaccount');
+
     Route::get('/allusers', [CadanaDashboardPages::class, 'allusers'])->name('allusers');
     Route::get('/clinicprofile', [CadanaDashboardPages::class, 'clinicprofile'])->name('clinicprofile');
     Route::get('/clinicsettings', [CadanaDashboardPages::class, 'clinicsettings'])->name('clinicsettings');
