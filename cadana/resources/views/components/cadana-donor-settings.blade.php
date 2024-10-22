@@ -76,7 +76,7 @@
                       >Donor Password</span
                     >
                   </button>
-
+                  @if(Auth::user()->accounttype != 'donor')
                   <button
                     type="button"
                     @click="formStep = 4"
@@ -128,6 +128,7 @@
                       >Donation History</span
                     >
                   </button>
+                  @endif
                 </div>
                 <div class="w-8/12">
                   <div x-cloak x-show="formStep === 1">
@@ -151,6 +152,7 @@
                               Donor name
                             </label>
                             <input
+                              id="donor_name"
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                             />
@@ -169,12 +171,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_gender"
                               >
                                 <option value="" class="text-body">
                                   Donor Gender
                                 </option>
-                                <option value="" class="text-body">Male</option>
-                                <option value="" class="text-body">
+                                <option value="male" class="text-body">Male</option>
+                                <option value="female" class="text-body">
                                   Female
                                 </option>
                                 <option value="" class="text-body">
@@ -216,6 +219,7 @@
                             <input
                               type="email"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_primary_email"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -227,6 +231,7 @@
                             <input
                               type="email"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_secondary_email"
                             />
                           </div>
                         </div>
@@ -241,6 +246,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_primary_phone"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -252,6 +258,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_secondary_phone"
                             />
                           </div>
                         </div>
@@ -265,6 +272,7 @@
                           <input
                             type="address"
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            id="donor_primary_address"
                           />
                         </div>
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
@@ -282,21 +290,19 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_primary_city"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="ivf" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="fertility" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="health" class="text-body">
                                   Reproductive Health Center
-                                </option>
-                                <option value="" class="text-body">
-                                  Other (please specify)
                                 </option>
                               </select>
                               <span
@@ -336,20 +342,21 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_primary_state"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="ivf" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="hospital" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="reproductive" class="text-body">
                                   Reproductive Health Center
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="other" class="text-body">
                                   Other (please specify)
                                 </option>
                               </select>
@@ -392,20 +399,21 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_primary_country"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv1" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv2" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv3" class="text-body">
                                   Reproductive Health Center
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv4" class="text-body">
                                   Other (please specify)
                                 </option>
                               </select>
@@ -441,6 +449,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_primary_zipcode"
                             />
                           </div>
                         </div>
@@ -453,6 +462,7 @@
                           <input
                             type="address"
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            id="donor_secondary_address"
                           />
                         </div>
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
@@ -470,20 +480,21 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_secondary_city"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv1" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv2" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv3" class="text-body">
                                   Reproductive Health Center
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv4" class="text-body">
                                   Other (please specify)
                                 </option>
                               </select>
@@ -524,20 +535,21 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_secondary_state"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv1" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv2" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv3" class="text-body">
                                   Reproductive Health Center
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv4" class="text-body">
                                   Other (please specify)
                                 </option>
                               </select>
@@ -580,20 +592,21 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donor_secondary_country"
                               >
                                 <option value="" class="text-body">
                                   Select
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv1" class="text-body">
                                   IVF Clinic
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv2" class="text-body">
                                   Fertility Hospital
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv3" class="text-body">
                                   Reproductive Health Center
                                 </option>
-                                <option value="" class="text-body">
+                                <option value="dfv4" class="text-body">
                                   Other (please specify)
                                 </option>
                               </select>
@@ -629,9 +642,14 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donor_secondary_zipcode"
                             />
                           </div>
                         </div>
+                        <button 
+                          class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                          id="update_primary_info1"
+                        >Update</button>
                       </div>
                     </div>
                   </div>

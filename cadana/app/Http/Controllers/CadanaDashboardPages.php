@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Helpers\CrudHelper;
 use Illuminate\Http\Request;
 
 class CadanaDashboardPages extends Controller

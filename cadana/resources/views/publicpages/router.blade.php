@@ -14,6 +14,8 @@
             darkMode = JSON.parse(localStorage.getItem('darkMode'));
             $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
         :class="{'dark text-bodydark bg-boxdark-2': darkMode === true} font-sans antialiased"
+        id="cadanamaps"
+        database_update="{{ route('database_update') }}"
     >
     <!-- ===== Preloader Start ===== -->
     <div
@@ -75,6 +77,7 @@
       <div>
         <ul class="mb-6 flex flex-col gap-1.5">
           <!-- Menu Item Dashboard -->
+          @if(Auth::user()->accounttype != 'donor')
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:text-white"
@@ -233,10 +236,11 @@
               Chats
             </a>
           </li>
+          @endif
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="/settings"
+              href="/donorsettings/{{ auth()->id() }}"
               @click="selected = (selected === 'Settings' ? '':'Settings')"
               :class="{ 'bg-primary text-white': (selected === 'Settings') && (page === 'settings') }"
               :class="page === 'Settings' && 'bg-primary'"
@@ -801,14 +805,14 @@
                 <div><h2><b>Select Account type</b></h2></div>
                 <select
                   name=""
-                  id=""
+                  id="account-type-list"
                   class="relative z-20 appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                 >
                   <option value="">--</option>
-                  <option value="">Donor</option>
-                  <option value="">Professional</option>
-                  <option value="">Clinic</option>
-                  <option value="">Superadmin</option>
+                  <option value="donor">Donor</option>
+                  <option value="professional">Professional</option>
+                  <option value="clinic">Clinic</option>
+                  <option value="superadmin">Superadmin</option>
                 </select>
                 <br>
                 <button

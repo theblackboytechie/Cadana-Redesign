@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- jQuery -->
-        https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+         
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

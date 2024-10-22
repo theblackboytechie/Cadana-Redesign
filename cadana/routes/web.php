@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CadanaDashboardPages;
+use App\Http\Controllers\CadanaUpdateDatabaseController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -22,14 +23,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/assignaccount', [CadanaDashboardPages::class, 'assignaccount'])->name('assignaccount');
 
+    Route::post('/database_update', [CadanaUpdateDatabaseController::class, 'database_update'])->name('database_update');
+
     Route::get('/allusers', [CadanaDashboardPages::class, 'allusers'])->name('allusers');
     Route::get('/clinicprofile', [CadanaDashboardPages::class, 'clinicprofile'])->name('clinicprofile');
     Route::get('/clinicsettings', [CadanaDashboardPages::class, 'clinicsettings'])->name('clinicsettings');
 
     Route::get('/donorprofile', [CadanaDashboardPages::class, 'donorprofile'])->name('donorprofile');
-    Route::get('/donorsettings', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
+    Route::get('/donorsettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 
-    Route::get('/settings', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
+    Route::get('/settings/{x}', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
