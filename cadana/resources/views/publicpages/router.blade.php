@@ -68,7 +68,7 @@
   >
     <!-- Sidebar Menu -->
     <nav
-      class="mt-5 px-4 py-4 lg:mt-9 lg:px-6"
+      class="px-4 py-4 lg:px-6"
       x-data="{selected: $persist('Dashboard')}"
     >
       <!-- Menu Group -->
@@ -799,13 +799,22 @@
             @if (Auth::user()->accounttype == '')
               <div style="margin-left: 2vw;margin-top: 5vh;">
                 <div><h2><b>Select Account type</b></h2></div>
-                <select name="" id="">
+                <select
+                  name=""
+                  id=""
+                  class="relative z-20 appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                >
                   <option value="">--</option>
                   <option value="">Donor</option>
                   <option value="">Professional</option>
                   <option value="">Clinic</option>
                   <option value="">Superadmin</option>
                 </select>
+                <br>
+                <button
+                  id="update-account-type"
+                  class="inline-flex items-center justify-center rounded-md bg-primary px-2 py-2 text-center font-medium text-white hover:bg-opacity-90 mt-2 lg:px-2 xl:px-2"
+                >Update Account</button>
               </div>
             @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />

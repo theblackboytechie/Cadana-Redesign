@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/styles.css',
                 'resources/js/app.js',
-                'resources/js/bundle.js'
+                'resources/js/bundle.js',
+                'resources/js/accountsupdate.js'
             ],
             refresh: true,
         }),
