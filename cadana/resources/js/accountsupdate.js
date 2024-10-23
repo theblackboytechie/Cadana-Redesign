@@ -85,7 +85,7 @@ function updateDatabase(theurl, formData) {
                     // output error
                 }
             }else if(formData.owner == "update_primary_details"){
-
+                alert(response);
             }
         },
         error: function(response) {
