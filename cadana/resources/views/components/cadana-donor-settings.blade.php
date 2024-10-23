@@ -650,6 +650,7 @@
                           class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                           id="update_primary_info1"
                         >Update</button>
+                        <i class="fa-solid fa-circle-notch fa-spin" id="primaryinfo-processing-loading" style="display: none;"></i>
                       </div>
                     </div>
                   </div>
@@ -775,6 +776,7 @@
                           <input
                             type="password"
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            id="frm_password"
                           />
                         </div>
                         <div class="w-full xl:w-1/2">
@@ -786,8 +788,16 @@
                           <input
                             type="password"
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            id="frm_confirm_password"
                           />
+
+                          <button 
+                            class="inline-flex items-center justify-center rounded-md bg-primary mt-4 px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                            id="update_password"
+                          >Update</button>
+                          <i class="fa-solid fa-circle-notch fa-spin" id="pswrd-processing-loading" style="display: none;"></i>
                         </div>
+                        
                       </div>
                     </div>
                   </div>

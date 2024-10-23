@@ -18,6 +18,7 @@ $('body').on('click', '#update-account-type', function() {
 $('body').on('click', '#update_primary_info1', function(event) {
     // var account_type = $("#account-type-list").val();
     event.preventDefault();
+    $("#primaryinfo-processing-loading").show();
     var owner = "update_primary_details";
 
     var donor_name = $("#donor_name").val();
@@ -66,6 +67,33 @@ $('body').on('click', '#update_primary_info1', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// update_password
+$('body').on('click', '#update_password', function(event) {
+    
+    event.preventDefault();
+
+    // show the processing of password spinner
+    $("#pswrd-processing-loading").show();
+
+    var frm_password = $("#frm_password").val();
+    var frm_confirm_password = $("#frm_confirm_password").val();
+    var owner = "update_password";
+
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        frm_password: frm_password,
+        frm_confirm_password: frm_confirm_password
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 function updateDatabase(theurl, formData) {
     $.ajaxSetup({
         headers: {
@@ -85,7 +113,9 @@ function updateDatabase(theurl, formData) {
                     // output error
                 }
             }else if(formData.owner == "update_primary_details"){
-                alert(response);
+                $("#primaryinfo-processing-loading").hide();
+            }else if(formData.owner == "update_password"){
+                $("#pswrd-processing-loading").hide();
             }
         },
         error: function(response) {

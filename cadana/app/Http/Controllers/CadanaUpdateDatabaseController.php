@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Helpers\CrudHelper;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class CadanaUpdateDatabaseController extends Controller
@@ -83,6 +84,45 @@ class CadanaUpdateDatabaseController extends Controller
             ];
 
             CrudHelper::Create($tabledb, $create_array);
+
+            // users
+            $tabledb = "users";
+
+            $where_array = [
+                'id' => $ownerid
+            ];
+
+            $update_array = [
+                'name' => $donor_name,
+                'email' => $donor_primary_email,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+        }elseif($request->owner == "update_password"){
+            // return "na in the password!";
+            $ownerid = $request->ownerid;
+            $password = $request->frm_password;
+            $confirm_password = $request->frm_confirm_password;
+
+            if($password == $confirm_password){
+                $hashed_password = Hash::make($password);
+
+                // users
+                $tabledb = "users";
+
+                $where_array = [
+                    'id' => $ownerid
+                ];
+
+                $update_array = [
+                    'password' => $hashed_password,
+                    'updated_at' => $currenttime,
+                ];
+
+                // this returns either 1 or zero
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+            }
         }
 
     }
