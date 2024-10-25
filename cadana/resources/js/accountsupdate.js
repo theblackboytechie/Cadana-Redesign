@@ -67,6 +67,41 @@ $('body').on('click', '#update_primary_info1', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// create documents
+$('body').on('submit', '.documentUploadForm', function(e) {
+    var owner = "update_document";
+    alert("here i come!");
+
+    e.preventDefault();
+    return;
+    var form = $(this).closest('form');
+
+    var formData = new FormData(this);
+    alert(form);
+    return;
+    // var theurl = '/upload_accounts_documents';
+    var theurl = $(".gbpeter-maps").attr("gbpeter-upload-accounts-documents");
+
+    $.ajax({
+        type: 'POST',
+        url: theurl, // Your Laravel route
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            // alert(response);
+            load_all_donor_documents("document");
+            load_all_donor_documents("profilepicture");
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+
+// var theurl = '/load_all_donor_document/';
+var theurl = $(".gbpeter-maps").attr("gbpeter-load-all-donor-document");
+
 // update_password
 $('body').on('click', '#update_password', function(event) {
     

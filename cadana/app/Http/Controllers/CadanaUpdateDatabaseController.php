@@ -14,7 +14,41 @@ class CadanaUpdateDatabaseController extends Controller
     {
         // return $request->account_type;
         $currenttime = Carbon::now();
-        if($request->owner == "update_account_type"){
+        if($request->owner == "download_latest_user_details"){
+            $tabledb = "users_primary_details";
+
+            $where_array = [
+                'owner_id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+            
+            $primary_info_array = [];
+            foreach($output as $output){
+                // return ;
+                array_push($primary_info_array, $output->id);
+                array_push($primary_info_array, $output->name);
+                array_push($primary_info_array, $output->gender);
+                array_push($primary_info_array, $output->bio);
+                array_push($primary_info_array, $output->primary_email);
+                array_push($primary_info_array, $output->secondary_email);
+                array_push($primary_info_array, $output->primary_phone);
+                array_push($primary_info_array, $output->secondary_phone);
+                array_push($primary_info_array, $output->primary_country);
+                array_push($primary_info_array, $output->primary_state);
+                array_push($primary_info_array, $output->primary_city);
+                array_push($primary_info_array, $output->primary_address);
+                array_push($primary_info_array, $output->primary_zipcode);
+                array_push($primary_info_array, $output->secondary_country);
+                array_push($primary_info_array, $output->secondary_state);
+                array_push($primary_info_array, $output->secondary_city);
+                array_push($primary_info_array, $output->secondary_address);
+                array_push($primary_info_array, $output->secondary_zipcode);
+                break;
+            }
+
+            return $primary_info_array;
+        }elseif($request->owner == "update_account_type"){
             $id = Auth::id();
             $tabledb = "users";
 
