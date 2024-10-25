@@ -1,19 +1,32 @@
 $(document).ready(function() {
     var urlPath = window.location.pathname;
-    var owner = "download_latest_user_details";
+
     var path = urlPath.split("/");
     var secondToLast = path[path.length - 2];
 
     var ownerid = urlPath.split("/").pop();
     
     if (secondToLast === "donorsettings") {
-        // load from database
+        var owner = "download_latest_user_details";
+        // load from primary information of the user from the database
         var formData = {
             owner: owner,
             ownerid: ownerid
         };
     
         var theurl = $("#cadanamaps").attr("database_update");
+
+        getFromDatabase(theurl, formData);
+
+        // load medical history of the user from the database
+        var owner = "download_all_medical_history";
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+        
         getFromDatabase(theurl, formData);
     }
 });
@@ -48,6 +61,10 @@ function getFromDatabase(theurl, formData) {
                 $("#donor_secondary_address").val(response[16]);
                 $("#donor_secondary_zipcode").val(response[17]);
                 // we now insert into forms
+
+                // 
+            }else if(formData.owner == "download_all_medical_history"){
+                // alert(response);
             }
         },
         error: function(response) {

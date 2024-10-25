@@ -48,6 +48,15 @@ class CadanaUpdateDatabaseController extends Controller
             }
 
             return $primary_info_array;
+        }elseif($request->owner == "download_all_medical_history"){
+            // return "fresh fish!";
+            $tabledb = "users_medical_history";
+
+            $where_array = [
+                'owner_id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
         }elseif($request->owner == "update_account_type"){
             $id = Auth::id();
             $tabledb = "users";
@@ -157,8 +166,64 @@ class CadanaUpdateDatabaseController extends Controller
                 // this returns either 1 or zero
                 CrudHelper::Update($tabledb, $where_array, $update_array);
             }
-        }
+        }elseif($request->owner == "update_medical_hist"){
+            $authorid = Auth::id();
 
+            $tabledb = "users_medical_history";
+
+            $ownerid = $request->ownerid;
+            $partner_name = $request->partner_name;
+            $healthy_question = $request->healthy_question;
+            $health_history_1 = $request->health_history_1;
+            $health_history_2 = $request->health_history_2;
+            $chronic_illness_details1 = $request->chronic_illness_details1;
+            $chronic_illness_details2 = $request->chronic_illness_details2;
+            $fertility_test_treatment = $request->fertility_test_treatment;
+            $sti_diagnosis = $request->sti_diagnosis;
+            $fertility_tests_details = $request->fertility_tests_details;
+            $sti_diagnosis_details = $request->sti_diagnosis_details;
+            $taking_medications = $request->taking_medications;
+            $known_allergies = $request->known_allergies;
+            $taking_medications_details = $request->taking_medications_details;
+            $known_allergies_details = $request->known_allergies_details;
+            $smoke_status = $request->smoke_status;
+            $alcohol_status = $request->alcohol_status;
+            $smoke_status_details = $request->smoke_status_details;
+            $alcohol_status_details = $request->alcohol_status_details;
+            $hard_drugs = $request->hard_drugs;
+            $hard_drugs_details = $request->hard_drugs_details;
+            $comments = $request->comments;
+
+            $create_array = [
+                'author_id' => $authorid,
+                'owner_id' => $ownerid,
+                'partner_name' => $partner_name,
+                'healthy_question' => $healthy_question,
+                'health_history_1' => $health_history_1,
+                'health_history_2' => $health_history_2,
+                'chronic_illness_details1' => $chronic_illness_details1,
+                'chronic_illness_details2' => $chronic_illness_details2,
+                'fertility_test_treatment' => $fertility_test_treatment,
+                'sti_diagnosis' => $sti_diagnosis,
+                'fertility_tests_details' => $fertility_tests_details,
+                'sti_diagnosis_details' => $sti_diagnosis_details,
+                'taking_medications' => $taking_medications,
+                'known_allergies' => $known_allergies,
+                'taking_medications_details' => $taking_medications_details,
+                'known_allergies_details' => $known_allergies_details,
+                'smoke_status' => $smoke_status,
+                'alcohol_status' => $alcohol_status,
+                'smoke_status_details' => $smoke_status_details,
+                'alcohol_status_details' => $alcohol_status_details,
+                'hard_drugs' => $hard_drugs,
+                'hard_drugs_details' => $hard_drugs_details,
+                'comments' => $comments,
+                'created_at' => $currenttime,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Create($tabledb, $create_array);
+        }
     }
 
     private function get_accounttype($id)

@@ -39,7 +39,7 @@ $('body').on('click', '#update_primary_info1', function(event) {
     var donor_secondary_zipcode = $("#donor_secondary_zipcode").val();
 
     var url = window.location.href;
-    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);alert(ownerid);
 
     var formData = {
         owner: owner,
@@ -69,9 +69,12 @@ $('body').on('click', '#update_primary_info1', function(event) {
 
 // update_medical_hist
 $('body').on('click', '#update_medical_hist', function(event) {
-    
     event.preventDefault();
 
+    var owner = "update_medical_hist";
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    
     var partner_name = $("#partner_name_frm").val();
     var healthy_question = $("#healthy_question_frm").val();
     var health_history_1 = $("#health_history_1_frm").val();
@@ -114,7 +117,10 @@ $('body').on('click', '#update_medical_hist', function(event) {
         smoke_status: smoke_status,
         alcohol_status: alcohol_status,
         smoke_status_details: smoke_status_details,
-        alcohol_status_details: alcohol_status_details
+        alcohol_status_details: alcohol_status_details,
+        hard_drugs: hard_drugs,
+        hard_drugs_details: hard_drugs_details,
+        comments: comments
     };
 
     var theurl = $("#cadanamaps").attr("database_update");
@@ -204,6 +210,29 @@ function updateDatabase(theurl, formData) {
                 $("#primaryinfo-processing-loading").hide();
             }else if(formData.owner == "update_password"){
                 $("#pswrd-processing-loading").hide();
+            }else if(formData.owner =="update_medical_hist"){
+                $("#processing-medical-history").hide();
+                $("#partner_name_frm").val("");
+                $("#healthy_question_frm").val("");
+                $("#health_history_1_frm").val("");
+                $("#health_history_2_frm").val("");
+                $("#chronic_illness_details1_frm").val("");
+                $("#chronic_illness_details2_frm").val("");
+                $("#fertility_test_treatment_frm").val("");
+                $("#sti_diagnosis_frm").val("");
+                $("#fertility_tests_details_frm").val("");
+                $("#sti_diagnosis_details_frm").val("");
+                $("#taking_medications_frm").val("");
+                $("#known_allergies_frm").val("");
+                $("#taking_medications_details_frm").val("");
+                $("#known_allergies_details_frm").val("");
+                $("#smoke_status_frm").val("");
+                $("#alcohol_status_frm").val("");
+                $("#smoke_status_details_frm").val("");
+                $("#alcohol_status_details_frm").val("");
+                $("#hard_drugs_frm").val("");
+                $("#hard_drugs_details_frm").val("");
+                $("#comments_frm").val("");
             }
         },
         error: function(response) {

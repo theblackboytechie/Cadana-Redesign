@@ -61,6 +61,14 @@ class CadanaDashboardPages extends Controller
     {
         $owner = "viewdonorsettings";
         $params = [];
+        
+        $tabledb = "users_medical_history";
+
+        $where_array = [
+            'owner_id' => $request->x,
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
 
         return view('/publicpages/router', compact('owner', 'params'));
     }
