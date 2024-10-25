@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/donorprofile', [CadanaDashboardPages::class, 'donorprofile'])->name('donorprofile');
     Route::get('/donorsettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 
+    Route::get('/donorsettings/{x}/{y}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
+
     Route::get('/settings/{x}', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -67,6 +67,61 @@ $('body').on('click', '#update_primary_info1', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// update_medical_hist
+$('body').on('click', '#update_medical_hist', function(event) {
+    
+    event.preventDefault();
+
+    var partner_name = $("#partner_name_frm").val();
+    var healthy_question = $("#healthy_question_frm").val();
+    var health_history_1 = $("#health_history_1_frm").val();
+    var health_history_2 = $("#health_history_2_frm").val();
+    var chronic_illness_details1 = $("#chronic_illness_details1_frm").val();
+    var chronic_illness_details2 = $("#chronic_illness_details2_frm").val();
+    var fertility_test_treatment = $("#fertility_test_treatment_frm").val();
+    var sti_diagnosis = $("#sti_diagnosis_frm").val();
+    var fertility_tests_details = $("#fertility_tests_details_frm").val();
+    var sti_diagnosis_details = $("#sti_diagnosis_details_frm").val();
+    var taking_medications = $("#taking_medications_frm").val();
+    var known_allergies = $("#known_allergies_frm").val();
+    var taking_medications_details = $("#taking_medications_details_frm").val();
+    var known_allergies_details = $("#known_allergies_details_frm").val();
+    var smoke_status = $("#smoke_status_frm").val();
+    var alcohol_status = $("#alcohol_status_frm").val();
+    var smoke_status_details = $("#smoke_status_details_frm").val();
+    var alcohol_status_details = $("#alcohol_status_details_frm").val();
+    var hard_drugs = $("#hard_drugs_frm").val();
+    var hard_drugs_details = $("#hard_drugs_details_frm").val();
+    var comments = $("#comments_frm").val();
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        partner_name: partner_name,
+        healthy_question: healthy_question,
+        health_history_1: health_history_1,
+        health_history_2: health_history_2,
+        chronic_illness_details1: chronic_illness_details1,
+        chronic_illness_details2: chronic_illness_details2,
+        fertility_test_treatment: fertility_test_treatment,
+        sti_diagnosis: sti_diagnosis,
+        fertility_tests_details: fertility_tests_details,
+        sti_diagnosis_details: sti_diagnosis_details,
+        taking_medications: taking_medications,
+        known_allergies: known_allergies,
+        taking_medications_details: taking_medications_details,
+        known_allergies_details: known_allergies_details,
+        smoke_status: smoke_status,
+        alcohol_status: alcohol_status,
+        smoke_status_details: smoke_status_details,
+        alcohol_status_details: alcohol_status_details
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // create documents
 $('body').on('submit', '.documentUploadForm', function(e) {
     var owner = "update_document";
@@ -89,9 +144,7 @@ $('body').on('submit', '.documentUploadForm', function(e) {
         contentType: false,
         processData: false,
         success: function(response) {
-            // alert(response);
-            load_all_donor_documents("document");
-            load_all_donor_documents("profilepicture");
+            alert(response);
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);

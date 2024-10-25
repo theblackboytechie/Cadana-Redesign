@@ -1288,6 +1288,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="partner_name_frm"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -1304,12 +1305,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="healthy_question_frm"
                               >
                                 <option value="" class="text-body">
                                   Do you consider yourself to be healthy?
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1350,12 +1352,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_1_frm"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1394,12 +1397,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_2_frm"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1436,6 +1440,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details1_frm"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -1448,6 +1453,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details2_frm"
                             ></textarea>
                           </div>
                         </div>
@@ -1467,13 +1473,14 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="fertility_test_treatment_frm"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever Undergone any Fertility Tests or
                                   Treatments?
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1512,12 +1519,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="sti_diagnosis_frm"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever been Diagnosed with any STI?
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1553,6 +1561,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="fertility_tests_details_frm"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -1564,6 +1573,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="sti_diagnosis_details_frm"
                             ></textarea>
                           </div>
                         </div>
@@ -1583,9 +1593,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="taking_medications_frm"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1625,9 +1636,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="known_allergies_frm"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1664,6 +1676,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="taking_medications_details_frm"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -1676,6 +1689,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="known_allergies_details_frm"
                             ></textarea>
                           </div>
                         </div>
@@ -1694,9 +1708,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="smoke_status_frm"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1736,9 +1751,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="alcohol_status_frm"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1774,6 +1790,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="smoke_status_details_frm"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -1787,6 +1804,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="alcohol_status_details_frm"
                             ></textarea>
                           </div>
                         </div>
@@ -1806,9 +1824,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="hard_drugs_frm"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1846,6 +1865,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="hard_drugs_details_frm"
                             ></textarea>
                           </div>
                         </div>
@@ -1859,9 +1879,14 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="comments_frm"
                             ></textarea>
                           </div>
                         </div>
+                        <button 
+                          class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                          id="update_medical_hist"
+                        >Update</button>
                       </div>
                     </div>
                   </div>
@@ -2390,6 +2415,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="partner_name"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2406,6 +2432,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="healthy_question"
                               >
                                 <option value="" class="text-body">
                                   Do you consider yourself to be healthy?
@@ -2452,6 +2479,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_1"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
@@ -2496,6 +2524,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_2"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
@@ -2538,6 +2567,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details1"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2550,6 +2580,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details2"
                             ></textarea>
                           </div>
                         </div>
@@ -2569,6 +2600,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="fertility_test_treatment"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever Undergone any Fertility Tests or
@@ -2614,6 +2646,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="sti_diagnosis"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever been Diagnosed with any STI?
@@ -2655,6 +2688,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="fertility_tests_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2666,6 +2700,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="sti_diagnosis_details"
                             ></textarea>
                           </div>
                         </div>
@@ -2685,6 +2720,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="taking_medications"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2727,6 +2763,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="known_allergies"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2766,6 +2803,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="taking_medications_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2778,6 +2816,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="known_allergies_details"
                             ></textarea>
                           </div>
                         </div>
@@ -2796,6 +2835,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="smoke_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2838,6 +2878,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="alcohol_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2876,6 +2917,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="smoke_status_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2889,6 +2931,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="alcohol_status_details"
                             ></textarea>
                           </div>
                         </div>
@@ -2908,6 +2951,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="hard_drugs"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2948,6 +2992,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="hard_drugs_details"
                             ></textarea>
                           </div>
                         </div>
@@ -2956,11 +3001,12 @@
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Comments
+                              Comments--
                             </label>
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="comments"
                             ></textarea>
                           </div>
                         </div>
@@ -2976,6 +3022,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="partner_name"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2992,6 +3039,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="healthy_question"
                               >
                                 <option value="" class="text-body">
                                   Do you consider yourself to be healthy?
@@ -3038,6 +3086,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_1"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
@@ -3082,6 +3131,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="health_history_2"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
@@ -3124,6 +3174,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details1"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3136,6 +3187,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="chronic_illness_details2"
                             ></textarea>
                           </div>
                         </div>
@@ -3155,6 +3207,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="fertility_test_treatment"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever Undergone any Fertility Tests or
@@ -3200,6 +3253,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="sti_diagnosis"
                               >
                                 <option value="" class="text-body">
                                   Have You Ever been Diagnosed with any STI?
@@ -3241,6 +3295,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="fertility_tests_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3252,6 +3307,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="sti_diagnosis_details"
                             ></textarea>
                           </div>
                         </div>
@@ -3271,6 +3327,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="taking_medications"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3313,6 +3370,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="known_allergies"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3352,6 +3410,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="taking_medications_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3364,6 +3423,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="known_allergies_details"
                             ></textarea>
                           </div>
                         </div>
@@ -3382,6 +3442,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="smoke_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3424,6 +3485,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="alcohol_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3462,6 +3524,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="smoke_status_details"
                             ></textarea>
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3475,6 +3538,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="alcohol_status_details"
                             ></textarea>
                           </div>
                         </div>
@@ -3494,6 +3558,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="hard_drugs"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3534,6 +3599,7 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="hard_drugs_details"
                             ></textarea>
                           </div>
                         </div>
@@ -3547,38 +3613,13 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="comments"
                             ></textarea>
                           </div>
                         </div>
+                        ooooooooooooooooooo!
                       </div>
                     </div>
-                  </div>
-                  <div class="mt-4 flex items-center justify-between">
-                    <button
-                      x-bind:disabled="formStep === 1"
-                      @click="formStep -= 1"
-                      type="button"
-                      class="inline-flex items-center justify-center rounded-md border border-primary px-10 py-2 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
-                    >
-                      Back
-                    </button>
-                    <button
-                      x-bind:disabled="formStep === 8"
-                      x-show="formStep < 8"
-                      @click="formStep += 1"
-                      type="button"
-                      class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-                    >
-                      Next Step
-                    </button>
-
-                    <button
-                      x-show="formStep === 8"
-                      type="submit"
-                      class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-                    >
-                      Submit
-                    </button>
                   </div>
                 </div>
               </form>
