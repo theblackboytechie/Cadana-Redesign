@@ -1,3 +1,4 @@
+$(document).ready(function() {
 $('body').on('click', '#update-account-type', function() {
     var account_type = $("#account-type-list").val();
     var owner = "update_account_type";
@@ -128,35 +129,79 @@ $('body').on('click', '#update_medical_hist', function(event) {
     updateDatabase(theurl, formData);
 });
 
-// create documents
-$('body').on('submit', '.documentUploadForm', function(e) {
-    var owner = "update_document";
-    alert("here i come!");
+// update_edited_medical_hist
+$('body').on('click', '#update_edited_medical_hist', function(event) {
+    event.preventDefault();
 
-    e.preventDefault();
-    return;
-    var form = $(this).closest('form');
+    $("#processing-medical-history").show();
+    
+    var owner = "update_edited_medical_hist";
+    var ownerid = $(this).attr("ownerid");
+    var postid = $(this).attr("postid");
 
-    var formData = new FormData(this);
-    alert(form);
-    return;
-    // var theurl = '/upload_accounts_documents';
-    var theurl = $(".gbpeter-maps").attr("gbpeter-upload-accounts-documents");
+    var partner_name = $("#partner_name_frm").val();
+    var healthy_question = $("#healthy_question_frm").val();
+    var health_history_1 = $("#health_history_1_frm").val();
+    var health_history_2 = $("#health_history_2_frm").val();
+    var chronic_illness_details1 = $("#chronic_illness_details1_frm").val();
+    var chronic_illness_details2 = $("#chronic_illness_details2_frm").val();
+    var fertility_test_treatment = $("#fertility_test_treatment_frm").val();
+    var sti_diagnosis = $("#sti_diagnosis_frm").val();
+    var fertility_tests_details = $("#fertility_tests_details_frm").val();
+    var sti_diagnosis_details = $("#sti_diagnosis_details_frm").val();
+    var taking_medications = $("#taking_medications_frm").val();
+    var known_allergies = $("#known_allergies_frm").val();
+    var taking_medications_details = $("#taking_medications_details_frm").val();
+    var known_allergies_details = $("#known_allergies_details_frm").val();
+    var smoke_status = $("#smoke_status_frm").val();
+    var alcohol_status = $("#alcohol_status_frm").val();
+    var smoke_status_details = $("#smoke_status_details_frm").val();
+    var alcohol_status_details = $("#alcohol_status_details_frm").val();
+    var hard_drugs = $("#hard_drugs_frm").val();
+    var hard_drugs_details = $("#hard_drugs_details_frm").val();
+    var comments = $("#comments_frm").val();
 
-    $.ajax({
-        type: 'POST',
-        url: theurl, // Your Laravel route
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            alert(response);
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-        }
-    });
+    var formData = {
+        owner: owner,
+        postid: postid,
+        ownerid: ownerid,
+        partner_name: partner_name,
+        healthy_question: healthy_question,
+        health_history_1: health_history_1,
+        health_history_2: health_history_2,
+        chronic_illness_details1: chronic_illness_details1,
+        chronic_illness_details2: chronic_illness_details2,
+        fertility_test_treatment: fertility_test_treatment,
+        sti_diagnosis: sti_diagnosis,
+        fertility_tests_details: fertility_tests_details,
+        sti_diagnosis_details: sti_diagnosis_details,
+        taking_medications: taking_medications,
+        known_allergies: known_allergies,
+        taking_medications_details: taking_medications_details,
+        known_allergies_details: known_allergies_details,
+        smoke_status: smoke_status,
+        alcohol_status: alcohol_status,
+        smoke_status_details: smoke_status_details,
+        alcohol_status_details: alcohol_status_details,
+        hard_drugs: hard_drugs,
+        hard_drugs_details: hard_drugs_details,
+        comments: comments
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
 });
+
+// create documents
+// $('body').on('submit', '.documentUploadForm', function(event) {
+    // $(document).ready(function() {
+        $('body').on('submit', '.xxdocumentUploadForm', function(event) {
+            event.preventDefault();
+            var owner = "update_document";
+            alert("here i come!");
+        });
+    // });
 
 // var theurl = '/load_all_donor_document/';
 var theurl = $(".gbpeter-maps").attr("gbpeter-load-all-donor-document");
@@ -233,6 +278,8 @@ function updateDatabase(theurl, formData) {
                 $("#hard_drugs_frm").val("");
                 $("#hard_drugs_details_frm").val("");
                 $("#comments_frm").val("");
+            }else if(formData.owner =="update_edited_medical_hist"){
+                $("#processing-medical-history").hide();
             }
         },
         error: function(response) {
@@ -242,3 +289,4 @@ function updateDatabase(theurl, formData) {
         }
     });
 }
+});

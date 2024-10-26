@@ -834,6 +834,8 @@
                 <x-cadana-clinic-settings />
             @elseif($owner == "viewauthenticatedsettings")
                 <x-cadana-authenticated-settings />
+            @elseif($owner == "view_edit_medical_history")
+              <x-cadana-edit-medical-history :params="$params" />
             @else
             
             @endif

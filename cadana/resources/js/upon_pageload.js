@@ -28,6 +28,17 @@ $(document).ready(function() {
         var theurl = $("#cadanamaps").attr("database_update");
         
         getFromDatabase(theurl, formData);
+
+        // load the gender of this user
+        var owner = "get_gender_of_user";
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+        
+        getFromDatabase(theurl, formData);
     }
 });
 
@@ -63,8 +74,8 @@ function getFromDatabase(theurl, formData) {
                 // we now insert into forms
 
                 // 
-            }else if(formData.owner == "download_all_medical_history"){
-                // alert(response);
+            }else if(formData.owner == "get_gender_of_user"){
+                alert(response);
             }
         },
         error: function(response) {

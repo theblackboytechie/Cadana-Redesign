@@ -48,6 +48,18 @@ class CadanaUpdateDatabaseController extends Controller
             }
 
             return $primary_info_array;
+        }elseif($request->owner =="get_gender_of_user"){
+            $tabledb = "users_primary_details";
+
+            $where_array = [
+                'owner_id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($output as $output){
+                return $output->gender;
+            }
         }elseif($request->owner == "download_all_medical_history"){
             // return "fresh fish!";
             $tabledb = "users_medical_history";
@@ -166,10 +178,19 @@ class CadanaUpdateDatabaseController extends Controller
                 // this returns either 1 or zero
                 CrudHelper::Update($tabledb, $where_array, $update_array);
             }
-        }elseif($request->owner == "update_medical_hist"){
+        }elseif($request->owner == "update_medical_hist" || $request->owner == "update_edited_medical_hist"){
             $authorid = Auth::id();
 
             $tabledb = "users_medical_history";
+
+            if($request->owner == "update_edited_medical_hist"){
+                // 'records_type' => "";
+                $recordstype = "sub";
+                $records_owner = "$request->ownerid";
+            }else{
+                $recordstype = "main";
+                $records_owner = "$request->ownerid";
+            }
 
             $ownerid = $request->ownerid;
             $partner_name = $request->partner_name;
@@ -197,6 +218,8 @@ class CadanaUpdateDatabaseController extends Controller
             $create_array = [
                 'author_id' => $authorid,
                 'owner_id' => $ownerid,
+                'records_type' => $recordstype,
+                'records_owner' => $records_owner,
                 'partner_name' => $partner_name,
                 'healthy_question' => $healthy_question,
                 'health_history_1' => $health_history_1,

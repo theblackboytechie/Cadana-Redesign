@@ -60,12 +60,31 @@ class CadanaDashboardPages extends Controller
     public function donorsettings(Request $request)
     {
         $owner = "viewdonorsettings";
-        $params = [];
         
         $tabledb = "users_medical_history";
 
         $where_array = [
             'owner_id' => $request->x,
+            'records_type' => "main",
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+        // return count($params);
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // edit_medical_history
+    public function edit_medical_history(Request $request)
+    {
+        $owner = "view_edit_medical_history";
+        $params = [];
+        
+        $tabledb = "users_medical_history";
+
+        $where_array = [
+            'id' => $request->postid,
+            'owner_id' => $request->ownerid,
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
