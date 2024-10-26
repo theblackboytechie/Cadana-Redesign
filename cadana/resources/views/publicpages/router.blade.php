@@ -829,7 +829,7 @@
             @elseif($owner == "viewdonorprofile")
                 <x-cadana-donor-profile />
             @elseif($owner == "viewdonorsettings")
-                <x-cadana-donor-settings :param="$params" />
+                <x-cadana-donor-settings :params="$params" />
             @elseif($owner == "viewclinicsettings")
                 <x-cadana-clinic-settings />
             @elseif($owner == "viewauthenticatedsettings")

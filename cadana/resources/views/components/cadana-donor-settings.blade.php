@@ -874,7 +874,8 @@
                         ></button>
                       </div>
 
-                      <div class="p-6.5" x-cloak x-show="formMode === false">ooo
+                      @foreach($params as $params)
+                      <div class="p-6.5" x-cloak x-show="formMode === false">
                         <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
                             <svg
@@ -889,7 +890,7 @@
 
                             Date Created
                           </span>
-                          <span>October 9, 2024 01:38 PM</span>
+                          <span>{{ date('jS F, Y. g:iA', strtotime($params->created_at)) }}</span>
                         </div>
                         <div class="grid grid-cols-2 gap-6 gap-y-8">
                           <div class="flex flex-col gap-2">
@@ -911,7 +912,7 @@
 
                               Partner Full Name
                             </span>
-                            <span>Rasheedat Lekan</span>
+                            <span>{{$params->partner_name}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -927,7 +928,7 @@
 
                               Are you healthy
                             </span>
-                            <span> Yes </span>
+                            <span>{{$params->healthy_question}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -943,7 +944,7 @@
 
                               Health Family History (1)
                             </span>
-                            <span> Blindness: Chronic Family Illness </span>
+                            <span>{{$params->health_history_1}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -960,7 +961,7 @@
 
                               Details of First Chronic Illness
                             </span>
-                            <span>Nill</span>
+                            <span>{{$params->chronic_illness_details1}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -977,7 +978,7 @@
 
                               Health Family History (2)
                             </span>
-                            <span> Blindness: Chronic Family Illness </span>
+                            <span>{{$params->health_history_2}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -993,9 +994,9 @@
 
                               Details of Second Chronic Illness
                             </span>
-                            <span>Nill</span>
+                            <span>{{$params->chronic_illness_details2}}</span>
                           </div>
-                          <div class="flex flex-col gap-2">
+                          <!-- <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1010,8 +1011,8 @@
                               Health Family History (3)
                             </span>
                             <span> Blindness: Chronic Family Illness </span>
-                          </div>
-                          <div class="flex flex-col gap-2">
+                          </div> -->
+                          <!-- <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1025,8 +1026,8 @@
 
                               Details of Third Chronic Illness
                             </span>
-                            <span>Nill</span>
-                          </div>
+                            <span>{{$params->chronic_illness_details2}}</span>
+                          </div> -->
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
                               <svg
@@ -1042,7 +1043,7 @@
                               Have You Ever Undergone any Fertility Tests or
                               Treatments?
                             </span>
-                            <span>No </span>
+                            <span>{{$params->fertility_test_treatment}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1058,7 +1059,7 @@
 
                               Details of any Fertility Tests or Treatments?
                             </span>
-                            <span> Blindness: Chronic Family Illness </span>
+                            <span>{{$params->fertility_tests_details}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -1075,7 +1076,7 @@
 
                               Have You Ever been Diagnosed with any STI?
                             </span>
-                            <span>No </span>
+                            <span>{{$params->sti_diagnosis}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1091,7 +1092,7 @@
 
                               Details of STI diagnosis
                             </span>
-                            <span>---</span>
+                            <span>{{$params->sti_diagnosis_details}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -1109,7 +1110,7 @@
                               Are You Currently Taking any Medications or
                               Supplements?
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params->taking_medications}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1125,7 +1126,7 @@
 
                               Extra details of Medications or Supplements
                             </span>
-                            <span>---</span>
+                            <span>{{$params->taking_medications_details}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -1143,7 +1144,7 @@
                               Do You Have any Known Allergies to Medications,
                               Foods or Environmental Factors?
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params->known_allergies}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1159,7 +1160,7 @@
 
                               Details of allergies
                             </span>
-                            <span>---</span>
+                            <span>{{$params->known_allergies_details}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1175,7 +1176,7 @@
 
                               Do You Smoke either socially or consistently?
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params->smoke_status}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1191,7 +1192,7 @@
 
                               Further Details of smoking history
                             </span>
-                            <span>---</span>
+                            <span>{{$params->smoke_status_details}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1208,7 +1209,7 @@
                               Do you Consume Alcohol either socially or
                               consistently?
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params->alcohol_status}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1224,7 +1225,7 @@
 
                               Details of Alcohol-Consumption History
                             </span>
-                            <span>---</span>
+                            <span>{{$params->alcohol_status_details}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1241,7 +1242,7 @@
                               Do You Consume Hard Drugs either socially or
                               consistently?
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params->hard_drugs}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1257,7 +1258,7 @@
 
                               Details of Hard Drugs-Consumption History
                             </span>
-                            <span>---</span>
+                            <span>{{$params->hard_drugs_details}}</span>
                           </div>
                           <div class="col-span-2 flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1273,10 +1274,12 @@
 
                               Comments
                             </span>
-                            <span>---</span>
+                            <span>{{$params->comments}}</span>
                           </div>
                         </div>
                       </div>
+                      <hr>
+                      @endforeach
                       <div class="p-6.5" x-cloak x-show="formMode">
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
