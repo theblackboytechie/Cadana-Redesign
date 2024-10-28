@@ -68,7 +68,7 @@
                                 </svg>
                               </span>
                               <input
-                                class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary fullname_frm"
                                 type="text"
                                 name="fullName"
                                 id="fullName"
@@ -85,7 +85,7 @@
                               >Phone Number</label
                             >
                             <input
-                              class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary phone_frm"
                               type="text"
                               name="phoneNumber"
                               id="phoneNumber"
@@ -128,7 +128,7 @@
                               </svg>
                             </span>
                             <input
-                              class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary email_frm"
                               type="email"
                               name="emailAddress"
                               id="emailAddress"
@@ -137,7 +137,7 @@
                             />
                           </div>
                         </div>
-
+<!-- 
                         <div class="mb-5.5">
                           <label
                             class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -152,12 +152,12 @@
                             placeholder="devidjhon24"
                             value="devidjhon24"
                           />
-                        </div>
+                        </div> -->
 
                         <div class="mb-5.5">
                           <label
                             class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            for="Username"
+                            for="Biography"
                             >BIO</label
                           >
                           <div class="relative">
@@ -196,7 +196,7 @@
                             </span>
 
                             <textarea
-                              class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary biography_frm"
                               name="bio"
                               id="bio"
                               rows="6"
@@ -209,14 +209,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                         </div>
 
                         <div class="flex justify-end gap-4.5">
-                          <button
+                          <!-- <button
                             class="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                             type="submit"
                           >
                             Cancel
-                          </button>
+                          </button> -->
                           <button
-                            class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
+                            class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90 trigger-settings-submit"
                             type="submit"
                           >
                             Save

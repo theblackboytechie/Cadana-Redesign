@@ -206,6 +206,34 @@ $('body').on('click', '#update_edited_medical_hist', function(event) {
 // var theurl = '/load_all_donor_document/';
 var theurl = $(".gbpeter-maps").attr("gbpeter-load-all-donor-document");
 
+// trigger-donation-create-form
+$('body').on('click', '.trigger-donation-create-form', function() {
+    // alert("create form!");
+    $(".male-donation-result").hide();
+    $(".female-donation-result").hide();
+
+    $(".male-donation-form").show();
+    $(".female-donation-form").show();
+
+    $(".trigger-return-to-donation-history").show();
+    $(".trigger-donation-create-form").show();
+
+    $(".trigger-donation-create-form").hide();
+});
+
+// trigger-return-to-donation-history
+$('body').on('click', '.trigger-return-to-donation-history', function() {
+    // alert("result!");
+    $(".male-donation-result").show();
+    $(".female-donation-result").show();
+
+    $(".male-donation-form").hide();
+    $(".female-donation-form").hide();
+
+    $(".trigger-return-to-donation-history").hide();
+    $(".trigger-donation-create-form").show();
+});
+
 // update_password
 $('body').on('click', '#update_password', function(event) {
     

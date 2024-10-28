@@ -39,6 +39,17 @@ $(document).ready(function() {
         var theurl = $("#cadanamaps").attr("database_update");
         
         getFromDatabase(theurl, formData);
+    }else if(ownerid === "settings"){
+        // alert("this is settings page!")
+        // name, primary phone, primary email, bio
+        var owner = "get_auth_user_info";
+        var formData = {
+            owner: owner
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+        
+        getFromDatabase(theurl, formData);
     }
 });
 
@@ -75,7 +86,19 @@ function getFromDatabase(theurl, formData) {
 
                 // 
             }else if(formData.owner == "get_gender_of_user"){
-                alert(response);
+                // alert(response);
+                if(response === "male"){
+                    $(".female-donation-form").remove();
+                    $(".female-donation-result").remove();
+                }else if(response === "female"){
+                    $(".male-donation-form").remove();
+                    $(".male-donation-result").remove();
+                }
+            }else if(formData.owner === "get_auth_user_info"){
+                $(".fullname_frm").val(response[0]);
+                $(".phone_frm").val(response[1]);
+                $(".email_frm").val(response[2]);
+                $(".biography_frm").val(response[3]);
             }
         },
         error: function(response) {

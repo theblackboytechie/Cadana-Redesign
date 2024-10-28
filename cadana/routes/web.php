@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/medicalhistory/edit/{ownerid}/{postid}', [CadanaDashboardPages::class, 'edit_medical_history'])->name('edit_medical_history');
 
-    Route::get('/settings/{x}', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
+    Route::get('/settings', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

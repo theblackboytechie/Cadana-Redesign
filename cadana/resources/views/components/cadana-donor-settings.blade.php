@@ -1916,22 +1916,21 @@
                           <button
                             type="button"
                             @click="donorMode = (donorMode === 'create' ? 'history' : 'create')"
-                            class="focus:shadow-outline inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                            class="focus:shadow-outline inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 trigger-donation-create-form"
                           >
                             Create
                           </button>
                           <button
                             type="button"
-                            @click="donorMode = (donorMode === 'edit' ? 'history' : 'edit')"
-                            class="focus:shadow-outline inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                            class="focus:shadow-outline inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 trigger-return-to-donation-history hidden"
                           >
-                            Edit
+                            Return
                           </button>
                         </div>
                       </div>
 
                       <!-- male -->
-                       <div class="p-6.5">
+                      <div class="p-6.5 male-donation-result donation-result">
                        <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
                             <svg
@@ -2494,7 +2493,7 @@
                        </div>
 
                       <!-- female -->
-                        <div class="p-6.5">
+                        <div class="p-6.5 female-donation-result donation-result">
                           <!--  -->
                           <div class="mt-4 grid grid-cols-2 gap-6 gap-y-8">
                             <div class="flex flex-col gap-2">
@@ -2709,75 +2708,40 @@
                         <!-- </div> -->
                       </div>
                       <div
-                        class="p-6.5"
-                        x-cloak
-                        x-show="donorMode === 'create'"
+                        class="p-6.5 bg-white shadow-default"
                       >
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <!--  -->
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Full Name of Partner
+                              Date of Sample Collection
                             </label>
                             <input
-                              type="text"
+                              type="date"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="partner_name"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Do you consider yourself to be healthy?
+                              Time of Sample Collection
                             </label>
-                            <div
-                              x-data="{ isOptionSelected: false }"
-                              class="relative z-20 bg-transparent dark:bg-form-input"
-                            >
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                :class="isOptionSelected && 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                                id="healthy_question"
-                              >
-                                <option value="" class="text-body">
-                                  Do you consider yourself to be healthy?
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
-                              </select>
-                              <span
-                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-                              >
-                                <svg
-                                  class="fill-current"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g opacity="0.8">
-                                    <path
-                                      fill-rule="evenodd"
-                                      clip-rule="evenodd"
-                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                                      fill=""
-                                    ></path>
-                                  </g>
-                                </svg>
-                              </span>
-                            </div>
+                            <input
+                              type="time"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
                           </div>
                         </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Select any Health Family History (1)
+                              Duration of Abstinence
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -2787,7 +2751,6 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="health_history_1"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
@@ -2822,7 +2785,7 @@
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Select any Health Family History (2)
+                              Difficulty in Producing
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -2832,7 +2795,6 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="health_history_2"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
@@ -2864,41 +2826,13 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Provide Further Details About Above Chronic
-                              Illness
-                            </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="chronic_illness_details1"
-                            ></textarea>
-                          </div>
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              Provide Further Details About Above Chronic
-                              Illness
-                            </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="chronic_illness_details2"
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              Have You Ever Undergone any Fertility Tests or
-                              Treatments?
+                              Was All the Sample Collected
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -2908,11 +2842,9 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="fertility_test_treatment"
                               >
                                 <option value="" class="text-body">
-                                  Have You Ever Undergone any Fertility Tests or
-                                  Treatments?
+                                  Was All the Sample Collected
                                 </option>
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2944,7 +2876,7 @@
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Have You Ever been Diagnosed with any STI?
+                              Time of Production
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -2954,10 +2886,9 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="sti_diagnosis"
                               >
                                 <option value="" class="text-body">
-                                  Have You Ever been Diagnosed with any STI?
+                                  Time of Production
                                 </option>
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2986,39 +2917,24 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If yes above, Please Provide Details
+                              Time of Analysis
                             </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="fertility_tests_details"
-                            ></textarea>
+                            <input
+                              type="time"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
                           </div>
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If yes above, Please Provide Details
-                            </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="sti_diagnosis_details"
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              Are You Currently Taking any Medications or
-                              Supplements
+                              Volume of Production
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -3028,7 +2944,50 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="taking_medications"
+                              >
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Liquefaction
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3060,8 +3019,7 @@
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Do You Have any Known Allergies to Medications,
-                              Foods or Environmental Factors
+                              Debris
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -3071,7 +3029,6 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="known_allergies"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3100,40 +3057,13 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If Yes Above, Please List the Supplements and
-                              Provide Extra Details
-                            </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="taking_medications_details"
-                            ></textarea>
-                          </div>
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              If Yes Above, Please List Items You're Allergic to
-                              and Provide Extra Details
-                            </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="known_allergies_details"
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              Do You Smoke?
+                              Sperm Agglutination
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -3143,7 +3073,6 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="smoke_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3175,8 +3104,7 @@
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Do you Consume Alcohol either socially or
-                              consistently?
+                              Sperm Concentration
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -3186,7 +3114,6 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="alcohol_status"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3215,41 +3142,323 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If Yes Above Briefly Explain Your Smoking History
+                              Total Count in Ejaculate
                             </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="smoke_status_details"
-                            ></textarea>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
                           </div>
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If Yes Above Briefly Explain Your
-                              Alcohol-Consumption History, Stating How Much You
-                              Take Per Day
+                              Sperm Motility
                             </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="alcohol_status_details"
-                            ></textarea>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
                           </div>
                         </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Fast Progression
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Slow Progression
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Non Progression
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Sperm Immotile
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Sperm Immotile
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Other Cells (X10^6/ml)
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Round Cells
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              White Blood Cells
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-black-2">
+                          Morphology
+                        </h3>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Normal Forms
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Abnormal Forms
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Head Defects
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Mid-piece Defects
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Tail Defects
+                            </label>
+                            <input
+                              type="text"
+                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
+                          </div>
+                          <div class="w-full xl:w-1/2">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Antisperm Antibody
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Do You Consume Hard Drugs either socially or
-                              consistently?
+                              Comments
+                            </label>
+                            <textarea
+                              rows="3"
+                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <hr />
+                        <!-- Female Form -->
+
+                        <div class="mt-4 flex flex-col gap-4 female-donation-form">
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Down Regulation Protocol Used
                             </label>
                             <div
                               x-data="{ isOptionSelected: false }"
@@ -3259,8 +3468,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
-                                id="hard_drugs"
                               >
+                                <option value="" class="text-body">
+                                  Down Regulation Protocol Used
+                                </option>
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
                               </select>
@@ -3287,37 +3498,342 @@
                               </span>
                             </div>
                           </div>
-                        </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              If Yes Above Briefly Explain Your Drug-Use
-                              History, Stating How Much of Drugs You Take Per
-                              Day
+                              Antagonant Protocol Used
                             </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="hard_drugs_details"
-                            ></textarea>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Antagonant Protocol Used
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Comments--
+                              Human Chorionic Gonadotropin (hCG) Used
                             </label>
-                            <textarea
-                              rows="3"
-                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              id="comments"
-                            ></textarea>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Human Chorionic Gonadotropin (hCG) Used
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Follicle-Stimulating Hormone (FSH) Medications
+                              Used
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Follicle-Stimulating Hormone (FSH) Medications
+                                  Used
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Human Menopausal Gonadotropin (hMG) Medications
+                              Used
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Human Menopausal Gonadotropin (hMG)
+                                  Medications Used
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Duration of Drugs
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Duration of Drugs
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Number of Follicles Generated
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Number of Follicles Generated
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="w-full">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Number of Positives
+                            </label>
+                            <div
+                              x-data="{ isOptionSelected: false }"
+                              class="relative z-20 bg-transparent dark:bg-form-input"
+                            >
+                              <select
+                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                :class="isOptionSelected && 'text-black dark:text-white'"
+                                @change="isOptionSelected = true"
+                              >
+                                <option value="" class="text-body">
+                                  Number of Positives
+                                </option>
+                                <option value="" class="text-body">Yes</option>
+                                <option value="" class="text-body">No</option>
+                              </select>
+                              <span
+                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
+                              >
+                                <svg
+                                  class="fill-current"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g opacity="0.8">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                      fill=""
+                                    ></path>
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                            <div class="w-full">
+                              <label
+                                class="mb-3 block text-sm font-medium text-black dark:text-white"
+                              >
+                                Comments
+                              </label>
+                              <textarea
+                                rows="3"
+                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              ></textarea>
+                            </div>
                           </div>
                         </div>
+                      </div>
+                        <!--  -->
                       </div>
                       <div class="p-6.5" x-cloak x-show="donorMode === 'edit'">
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">

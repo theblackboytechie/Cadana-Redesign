@@ -60,6 +60,34 @@ class CadanaUpdateDatabaseController extends Controller
             foreach($output as $output){
                 return $output->gender;
             }
+        }elseif($request->owner =="get_auth_user_info"){
+            $tabledb = "users_primary_details";
+            
+            $id = Auth::id();
+
+            $where_array = [
+                'owner_id' => $id,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            $primary_info_array = [];
+
+            if(count($output) > 0){
+                foreach($output as $output){
+                    array_push($primary_info_array, $output->name);
+                    array_push($primary_info_array, $output->primary_phone);
+                    array_push($primary_info_array, $output->primary_email);
+                    array_push($primary_info_array, $output->bio);
+                }
+            }else{
+                array_push($primary_info_array, "");
+                array_push($primary_info_array, "");
+                array_push($primary_info_array, "");
+                array_push($primary_info_array, "");
+            }
+
+            return $primary_info_array;
         }elseif($request->owner == "download_all_medical_history"){
             // return "fresh fish!";
             $tabledb = "users_medical_history";
