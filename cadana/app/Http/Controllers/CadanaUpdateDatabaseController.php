@@ -182,6 +182,46 @@ class CadanaUpdateDatabaseController extends Controller
             ];
 
             CrudHelper::Update($tabledb, $where_array, $update_array);
+        }elseif($request->owner == "update_authen_settings_details"){
+            $authorid = Auth::id();
+
+            $tabledb = "users_primary_details";
+
+            $fullname = $request->fullname_frm;
+            $phone = $request->phone_frm;
+            $email = $request->email_frm;
+            $biography = $request->biography_frm;
+
+            $where_array = [
+                'owner_id' => $authorid,
+            ];
+
+            $update_array = [
+                'name' => $fullname,
+                'primary_email' => $email,
+                'primary_phone' => $phone,
+                'bio' => $biography,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            // users
+            $tabledb = "users";
+
+            $authorid = Auth::id();
+
+            $where_array = [
+                'id' => $authorid
+            ];
+
+            $update_array = [
+                'name' => $fullname,
+                'email' => $email,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
         }elseif($request->owner == "update_password"){
             // return "na in the password!";
             $ownerid = $request->ownerid;

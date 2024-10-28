@@ -68,6 +68,30 @@ $('body').on('click', '#update_primary_info1', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// trigger-settings-submit
+$('body').on('click', '.trigger-settings-submit', function(event) {
+    event.preventDefault();
+
+    var owner = "update_authen_settings_details";
+    
+    var fullname_frm = $(".fullname_frm").val();
+    var phone_frm = $(".phone_frm").val();
+    var email_frm = $(".email_frm").val();
+    var biography_frm = $(".biography_frm").val();
+
+    var formData = {
+        owner: owner,
+        fullname_frm: fullname_frm,
+        phone_frm: phone_frm,
+        email_frm: email_frm,
+        biography_frm: biography_frm
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // update_medical_hist
 $('body').on('click', '#update_medical_hist', function(event) {
     event.preventDefault();

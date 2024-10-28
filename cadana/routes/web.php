@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/clinicsettings', [CadanaDashboardPages::class, 'clinicsettings'])->name('clinicsettings');
 
     Route::get('/donorprofile', [CadanaDashboardPages::class, 'donorprofile'])->name('donorprofile');
-    Route::get('/donorsettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
+    Route::get('/usersettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 
     Route::get('/donorsettings/{x}/{y}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 

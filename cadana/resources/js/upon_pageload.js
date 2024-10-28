@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var ownerid = urlPath.split("/").pop();
     
-    if (secondToLast === "donorsettings") {
+    if (secondToLast === "usersettings") {
         var owner = "download_latest_user_details";
         // load from primary information of the user from the database
         var formData = {

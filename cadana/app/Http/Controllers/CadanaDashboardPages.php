@@ -28,7 +28,10 @@ class CadanaDashboardPages extends Controller
     public function allusers(Request $request)
     {
         $owner = "viewallusers";
-        $params = [];
+
+        $tabledb = "users";
+
+        $params = CrudHelper::Geteverything($tabledb);
 
         return view('/publicpages/router', compact('owner', 'params'));
     }

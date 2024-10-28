@@ -823,7 +823,7 @@
             @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />
             @elseif($owner == "viewallusers")
-                <x-cadana-users />
+                <x-cadana-users :params="$params" />
             @elseif($owner == "viewclinicprofile")
                 <x-cadana-clinic-profile />
             @elseif($owner == "viewdonorprofile")
