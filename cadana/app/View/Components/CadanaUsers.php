@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class CadanaUsers extends Component
 {
+    public $owner;
     public $params;
     /**
      * Create a new component instance.
      */
-    public function __construct($params)
+    public function __construct($params, $owner)
     {
+        $this->owner = $owner;
         $this->params = $params;
         //
     }

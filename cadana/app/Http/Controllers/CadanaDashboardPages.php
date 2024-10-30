@@ -36,6 +36,71 @@ class CadanaDashboardPages extends Controller
         return view('/publicpages/router', compact('owner', 'params'));
     }
 
+    // clinics
+    public function allclinics(Request $request)
+    {
+        $owner = "viewallclinics";
+
+        $tabledb = "users";
+
+        $where_array = [
+            'accounttype' => "clinic",
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // allprofessionals
+    public function allprofessionals(Request $request)
+    {
+        $owner = "viewallprofessionals";
+
+        $tabledb = "users";
+
+        $where_array = [
+            'accounttype' => "professional",
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // alldonors
+    public function alldonors(Request $request)
+    {
+        $owner = "viewalldonors";
+
+        $tabledb = "users";
+
+        $where_array = [
+            'accounttype' => "donor",
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // accountsprofile
+    public function accountsprofile(Request $request)
+    {
+        $owner = "view_accounts_profile";
+
+        $tabledb = "users";
+
+        $where_array = [
+            'id' => "$request->x",
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+
+        return view('/publicpages/router', compact('owner', 'params'));
+        // return "rush!";
+    }
+
     public function clinicprofile(Request $request)
     {
         $owner = "viewclinicprofile";

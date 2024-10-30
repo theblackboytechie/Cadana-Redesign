@@ -41,7 +41,7 @@
   <!-- SIDEBAR HEADER -->
   <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
     <a href="index.html">
-      <img src="{{ asset('storage/assets/images/logo.png') }}" alt="Logo" />
+      <img src="{{ asset('storage/assets/images/cadanalogo.png') }}" alt="Logo" class="h-12" />
     </a>
 
     <button
@@ -147,7 +147,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="./../clinics.html"
+              href="clinics"
               @click="selected = (selected === 'Clinics' ? '':'Clinics')"
               :class="{ 'bg-primary text-white': (selected === 'Clinics' ) && (page === 'clinics' || 'clinic-profile') }"
             >
@@ -169,7 +169,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="./../professionals.html"
+              href="professionals"
               @click="selected = (selected === 'Professionals' ? '':'Professionals')"
               :class="{ 'bg-primary text-white': (selected === 'Professionals') && (page === 'professionals') }"
               :class="page === 'Professionals' && 'bg-primary'"
@@ -193,7 +193,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="./../donors.html"
+              href="donors"
               @click="selected = (selected === 'Donors' ? '':'Donors')"
               :class="{ 'bg-primary text-white': (selected === 'Donors') || (page === 'donors') }"
             >
@@ -240,7 +240,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="/donorsettings/{{ auth()->id() }}"
+              href="/usersettings/{{ auth()->id() }}"
               @click="selected = (selected === 'Settings' ? '':'Settings')"
               :class="{ 'bg-primary text-white': (selected === 'Settings') && (page === 'settings') }"
               :class="page === 'Settings' && 'bg-primary'"
@@ -338,7 +338,7 @@
       </button>
       <!-- Hamburger Toggle BTN -->
       <a class="block flex-shrink-0 lg:hidden" href="index.html">
-        <img src="src/images/logo/logo-icon.svg" alt="Logo" />
+        <img src="{{ asset('storage/assets/images/cadanalogo.png') }}" class="h-12" alt="Logo" />
       </a>
     </div>
     <div class="hidden sm:block">
@@ -822,18 +822,18 @@
               </div>
             @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />
-            @elseif($owner == "viewallusers")
-                <x-cadana-users :params="$params" />
+            @elseif($owner == "viewallusers" || $owner == "viewallprofessionals" || $owner == "viewalldonors" || $owner == "viewallclinics")
+                <x-cadana-users :params="$params" :owner="$owner" />
             @elseif($owner == "viewclinicprofile")
-                <x-cadana-clinic-profile />
+                <x-cadana-clinic-profile :params="$params" />
             @elseif($owner == "viewdonorprofile")
                 <x-cadana-donor-profile />
             @elseif($owner == "viewdonorsettings")
-                <x-cadana-donor-settings :params="$params" />
+                <x-cadana-donor-settings :params="$params" :owner="$owner" />
             @elseif($owner == "viewclinicsettings")
                 <x-cadana-clinic-settings />
-            @elseif($owner == "viewauthenticatedsettings")
-                <x-cadana-authenticated-settings />
+            @elseif($owner == "viewauthenticatedsettings" || $owner == "view_accounts_profile")
+                <x-cadana-authenticated-settings :params="$params" :owner="$owner" />
             @elseif($owner == "view_edit_medical_history")
               <x-cadana-edit-medical-history :params="$params" />
             @else

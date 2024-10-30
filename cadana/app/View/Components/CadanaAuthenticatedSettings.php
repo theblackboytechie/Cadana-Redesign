@@ -8,11 +8,15 @@ use Illuminate\View\Component;
 
 class CadanaAuthenticatedSettings extends Component
 {
+    public $owner;
+    public $params;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($params, $owner)
     {
+        $this->owner = $owner;
+        $this->params = $params;
         //
     }
 

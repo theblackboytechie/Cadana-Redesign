@@ -26,8 +26,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/database_update', [CadanaUpdateDatabaseController::class, 'database_update'])->name('database_update');
 
     Route::get('/allusers', [CadanaDashboardPages::class, 'allusers'])->name('allusers');
+    Route::get('/clinics', [CadanaDashboardPages::class, 'allclinics'])->name('allclinics');
+    Route::get('/professionals', [CadanaDashboardPages::class, 'allprofessionals'])->name('allprofessionals');
+    Route::get('/donors', [CadanaDashboardPages::class, 'alldonors'])->name('alldonors');
+
+    Route::get('/profile/{x}', [CadanaDashboardPages::class, 'accountsprofile'])->name('accountsprofile');
     Route::get('/clinicprofile', [CadanaDashboardPages::class, 'clinicprofile'])->name('clinicprofile');
     Route::get('/clinicsettings', [CadanaDashboardPages::class, 'clinicsettings'])->name('clinicsettings');
+
+
 
     Route::get('/donorprofile', [CadanaDashboardPages::class, 'donorprofile'])->name('donorprofile');
     Route::get('/usersettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');

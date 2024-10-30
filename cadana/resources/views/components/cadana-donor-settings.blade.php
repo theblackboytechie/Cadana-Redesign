@@ -5,7 +5,7 @@
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
               >
                 <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                  Donor Settings
+                  Account Settings
                 </h2>
 
                 <nav>
@@ -14,7 +14,7 @@
                       <a class="font-medium" href="index.html">Dashboard /</a>
                     </li>
                     <li>
-                      <a class="font-medium" href="donors.html">Donor /</a>
+                      <a class="font-medium" href="donors.html">Donorxx /</a>
                     </li>
                     <li class="text-primary">Settings</li>
                   </ol>
@@ -39,7 +39,7 @@
                     <span
                       class="group-hover:text-primary"
                       :class="formStep === 1 ? ' text-primary' : 'text-black-2'"
-                      >Donor Information</span
+                      >Primary Information</span
                     >
                   </button>
                   <button
@@ -56,7 +56,7 @@
                     <span
                       class="group-hover:text-primary"
                       :class="formStep === 2 ? ' text-primary' : 'text-black-2'"
-                      >Donor Credentials</span
+                      >Vetted Credentials</span
                     >
                   </button>
                   <button
@@ -73,7 +73,7 @@
                     <span
                       class="group-hover:text-primary"
                       :class="formStep === 3 ? ' text-primary' : 'text-black-2'"
-                      >Donor Password</span
+                      >Account's Password</span
                     >
                   </button>
                   @if(Auth::user()->accounttype != 'donor')
@@ -94,6 +94,7 @@
                       >Verification</span
                     >
                   </button>
+                  @if(Auth::user()->accounttype == 'donor')
                   <button
                     type="button"
                     @click="formStep = 5"
@@ -111,6 +112,7 @@
                       >Medical History</span
                     >
                   </button>
+                  
                   <button
                     type="button"
                     @click="formStep = 6"
@@ -129,6 +131,7 @@
                     >
                   </button>
                   @endif
+                  @endif
                 </div>
                 <div class="w-8/12">
                   <div x-cloak x-show="formStep === 1">
@@ -139,7 +142,7 @@
                         class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
                       >
                         <h3 class="font-medium text-black dark:text-white">
-                          Donor Information 
+                          Primary Information 
                         </h3>
                       </div>
 
@@ -662,7 +665,7 @@
                         class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
                       >
                         <h3 class="font-medium text-black dark:text-white">
-                          Donor Credentials
+                          Vetted Credentials
                         </h3>
                       </div>
 
@@ -775,7 +778,7 @@
                         class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
                       >
                         <h3 class="font-medium text-black dark:text-white">
-                          Donor Password
+                          Account's Password
                         </h3>
                       </div>
                       <div class="flex flex-col gap-6 p-6.5">

@@ -5,7 +5,16 @@
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
               >
                 <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                  Users
+                   <!-- {{$owner}} -->
+                  @if($owner == "viewalldonors")
+                    Donors
+                  @elseif($owner == "viewallclinics")
+                    Clinics
+                  @elseif($owner == "viewallprofessionals")
+                    Professionals
+                  @else
+                    Users
+                  @endif
                 </h2>
 
                 <nav>
