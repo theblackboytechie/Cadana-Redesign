@@ -86,13 +86,25 @@ function getFromDatabase(theurl, formData) {
 
                 // 
             }else if(formData.owner == "get_gender_of_user"){
-                // alert(response);
-                if(response === "male"){
+                alert("gender: "+response);
+                if(response === "nill" || response === ""){
+                    $(".female-donation-result").remove();
+                    $(".male-donation-result").remove();
+                    $(".female-donation-form").remove();
+                    $(".male-donation-form").remove();
+                    $(".hr-donor-settings").remove();
+                    $(".trigger-donation-create-form").remove();
+                    $(".trigger-return-to-donation-history").remove();
+                }else if(response === "male"){
                     $(".female-donation-form").remove();
                     $(".female-donation-result").remove();
+
+                    $(".male-donation-form").hide();
                 }else if(response === "female"){
                     $(".male-donation-form").remove();
                     $(".male-donation-result").remove();
+
+                    $(".female-donation-form").hide();
                 }
             }else if(formData.owner === "get_auth_user_info"){
                 $(".fullname_frm").val(response[0]);

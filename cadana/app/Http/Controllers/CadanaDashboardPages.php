@@ -137,7 +137,6 @@ class CadanaDashboardPages extends Controller
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
-        // return count($params);
 
         return view('/publicpages/router', compact('owner', 'params'));
     }

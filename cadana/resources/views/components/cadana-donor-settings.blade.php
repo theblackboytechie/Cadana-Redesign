@@ -76,7 +76,7 @@
                       >Account's Password</span
                     >
                   </button>
-                  @if(Auth::user()->accounttype != 'donor')
+                  @if(Auth::user()->accounttype == 'superadmin' || Auth::user()->accounttype == 'professional' || Auth::user()->accounttype == 'clinic')
                   <button
                     type="button"
                     @click="formStep = 4"
@@ -94,7 +94,7 @@
                       >Verification</span
                     >
                   </button>
-                  @if(Auth::user()->accounttype == 'donor')
+
                   <button
                     type="button"
                     @click="formStep = 5"
@@ -130,7 +130,6 @@
                       >Donation History</span
                     >
                   </button>
-                  @endif
                   @endif
                 </div>
                 <div class="w-8/12">
@@ -1933,6 +1932,7 @@
                       </div>
 
                       <!-- male -->
+                      
                       <div class="p-6.5 male-donation-result donation-result">
                        <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
@@ -2494,9 +2494,10 @@
                           </div>
                         </div>
                        </div>
+                       <!-- male -->
 
-                      <!-- female -->
-                        <div class="p-6.5 female-donation-result donation-result">
+                      <!-- female preview -->
+                        <div class="p-6.5 female-donation-result donation-result hidden">
                           <!--  -->
                           <div class="mt-4 grid grid-cols-2 gap-6 gap-y-8">
                             <div class="flex flex-col gap-2">
@@ -2724,6 +2725,7 @@
                             <input
                               type="date"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-sample-collection-date"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2735,11 +2737,12 @@
                             <input
                               type="time"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-sample-collection-time"
                             />
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -2754,6 +2757,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-duration-abstinence"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
@@ -2798,6 +2802,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-difficulty-producing"
                               >
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
@@ -2830,7 +2835,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -2845,6 +2850,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-sample-collected"
                               >
                                 <option value="" class="text-body">
                                   Was All the Sample Collected
@@ -2889,6 +2895,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-production-time"
                               >
                                 <option value="" class="text-body">
                                   Time of Production
@@ -2921,7 +2928,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -2931,6 +2938,7 @@
                             <input
                               type="time"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-analysis-time"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -2947,6 +2955,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-production-volume"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -2976,7 +2985,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -2991,6 +3000,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-liquefaction"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3032,6 +3042,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-debris"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3061,7 +3072,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3076,6 +3087,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-agglutination"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3117,6 +3129,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-sperm-concentration"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3146,7 +3159,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3161,6 +3174,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-ejaculate-count"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3197,11 +3211,12 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-motility"
                             />
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3211,6 +3226,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-fast-progression"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3222,11 +3238,12 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-slow-progression"
                             />
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3236,22 +3253,24 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-non-progression"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Sperm Immotile
+                              Sperm Motile
                             </label>
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-motile"
                             />
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3261,6 +3280,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-sperm-immotile"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3277,6 +3297,7 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-male-other-cells"
                               >
                                 <option value="" class="text-body">Yes</option>
                                 <option value="" class="text-body">No</option>
@@ -3306,16 +3327,17 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Round Cells
+                            Round Cells
                             </label>
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-round-cells"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3327,15 +3349,16 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-White-blood-cells"
                             />
                           </div>
                         </div>
 
-                        <h3 class="text-lg font-semibold text-black-2">
+                        <h3 class="text-lg font-semibold text-black-2 male-donation-form">
                           Morphology
                         </h3>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3345,6 +3368,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-normal-forms-piece"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3356,10 +3380,11 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-abnormal-forms-piece"
                             />
                           </div>
                         </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3369,6 +3394,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-head-defects-piece"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3380,11 +3406,12 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-mid-piece-defect"
                             />
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3394,6 +3421,7 @@
                             <input
                               type="text"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-tail-defect"
                             />
                           </div>
                           <div class="w-full xl:w-1/2">
@@ -3409,6 +3437,7 @@
                               <select
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
+                                id="donation-male-antisperm"
                                 @change="isOptionSelected = true"
                               >
                                 <option value="" class="text-body">Yes</option>
@@ -3439,7 +3468,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -3449,11 +3478,17 @@
                             <textarea
                               rows="3"
                               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              id="donation-male-comment"
                             ></textarea>
+                            <!--  -->
+                            <button 
+                              class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                              id="update_male_donor_form"
+                            >Update</button>
                           </div>
                         </div>
 
-                        <hr />
+                        <hr class="hr-donor-settings" />
                         <!-- Female Form -->
 
                         <div class="mt-4 flex flex-col gap-4 female-donation-form">

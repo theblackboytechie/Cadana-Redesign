@@ -258,6 +258,12 @@ $('body').on('click', '.trigger-return-to-donation-history', function() {
     $(".trigger-donation-create-form").show();
 });
 
+// update_male_donor_form
+$('body').on('click', '#update_male_donor_form', function(event) {
+    event.preventDefault();
+    alert("alabari!");
+});
+
 // update_password
 $('body').on('click', '#update_password', function(event) {
     

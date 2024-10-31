@@ -50,16 +50,17 @@ class CadanaUpdateDatabaseController extends Controller
             return $primary_info_array;
         }elseif($request->owner =="get_gender_of_user"){
             $tabledb = "users_primary_details";
-
+            // return $request->ownerid;
             $where_array = [
                 'owner_id' => $request->ownerid,
             ];
     
             $output = CrudHelper::Get($tabledb, $where_array);
-
+            // return count($output);
             foreach($output as $output){
                 return $output->gender;
             }
+            // }
         }elseif($request->owner =="get_auth_user_info"){
             $tabledb = "users_primary_details";
             
