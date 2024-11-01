@@ -40,7 +40,7 @@ $('body').on('click', '#update_primary_info1', function(event) {
     var donor_secondary_zipcode = $("#donor_secondary_zipcode").val();
 
     var url = window.location.href;
-    var ownerid = url.substring(url.lastIndexOf('/') + 1);alert(ownerid);
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);//alert(ownerid);
 
     var formData = {
         owner: owner,
@@ -217,6 +217,87 @@ $('body').on('click', '#update_edited_medical_hist', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// update_edited_male_donor_form
+$('body').on('click', '#update_edited_male_donor_form', function(event) {
+    event.preventDefault();
+
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var owner = "update_edited_male_donor_record";
+
+    var postid = $(this).attr("postid");
+
+    // alert("ownerid!" + ownerid);
+    var sample_collection_date = $("#donation-male-sperm-sample-collection-date").val();
+    var sample_collection_time = $("#donation-male-sperm-sample-collection-time").val();
+    var duration_abstinence = $("#donation-male-sperm-duration-abstinence").val();
+    var difficulty_producing = $("#donation-male-sperm-difficulty-producing").val();
+    var all_sample_collected = $("#donation-male-sperm-sample-collected").val();
+    var production_time = $("#donation-male-sperm-production-time").val();
+    var analysis_time = $("#donation-male-sperm-analysis-time").val();
+    var production_volume = $("#donation-male-sperm-production-volume").val();
+    var liquefaction = $("#donation-male-sperm-liquefaction").val();
+    var debris = $("#donation-male-sperm-debris").val();
+    var agglutination = $("#donation-male-sperm-agglutination").val();
+    var concentration = $("#donation-male-sperm-concentration").val();
+    var ejaculate_count = $("#donation-male-ejaculate-count").val();
+    var sperm_motility = $("#donation-male-sperm-motility").val();
+    var fast_progression = $("#donation-male-fast-progression").val();
+    var slow_progression = $("#donation-male-slow-progression").val();
+    var non_progression = $("#donation-male-non-progression").val();
+    var sperm_motile = $("#donation-male-sperm-motile").val();
+    var sperm_immotile = $("#donation-male-sperm-immotile").val();
+    var other_cells = $("#donation-male-other-cells").val();
+    var round_cells = $("#donation-male-round-cells").val();
+    var White_blood_cells = $("#donation-male-White-blood-cells").val();
+    var normal_forms_piece = $("#donation-male-normal-forms-piece").val();
+    var abnormal_forms_piece = $("#donation-male-abnormal-forms-piece").val();
+    var head_defects_piece = $("#donation-male-head-defects-piece").val();
+    var mid_piece_defect = $("#donation-male-mid-piece-defect").val();
+    var tail_defect = $("#donation-male-tail-defect").val();
+    var antisperm = $("#donation-male-antisperm").val();
+    var comment = $("#donation-male-comment").val();
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        postid: postid,
+        sample_collection_date: sample_collection_date,
+        sample_collection_time: sample_collection_time,
+        duration_abstinence: duration_abstinence,
+        difficulty_producing: difficulty_producing,
+        all_sample_collected: all_sample_collected,
+        production_time: production_time,
+        analysis_time: analysis_time,
+        production_volume: production_volume,
+        liquefaction: liquefaction,
+        debris: debris,
+        agglutination: agglutination,
+        concentration: concentration,
+        ejaculate_count: ejaculate_count,
+        sperm_motility: sperm_motility,
+        fast_progression: fast_progression,
+        slow_progression: slow_progression,
+        non_progression: non_progression,
+        sperm_motile: sperm_motile,
+        sperm_immotile: sperm_immotile,
+        other_cells: other_cells,
+        round_cells: round_cells,
+        White_blood_cells: White_blood_cells,
+        normal_forms_piece: normal_forms_piece,
+        abnormal_forms_piece: abnormal_forms_piece,
+        head_defects_piece: head_defects_piece,
+        mid_piece_defect: mid_piece_defect,
+        tail_defect: tail_defect,
+        antisperm: antisperm,
+        comment: comment
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // create documents
 // $('body').on('submit', '.documentUploadForm', function(event) {
     // $(document).ready(function() {
@@ -262,7 +343,6 @@ $('body').on('click', '.trigger-return-to-donation-history', function() {
 $('body').on('click', '#update_male_donor_form', function(event) {
     event.preventDefault();
 
-    var owner = "update_medical_hist";
     var url = window.location.href;
     var ownerid = url.substring(url.lastIndexOf('/') + 1);
     var owner = "update_male_donor_record";
@@ -272,6 +352,7 @@ $('body').on('click', '#update_male_donor_form', function(event) {
     var sample_collection_time = $("#donation-male-sperm-sample-collection-time").val();
     var duration_abstinence = $("#donation-male-sperm-duration-abstinence").val();
     var difficulty_producing = $("#donation-male-sperm-difficulty-producing").val();
+    var all_sample_collected = $("#donation-male-sperm-sample-collected").val();
     var production_time = $("#donation-male-sperm-production-time").val();
     var analysis_time = $("#donation-male-sperm-analysis-time").val();
     var production_volume = $("#donation-male-sperm-production-volume").val();
@@ -304,6 +385,7 @@ $('body').on('click', '#update_male_donor_form', function(event) {
         sample_collection_time: sample_collection_time,
         duration_abstinence: duration_abstinence,
         difficulty_producing: difficulty_producing,
+        all_sample_collected: all_sample_collected,
         production_time: production_time,
         analysis_time: analysis_time,
         production_volume: production_volume,
@@ -332,7 +414,7 @@ $('body').on('click', '#update_male_donor_form', function(event) {
 
     var theurl = $("#cadanamaps").attr("database_update");
 
-    updateDatabase(theurl, formData);    
+    updateDatabase(theurl, formData);
 });
 
 // update_password

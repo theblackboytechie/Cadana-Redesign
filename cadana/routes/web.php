@@ -41,7 +41,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/donorsettings/{x}/{y}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 
-    Route::get('/medicalhistory/edit/{ownerid}/{postid}', [CadanaDashboardPages::class, 'edit_medical_history'])->name('edit_medical_history');
+    Route::get('/medicalhistory/edit/{postid}', [CadanaDashboardPages::class, 'edit_medical_history'])->name('edit_medical_history');
+    Route::get('/donatinghistory/edit/{postid}', [CadanaDashboardPages::class, 'edit_donating_history'])->name('edit_donating_history');
 
     Route::get('/settings', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
 

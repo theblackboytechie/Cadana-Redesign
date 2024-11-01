@@ -344,20 +344,29 @@ class CadanaUpdateDatabaseController extends Controller
                 // this returns either 1 or zero
                 $tabledb = "users_medical_history";
                 CrudHelper::Update($tabledb, $where_array, $update_array);
+
+                $tabledb = "users_medical_history_history";
+                CrudHelper::Create($tabledb, $create_array);
+            }else{
+                $tabledb = "users_medical_history";
+                CrudHelper::Create($tabledb, $create_array);
             }
-            
-            $tabledb = "users_medical_history_history";
-            CrudHelper::Create($tabledb, $create_array);
-        }elseif($request->owner == "update_male_donor_record"){
+        }elseif($request->owner == "update_male_donor_record" || $request->owner == "update_edited_male_donor_record"){
             // return "bro code!";
-            $tabledb = "male_donation_report";
             $authorid = Auth::id();
+
+            if($request->owner == "update_edited_male_donor_record"){
+                $records_owner = "$request->postid";
+            }else{
+                $records_owner = "$request->ownerid";
+            }
 
             $ownerid = $request->ownerid;
             $sample_collection_date = $request->sample_collection_date;
             $sample_collection_time = $request->sample_collection_time;
             $duration_abstinence = $request->duration_abstinence;
             $difficulty_producing = $request->difficulty_producing;
+            $all_sample_collected = $request->all_sample_collected;
             $production_time = $request->production_time;
             $analysis_time = $request->analysis_time;
             $production_volume = $request->production_volume;
@@ -390,6 +399,7 @@ class CadanaUpdateDatabaseController extends Controller
                 'collection_time' => $sample_collection_time,
                 'duration_abstinence' => $duration_abstinence,
                 'difficulty_producing' => $difficulty_producing,
+                'all_sample_collected' => $all_sample_collected,
                 'production_time' => $production_time,
                 'analysis_time' => $analysis_time,
                 'production_volume' => $production_volume,
@@ -418,7 +428,93 @@ class CadanaUpdateDatabaseController extends Controller
                 'updated_at' => $currenttime,
             ];
 
-            CrudHelper::Create($tabledb, $create_array);
+            if($request->owner == "update_edited_male_donor_record"){
+                // this returns either 1 or zero
+                $where_array = [
+                    'id' => $request->postid
+                ];
+
+                $update_array = [
+                    'author_id' => $authorid,
+                    'owner_id' => $ownerid,
+                    'collection_date' => $sample_collection_date,
+                    'collection_time' => $sample_collection_time,
+                    'duration_abstinence' => $duration_abstinence,
+                    'difficulty_producing' => $difficulty_producing,
+                    'all_sample_collected' => $all_sample_collected,
+                    'production_time' => $production_time,
+                    'analysis_time' => $analysis_time,
+                    'production_volume' => $production_volume,
+                    'liquefaction' => $liquefaction,
+                    'debris' => $debris,
+                    'agglutination' => $agglutination,
+                    'concentration' => $concentration,
+                    'ejaculate_count' => $ejaculate_count,
+                    'sperm_motility' => $sperm_motility,
+                    'fast_progression' => $fast_progression,
+                    'slow_progression' => $slow_progression,
+                    'non_progression' => $non_progression,
+                    'sperm_motile' => $sperm_motile,
+                    'sperm_immotile' => $sperm_immotile,
+                    'other_cells' => $other_cells,
+                    'round_cells' => $round_cells,
+                    'white_blood_cells' => $White_blood_cells,
+                    'normal_forms_piece' => $normal_forms_piece,
+                    'abnormal_forms_piece' => $abnormal_forms_piece,
+                    'head_defects_piece' => $head_defects_piece,
+                    'mid_piece_defect' => $mid_piece_defect,
+                    'tail_defect' => $tail_defect,
+                    'antisperm' => $antisperm,
+                    'comment' => $comment,
+                ];
+
+                $tabledb = "male_donation_report";
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+
+                $create_array = [
+                    'records_owner' => $records_owner,
+                    'author_id' => $authorid,
+                    'owner_id' => $ownerid,
+                    'collection_date' => $sample_collection_date,
+                    'collection_time' => $sample_collection_time,
+                    'duration_abstinence' => $duration_abstinence,
+                    'difficulty_producing' => $difficulty_producing,
+                    'all_sample_collected' => $all_sample_collected,
+                    'production_time' => $production_time,
+                    'analysis_time' => $analysis_time,
+                    'production_volume' => $production_volume,
+                    'liquefaction' => $liquefaction,
+                    'debris' => $debris,
+                    'agglutination' => $agglutination,
+                    'concentration' => $concentration,
+                    'ejaculate_count' => $ejaculate_count,
+                    'sperm_motility' => $sperm_motility,
+                    'fast_progression' => $fast_progression,
+                    'slow_progression' => $slow_progression,
+                    'non_progression' => $non_progression,
+                    'sperm_motile' => $sperm_motile,
+                    'sperm_immotile' => $sperm_immotile,
+                    'other_cells' => $other_cells,
+                    'round_cells' => $round_cells,
+                    'white_blood_cells' => $White_blood_cells,
+                    'normal_forms_piece' => $normal_forms_piece,
+                    'abnormal_forms_piece' => $abnormal_forms_piece,
+                    'head_defects_piece' => $head_defects_piece,
+                    'mid_piece_defect' => $mid_piece_defect,
+                    'tail_defect' => $tail_defect,
+                    'antisperm' => $antisperm,
+                    'comment' => $comment,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+
+                $tabledb = "male_donation_report_history";
+                CrudHelper::Create($tabledb, $create_array);
+            }else{
+                $tabledb = "male_donation_report";
+
+                CrudHelper::Create($tabledb, $create_array);
+            }
         }
     }
 

@@ -147,7 +147,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="clinics"
+              href="/clinics"
               @click="selected = (selected === 'Clinics' ? '':'Clinics')"
               :class="{ 'bg-primary text-white': (selected === 'Clinics' ) && (page === 'clinics' || 'clinic-profile') }"
             >
@@ -169,7 +169,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="professionals"
+              href="/professionals"
               @click="selected = (selected === 'Professionals' ? '':'Professionals')"
               :class="{ 'bg-primary text-white': (selected === 'Professionals') && (page === 'professionals') }"
               :class="page === 'Professionals' && 'bg-primary'"
@@ -193,7 +193,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="donors"
+              href="/donors"
               @click="selected = (selected === 'Donors' ? '':'Donors')"
               :class="{ 'bg-primary text-white': (selected === 'Donors') || (page === 'donors') }"
             >
@@ -216,7 +216,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
-              href="./../donors.html"
+              href="/chats"
               @click="selected = (selected === 'Chats' ? '':'Chats')"
               :class="{ 'bg-primary text-white': (selected === 'Chats') && (page === 'chats') }"
               :class="page === 'Chats' && 'bg-primary'"
@@ -836,6 +836,8 @@
                 <x-cadana-authenticated-settings :params="$params" :owner="$owner" />
             @elseif($owner == "view_edit_medical_history")
               <x-cadana-edit-medical-history :params="$params" />
+            @elseif($owner == "view_edit_donating_history")
+              <x-cadana-edit-donating-history :params="$params" />
             @else
             
             @endif

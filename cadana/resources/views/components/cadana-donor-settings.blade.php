@@ -879,7 +879,7 @@
                       @foreach($params as $params)
                       <div class="p-6.5" x-cloak x-show="formMode === false">
                         <div class="pb-4 text-primary">
-                          <a href="/medicalhistory/edit/3/{{$params->id}}"><b>Edit</b> {{$params->id}}</a>
+                          <a href="/medicalhistory/edit/{{$params->id}}"><b>Edit</b></a>
                         </div>
                         <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
@@ -1934,6 +1934,7 @@
                       <!-- male -->
                       @foreach($params2 as $params2)
                       <div class="p-6.5 male-donation-result donation-result">
+                        <div class="text-primary"><a href="/donatinghistory/edit/{{$params2->id}}"><b>Edit</b></a></div>
                        <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
                             <svg
@@ -1997,7 +1998,7 @@
 
                               Duration of Abstinence
                             </span>
-                            <span> 3 days </span>
+                            <span>{{$params2->duration_abstinence}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -2014,7 +2015,7 @@
 
                               Difficulty in Producing
                             </span>
-                            <span>Yes</span>
+                            <span>{{$params2->difficulty_producing}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -2031,7 +2032,7 @@
 
                               Was all sample Collected?
                             </span>
-                            <span> Yes </span>
+                            <span>{{$params2->all_sample_collected}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2047,7 +2048,7 @@
 
                               Time of Production
                             </span>
-                            <span>Up to 3 hours </span>
+                            <span>{{$params2->production_time}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2079,7 +2080,7 @@
 
                               Volume of Production
                             </span>
-                            <span>Up to 5mls</span>
+                            <span>{{$params2->production_volume}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2105,7 +2106,7 @@
 
                               Liquefaction
                             </span>
-                            <span>Yes</span>
+                            <span>{{$params2->liquefaction}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2123,7 +2124,7 @@
 
                               Debris
                             </span>
-                            <span> Other foreign particles </span>
+                            <span>{{$params2->debris}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -2140,7 +2141,7 @@
 
                               Sperm Agglutination
                             </span>
-                            <span>No </span>
+                            <span>{{$params2->agglutination}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2169,7 +2170,7 @@
 
                               Sperm Concentration
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->concentration}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -2186,7 +2187,7 @@
 
                               Total Count in Ejaculate
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params2->ejaculate_count}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2202,7 +2203,7 @@
 
                               Sperm Motility
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->sperm_motility}}</span>
                           </div>
 
                           <div class="flex flex-col gap-2">
@@ -2219,7 +2220,7 @@
 
                               Fast Progression
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params2->fast_progression}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2235,7 +2236,7 @@
 
                               Slow Progression
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->slow_progression}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2252,7 +2253,7 @@
 
                               Non-Progression
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params2->non_progression}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2268,7 +2269,7 @@
 
                               Sperm Immotile
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->sperm_immotile}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2296,10 +2297,8 @@
                                   />
                                 </g>
                               </svg>
-
-                              Other Cells (X10^6/ml)
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params2->other_cells}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2330,7 +2329,7 @@
 
                               Round Cells
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->round_cells}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2361,7 +2360,7 @@
 
                               White Blood Cells
                             </span>
-                            <span>Yes </span>
+                            <span>{{$params2->white_blood_cells}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2377,7 +2376,7 @@
 
                               Normal Forms
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->normal_forms_piece}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2393,7 +2392,7 @@
 
                               Abnormal Forms
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->abnormal_forms_piece}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2422,7 +2421,7 @@
 
                               Head Defects
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->head_defects_piece}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2440,7 +2439,7 @@
 
                               Mid-piece Defects
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->mid_piece_defect}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2458,7 +2457,7 @@
 
                               Tail Defects
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->tail_defect}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2474,7 +2473,7 @@
 
                               Antisperm Antibody
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->antisperm}}</span>
                           </div>
                           <div class="col-span-2 flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2490,7 +2489,7 @@
 
                               Comments
                             </span>
-                            <span>---</span>
+                            <span>{{$params2->comment}}</span>
                           </div>
                         </div>
                        </div>

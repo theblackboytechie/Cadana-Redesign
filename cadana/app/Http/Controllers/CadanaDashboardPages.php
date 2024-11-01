@@ -154,17 +154,33 @@ class CadanaDashboardPages extends Controller
     public function edit_medical_history(Request $request)
     {
         $owner = "view_edit_medical_history";
-        $params = [];
         
         $tabledb = "users_medical_history";
 
         $where_array = [
             'id' => $request->postid,
-            'owner_id' => $request->ownerid,
+            // 'owner_id' => $request->ownerid,
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
         
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // edit_donating_history
+    public function edit_donating_history(Request $request)
+    {
+        $owner = "view_edit_donating_history";
+        
+        $tabledb = "male_donation_report";
+
+        $where_array = [
+            'id' => $request->postid,
+            // 'owner_id' => $request->ownerid,
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+        // return count($params);
         return view('/publicpages/router', compact('owner', 'params'));
     }
 
