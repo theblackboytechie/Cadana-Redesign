@@ -86,7 +86,7 @@ function getFromDatabase(theurl, formData) {
 
                 // 
             }else if(formData.owner == "get_gender_of_user"){
-                alert("gender: "+response);
+                // alert("gender: "+response);
                 if(response === "nill" || response === ""){
                     $(".female-donation-result").remove();
                     $(".male-donation-result").remove();

@@ -9,12 +9,14 @@ use Illuminate\View\Component;
 class CadanaDonorSettings extends Component
 {
     public $params;
+    public $params2;
     /**
      * Create a new component instance.
      */
-    public function __construct($params)
+    public function __construct($params, $params2)
     {
         $this->params = $params;
+        $this->params2 = $params2;
         //
     }
 

@@ -250,14 +250,9 @@ class CadanaUpdateDatabaseController extends Controller
         }elseif($request->owner == "update_medical_hist" || $request->owner == "update_edited_medical_hist"){
             $authorid = Auth::id();
 
-            $tabledb = "users_medical_history";
-
             if($request->owner == "update_edited_medical_hist"){
-                // 'records_type' => "";
-                $recordstype = "sub";
-                $records_owner = "$request->ownerid";
+                $records_owner = "$request->postid";
             }else{
-                $recordstype = "main";
                 $records_owner = "$request->ownerid";
             }
 
@@ -287,7 +282,6 @@ class CadanaUpdateDatabaseController extends Controller
             $create_array = [
                 'author_id' => $authorid,
                 'owner_id' => $ownerid,
-                'records_type' => $recordstype,
                 'records_owner' => $records_owner,
                 'partner_name' => $partner_name,
                 'healthy_question' => $healthy_question,
@@ -310,6 +304,116 @@ class CadanaUpdateDatabaseController extends Controller
                 'hard_drugs' => $hard_drugs,
                 'hard_drugs_details' => $hard_drugs_details,
                 'comments' => $comments,
+                'created_at' => $currenttime,
+                'updated_at' => $currenttime,
+            ];
+
+            if($request->owner == "update_edited_medical_hist"){
+                $records_owner = "$request->postid";
+
+                $where_array = [
+                    'id' => $request->postid
+                ];
+    
+                $update_array = [
+                    'records_owner' => $records_owner,
+                    'partner_name' => $partner_name,
+                    'healthy_question' => $healthy_question,
+                    'health_history_1' => $health_history_1,
+                    'health_history_2' => $health_history_2,
+                    'chronic_illness_details1' => $chronic_illness_details1,
+                    'chronic_illness_details2' => $chronic_illness_details2,
+                    'fertility_test_treatment' => $fertility_test_treatment,
+                    'sti_diagnosis' => $sti_diagnosis,
+                    'fertility_tests_details' => $fertility_tests_details,
+                    'sti_diagnosis_details' => $sti_diagnosis_details,
+                    'taking_medications' => $taking_medications,
+                    'known_allergies' => $known_allergies,
+                    'taking_medications_details' => $taking_medications_details,
+                    'known_allergies_details' => $known_allergies_details,
+                    'smoke_status' => $smoke_status,
+                    'alcohol_status' => $alcohol_status,
+                    'smoke_status_details' => $smoke_status_details,
+                    'alcohol_status_details' => $alcohol_status_details,
+                    'hard_drugs' => $hard_drugs,
+                    'hard_drugs_details' => $hard_drugs_details,
+                    'comments' => $comments,
+                    'updated_at' => $currenttime,
+                ];
+    
+                // this returns either 1 or zero
+                $tabledb = "users_medical_history";
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+            }
+            
+            $tabledb = "users_medical_history_history";
+            CrudHelper::Create($tabledb, $create_array);
+        }elseif($request->owner == "update_male_donor_record"){
+            // return "bro code!";
+            $tabledb = "male_donation_report";
+            $authorid = Auth::id();
+
+            $ownerid = $request->ownerid;
+            $sample_collection_date = $request->sample_collection_date;
+            $sample_collection_time = $request->sample_collection_time;
+            $duration_abstinence = $request->duration_abstinence;
+            $difficulty_producing = $request->difficulty_producing;
+            $production_time = $request->production_time;
+            $analysis_time = $request->analysis_time;
+            $production_volume = $request->production_volume;
+            $liquefaction = $request->liquefaction;
+            $debris = $request->debris;
+            $agglutination = $request->agglutination;
+            $concentration = $request->concentration;
+            $ejaculate_count = $request->ejaculate_count;
+            $sperm_motility = $request->sperm_motility;
+            $fast_progression = $request->fast_progression;
+            $slow_progression = $request->slow_progression;
+            $non_progression = $request->non_progression;
+            $sperm_motile = $request->sperm_motile;
+            $sperm_immotile = $request->sperm_immotile;
+            $other_cells = $request->other_cells;
+            $round_cells = $request->round_cells;
+            $White_blood_cells = $request->White_blood_cells;
+            $normal_forms_piece = $request->normal_forms_piece;
+            $abnormal_forms_piece = $request->abnormal_forms_piece;
+            $head_defects_piece = $request->head_defects_piece;
+            $mid_piece_defect = $request->mid_piece_defect;
+            $tail_defect = $request->tail_defect;
+            $antisperm = $request->antisperm;
+            $comment = $request->comment;
+
+            $create_array = [
+                'author_id' => $authorid,
+                'owner_id' => $ownerid,
+                'collection_date' => $sample_collection_date,
+                'collection_time' => $sample_collection_time,
+                'duration_abstinence' => $duration_abstinence,
+                'difficulty_producing' => $difficulty_producing,
+                'production_time' => $production_time,
+                'analysis_time' => $analysis_time,
+                'production_volume' => $production_volume,
+                'liquefaction' => $liquefaction,
+                'debris' => $debris,
+                'agglutination' => $agglutination,
+                'concentration' => $concentration,
+                'ejaculate_count' => $ejaculate_count,
+                'sperm_motility' => $sperm_motility,
+                'fast_progression' => $fast_progression,
+                'slow_progression' => $slow_progression,
+                'non_progression' => $non_progression,
+                'sperm_motile' => $sperm_motile,
+                'sperm_immotile' => $sperm_immotile,
+                'other_cells' => $other_cells,
+                'round_cells' => $round_cells,
+                'white_blood_cells' => $White_blood_cells,
+                'normal_forms_piece' => $normal_forms_piece,
+                'abnormal_forms_piece' => $abnormal_forms_piece,
+                'head_defects_piece' => $head_defects_piece,
+                'mid_piece_defect' => $mid_piece_defect,
+                'tail_defect' => $tail_defect,
+                'antisperm' => $antisperm,
+                'comment' => $comment,
                 'created_at' => $currenttime,
                 'updated_at' => $currenttime,
             ];

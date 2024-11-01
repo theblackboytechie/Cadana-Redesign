@@ -129,16 +129,25 @@ class CadanaDashboardPages extends Controller
     {
         $owner = "viewdonorsettings";
         
+        // medical history
         $tabledb = "users_medical_history";
 
         $where_array = [
             'owner_id' => $request->x,
-            'records_type' => "main",
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
 
-        return view('/publicpages/router', compact('owner', 'params'));
+        // donor history
+        $tabledb = "male_donation_report";
+
+        $where_array = [
+            'owner_id' => $request->x,
+        ];
+
+        $params2 = CrudHelper::Get($tabledb, $where_array);
+
+        return view('/publicpages/router', compact('owner', 'params', 'params2'));
     }
 
     // edit_medical_history
@@ -155,7 +164,7 @@ class CadanaDashboardPages extends Controller
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
-
+        
         return view('/publicpages/router', compact('owner', 'params'));
     }
 

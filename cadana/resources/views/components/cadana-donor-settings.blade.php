@@ -1926,13 +1926,13 @@
                             type="button"
                             class="focus:shadow-outline inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 trigger-return-to-donation-history hidden"
                           >
-                            Return
+                            Return!!
                           </button>
                         </div>
                       </div>
 
                       <!-- male -->
-                      
+                      @foreach($params2 as $params2)
                       <div class="p-6.5 male-donation-result donation-result">
                        <div class="mb-4.5 flex flex-col gap-2">
                           <span class="flex items-center gap-2 font-semibold">
@@ -1948,7 +1948,7 @@
 
                             Date Created
                           </span>
-                          <span>October 9, 2024 01:38 PM</span>
+                          <span>{{ date('F j, Y h:i A', strtotime($params2->created_at)) }}</span>
                         </div>
                         <div class="grid grid-cols-2 gap-6 gap-y-8">
                           <div class="flex flex-col gap-2">
@@ -1965,7 +1965,7 @@
 
                               Date of Sample Collection
                             </span>
-                            <span>October 9, 2024 </span>
+                            <span>{{ date('F j, Y h:i A', strtotime($params2->collection_date)) }}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -1981,7 +1981,7 @@
 
                               Time of Sample Collection
                             </span>
-                            <span> 01:38 PM </span>
+                            <span>{{ date('g:iA', strtotime($params2->collection_time)) }}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2063,7 +2063,7 @@
 
                               Time of Analysis
                             </span>
-                            <span> 1 Week </span>
+                            <span>{{$params2->analysis_time}}</span>
                           </div>
                           <div class="flex flex-col gap-2">
                             <span class="flex items-center gap-2 font-semibold">
@@ -2494,7 +2494,8 @@
                           </div>
                         </div>
                        </div>
-                       <!-- male -->
+                       <hr>
+                       @endforeach                       <!-- male -->
 
                       <!-- female preview -->
                         <div class="p-6.5 female-donation-result donation-result hidden">
@@ -2762,8 +2763,8 @@
                                 <option value="" class="text-body">
                                   Select any Health Family History (1)
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2807,8 +2808,8 @@
                                 <option value="" class="text-body">
                                   Select any Health Family History (2)
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2855,8 +2856,8 @@
                                 <option value="" class="text-body">
                                   Was All the Sample Collected
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2900,8 +2901,8 @@
                                 <option value="" class="text-body">
                                   Time of Production
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2957,8 +2958,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-production-volume"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3002,8 +3003,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-liquefaction"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3044,8 +3045,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-debris"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3089,8 +3090,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-agglutination"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3131,8 +3132,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-concentration"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3176,8 +3177,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-ejaculate-count"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3299,8 +3300,8 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-other-cells"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3440,8 +3441,8 @@
                                 id="donation-male-antisperm"
                                 @change="isOptionSelected = true"
                               >
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"

@@ -261,7 +261,78 @@ $('body').on('click', '.trigger-return-to-donation-history', function() {
 // update_male_donor_form
 $('body').on('click', '#update_male_donor_form', function(event) {
     event.preventDefault();
-    alert("alabari!");
+
+    var owner = "update_medical_hist";
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var owner = "update_male_donor_record";
+
+    // alert("ownerid!" + ownerid);
+    var sample_collection_date = $("#donation-male-sperm-sample-collection-date").val();
+    var sample_collection_time = $("#donation-male-sperm-sample-collection-time").val();
+    var duration_abstinence = $("#donation-male-sperm-duration-abstinence").val();
+    var difficulty_producing = $("#donation-male-sperm-difficulty-producing").val();
+    var production_time = $("#donation-male-sperm-production-time").val();
+    var analysis_time = $("#donation-male-sperm-analysis-time").val();
+    var production_volume = $("#donation-male-sperm-production-volume").val();
+    var liquefaction = $("#donation-male-sperm-liquefaction").val();
+    var debris = $("#donation-male-sperm-debris").val();
+    var agglutination = $("#donation-male-sperm-agglutination").val();
+    var concentration = $("#donation-male-sperm-concentration").val();
+    var ejaculate_count = $("#donation-male-ejaculate-count").val();
+    var sperm_motility = $("#donation-male-sperm-motility").val();
+    var fast_progression = $("#donation-male-fast-progression").val();
+    var slow_progression = $("#donation-male-slow-progression").val();
+    var non_progression = $("#donation-male-non-progression").val();
+    var sperm_motile = $("#donation-male-sperm-motile").val();
+    var sperm_immotile = $("#donation-male-sperm-immotile").val();
+    var other_cells = $("#donation-male-other-cells").val();
+    var round_cells = $("#donation-male-round-cells").val();
+    var White_blood_cells = $("#donation-male-White-blood-cells").val();
+    var normal_forms_piece = $("#donation-male-normal-forms-piece").val();
+    var abnormal_forms_piece = $("#donation-male-abnormal-forms-piece").val();
+    var head_defects_piece = $("#donation-male-head-defects-piece").val();
+    var mid_piece_defect = $("#donation-male-mid-piece-defect").val();
+    var tail_defect = $("#donation-male-tail-defect").val();
+    var antisperm = $("#donation-male-antisperm").val();
+    var comment = $("#donation-male-comment").val();
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        sample_collection_date: sample_collection_date,
+        sample_collection_time: sample_collection_time,
+        duration_abstinence: duration_abstinence,
+        difficulty_producing: difficulty_producing,
+        production_time: production_time,
+        analysis_time: analysis_time,
+        production_volume: production_volume,
+        liquefaction: liquefaction,
+        debris: debris,
+        agglutination: agglutination,
+        concentration: concentration,
+        ejaculate_count: ejaculate_count,
+        sperm_motility: sperm_motility,
+        fast_progression: fast_progression,
+        slow_progression: slow_progression,
+        non_progression: non_progression,
+        sperm_motile: sperm_motile,
+        sperm_immotile: sperm_immotile,
+        other_cells: other_cells,
+        round_cells: round_cells,
+        White_blood_cells: White_blood_cells,
+        normal_forms_piece: normal_forms_piece,
+        abnormal_forms_piece: abnormal_forms_piece,
+        head_defects_piece: head_defects_piece,
+        mid_piece_defect: mid_piece_defect,
+        tail_defect: tail_defect,
+        antisperm: antisperm,
+        comment: comment
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);    
 });
 
 // update_password
@@ -336,8 +407,10 @@ function updateDatabase(theurl, formData) {
                 $("#hard_drugs_frm").val("");
                 $("#hard_drugs_details_frm").val("");
                 $("#comments_frm").val("");
-            }else if(formData.owner =="update_edited_medical_hist"){
+            }else if(formData.owner == "update_edited_medical_hist"){
                 $("#processing-medical-history").hide();
+            }else if("update_male_donor_record"){
+                alert(response);
             }
         },
         error: function(response) {

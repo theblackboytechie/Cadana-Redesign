@@ -27,7 +27,7 @@
                   class="w-4/12 space-y-6 rounded-sm border border-stroke bg-white p-6.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                 >
                   <a
-                    href="/donorsettings/{{$params->owner_id}}"
+                    href="/usersettings/{{$params->owner_id}}"
                     class="group flex items-center gap-3.5 font-medium"
                   >
                     <div
