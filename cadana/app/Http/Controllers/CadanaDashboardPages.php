@@ -138,16 +138,35 @@ class CadanaDashboardPages extends Controller
 
         $params = CrudHelper::Get($tabledb, $where_array);
 
-        // donor history
-        $tabledb = "male_donation_report";
+        // get the gender of the owneraccount
+        $tabledb = "users_primary_details";
 
         $where_array = [
             'owner_id' => $request->x,
         ];
 
-        $params2 = CrudHelper::Get($tabledb, $where_array);
+        $getgender = CrudHelper::Get($tabledb, $where_array);
 
-        return view('/publicpages/router', compact('owner', 'params', 'params2'));
+        foreach($getgender as $getgender){
+            if($getgender->gender == "male"){
+                // donor history
+                $tabledb = "male_donation_report";
+            }elseif($getgender->gender == "female"){
+                // donor history
+                $tabledb = "female_donation_report";
+            }
+
+            $thegender = $getgender->gender;
+
+            $where_array = [
+                'owner_id' => $request->x,
+            ];
+    
+            $params2 = CrudHelper::Get($tabledb, $where_array);
+            // return count($params2);
+            return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender'));
+        }
+
     }
 
     // edit_medical_history
@@ -176,12 +195,32 @@ class CadanaDashboardPages extends Controller
 
         $where_array = [
             'id' => $request->postid,
-            // 'owner_id' => $request->ownerid,
         ];
 
         $params = CrudHelper::Get($tabledb, $where_array);
-        // return count($params);
-        return view('/publicpages/router', compact('owner', 'params'));
+        $checkmale_donor = count($params);
+
+        if($checkmale_donor > 0){
+            $thegender = "male";
+
+            return view('/publicpages/router', compact('owner', 'params', 'thegender'));
+        }else{
+            $tabledb = "female_donation_report";
+
+            $where_array = [
+                'id' => $request->postid,
+            ];
+    
+            $params = CrudHelper::Get($tabledb, $where_array);
+
+            $check_female_donor = count($params);
+
+            if($check_female_donor > 0){
+                $thegender = "female";
+
+                return view('/publicpages/router', compact('owner', 'params', 'thegender'));
+            }
+        }
     }
 
     // authenticatedsettings

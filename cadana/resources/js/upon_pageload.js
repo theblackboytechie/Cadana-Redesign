@@ -3,9 +3,23 @@ $(document).ready(function() {
 
     var path = urlPath.split("/");
     var secondToLast = path[path.length - 2];
+    var thirdToLast = path[path.length - 3];//alert("thirdToLast: "+thirdToLast);
 
     var ownerid = urlPath.split("/").pop();
     
+    if(thirdToLast == "donatinghistory"){
+        // load the gender of this user
+        var owner = "get_gender_of_user_for_donating_history";
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");//alert("ownerid: "+ownerid);
+        
+        getFromDatabase(theurl, formData);
+    }
+
     if (secondToLast === "usersettings") {
         var owner = "download_latest_user_details";
         // load from primary information of the user from the database
@@ -111,6 +125,15 @@ function getFromDatabase(theurl, formData) {
                 $(".phone_frm").val(response[1]);
                 $(".email_frm").val(response[2]);
                 $(".biography_frm").val(response[3]);
+            }else if(formData.owner === "get_gender_of_user_for_donating_history"){
+                // alert(response);
+                if(response == "male"){
+                    $(".female-donation-form").remove();
+                    $(".female-donation-result").remove();
+                }else if(response == "female"){
+                    $(".male-donation-form").remove();
+                    $(".male-donation-result").remove();
+                }
             }
         },
         error: function(response) {

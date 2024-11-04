@@ -50,6 +50,8 @@
                     <div
                       class="p-6.5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
+                    
+                    @if($thegender == "male")
                         <!--  -->
                         <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
                           <div class="w-full xl:w-1/2">
@@ -833,7 +835,7 @@
 
                         <hr class="hr-donor-settings" />
                         <!-- Female Form -->
-
+                        @elseif($thegender == "female")
                         <div class="mt-4 flex flex-col gap-4 female-donation-form">
                           <div class="w-full">
                             <label
@@ -849,12 +851,9 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-dwn-reg"
                               >
-                                <option value="" class="text-body">
-                                  Down Regulation Protocol Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="Buserelin" @if($params->dwn_reg_prct == "Buserelin") selected @endif class="text-body">Buserelin</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -894,12 +893,14 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-Anta"
                               >
-                                <option value="" class="text-body">
-                                  Antagonant Protocol Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                  <option value="Cetrotide" @if($params->Ant_Used == "Cetrotide") selected @endif>Cetrotide</option>
+                                  <option value="Cetrorelix" @if($params->Ant_Used == "Cetrorelix") selected @endif>Cetrorelix</option>
+                                  <option value="Degarelix" @if($params->Ant_Used == "Degarelix") selected @endif>Degarelix</option>
+                                  <option value="Ganirelix Acetate" @if($params->Ant_Used == "Ganirelix Acetate") selected @endif>Ganirelix Acetate</option>
+                                  <option value="Elagolix" @if($params->Ant_Used == "Elagolix") selected @endif>Elagolix</option>
+                                  <option value="Abarelix" @if($params->Ant_Used == "Abarelix") selected @endif>Abarelix</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -939,12 +940,12 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-hCG"
                               >
-                                <option value="" class="text-body">
-                                  Human Chorionic Gonadotropin (hCG) Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                  <option value="Ovidrel" @if($params->hCG == "Ovidrel") selected @endif>Ovidrel </option>
+                                  <option value="Pregnyl" @if($params->hCG == "Pregnyl") selected @endif>Pregnyl</option>
+                                  <option value="Profasi" @if($params->hCG == "Profasi") selected @endif>Profasi</option>
+                                  <option value="Novarel" @if($params->hCG == "Novarel") selected @endif>Novarel</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -968,6 +969,7 @@
                                 </svg>
                               </span>
                             </div>
+                            
                           </div>
 
                           <div class="w-full">
@@ -985,13 +987,12 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-FSH"
                               >
-                                <option value="" class="text-body">
-                                  Follicle-Stimulating Hormone (FSH) Medications
-                                  Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="Bravelle" @if($params->FSH == "Bravelle") selected @endif>Bravelle</option>
+                                <option value="Fertinex" @if($params->FSH == "Fertinex") selected @endif>Fertinex</option>
+                                <option value="Gonal-F" @if($params->FSH == "Gonal-F") selected @endif>Gonal-F</option>
+                                <option value="Follistim" @if($params->FSH == "Follistim") selected @endif>Follistim</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1032,13 +1033,16 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-hMG"
                               >
-                                <option value="" class="text-body">
-                                  Human Menopausal Gonadotropin (hMG)
-                                  Medications Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                  <option value="Menopur" @if($params->hMG == "Menopur") selected @endif>Menopur</option>
+                                  <option value="Menotropin" @if($params->hMG == "Menotropin") selected @endif>Menotropin</option>
+                                  <option value="Pergonal" @if($params->hMG == "Pergonal") selected @endif>Pergonal</option>
+                                  <option value="Follistim" @if($params->hMG == "Follistim") selected @endif>Follistim</option>
+                                  <option value="GnRH (Gonadotropin-releasing hormone)" @if($params->hMG == "GnRH (Gonadotropin-releasing hormone)") selected @endif>GnRH (Gonadotropin-releasing hormone)</option>
+                                  <option value="Factrel" @if($params->hMG == "Factrel") selected @endif>Factrel</option>
+                                  <option value="Lutrepulse" @if($params->hMG == "Lutrepulse") selected @endif>Lutrepulse</option>
+                                </select>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1078,12 +1082,11 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-drugs-duration"
                               >
-                                <option value="" class="text-body">
-                                  Duration of Drugs
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }}" class="text-body" @if($params->drugs_duration == "$i") selected @endif>{{ $i }} days</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1123,12 +1126,11 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-follicles"
                               >
-                                <option value="" class="text-body">
-                                  Number of Follicles Generated
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }}" class="text-body" @if($params->follicles_generated == "$i") selected @endif>{{ $i }} Follicles</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1168,12 +1170,11 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="donation-female-positives"
                               >
-                                <option value="" class="text-body">
-                                  Number of Positives
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }}" class="text-body" @if($params->positives == "$i") selected @endif>{{ $i }} Positives</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1209,10 +1210,19 @@
                               <textarea
                                 rows="3"
                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              ></textarea>
+                                id="donation-female-comment"
+                              >{{$params->comment}}</textarea>
+                              <!-- ooooo -->
+                              <button 
+                                class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                id="update_edited_female_donor_form"
+                                ownerid="{{$params->owner_id}}"
+                                postid="{{$params->id}}"
+                              >Update</button>
                             </div>
                           </div>
                         </div>
+                        @endif
                         <!--  -->
                     </div>
                   </div>

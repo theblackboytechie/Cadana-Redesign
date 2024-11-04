@@ -48,7 +48,7 @@ class CadanaUpdateDatabaseController extends Controller
             }
 
             return $primary_info_array;
-        }elseif($request->owner =="get_gender_of_user"){
+        }elseif($request->owner == "get_gender_of_user" || $request->owner == "get_gender_of_user_for_donating_history"){
             $tabledb = "users_primary_details";
             // return $request->ownerid;
             $where_array = [
@@ -510,11 +510,47 @@ class CadanaUpdateDatabaseController extends Controller
 
                 $tabledb = "male_donation_report_history";
                 CrudHelper::Create($tabledb, $create_array);
+
+                // return "room for improvement!";
             }else{
                 $tabledb = "male_donation_report";
 
                 CrudHelper::Create($tabledb, $create_array);
             }
+        }elseif($request->owner == "update_female_donor_record"){
+            // return "flow!";
+            $authorid = Auth::id();
+
+            $ownerid = $request->ownerid;
+            $dwn_reg_prct = $request->dwn_reg_prct;
+            $Ant_Used = $request->Ant_Used;
+            $hCG = $request->hCG;
+            $FSH = $request->FSH;
+            $hMG = $request->hMG;
+            $drugs_duration = $request->drugs_duration;
+            $follicles_generated = $request->follicles_generated;
+            $positives = $request->positives;
+            $comment = $request->comment;
+
+            $create_array = [
+                'author_id' => $authorid,
+                'owner_id' => $ownerid,
+
+                'dwn_reg_prct' => $dwn_reg_prct,
+                'Ant_Used' => $Ant_Used,
+                'hCG' => $hCG,
+                'FSH' => $FSH,
+                'hMG' => $hMG,
+                'drugs_duration' => $drugs_duration,
+                'follicles_generated' => $follicles_generated,
+                'positives' => $positives,
+                'comment' => $comment,
+                'created_at' => $currenttime,
+                'updated_at' => $currenttime,
+            ];
+
+            $tabledb = "female_donation_report";
+            CrudHelper::Create($tabledb, $create_array);
         }
     }
 

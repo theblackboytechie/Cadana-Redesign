@@ -9,12 +9,14 @@ use Illuminate\View\Component;
 class CadanaEditDonatingHistory extends Component
 {
     public $params;
-    /**
+    public $thegender;
+    /**thegender
      * Create a new component instance.
      */
-    public function __construct($params)
+    public function __construct($params, $thegender)
     {
         $this->params = $params;
+        $this->thegender = $thegender;
         //
     }
 

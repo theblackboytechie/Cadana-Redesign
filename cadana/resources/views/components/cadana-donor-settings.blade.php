@@ -1933,6 +1933,7 @@
 
                       <!-- male -->
                       @foreach($params2 as $params2)
+                      @if($thegender == "male")
                       <div class="p-6.5 male-donation-result donation-result">
                         <div class="text-primary"><a href="/donatinghistory/edit/{{$params2->id}}"><b>Edit</b></a></div>
                        <div class="mb-4.5 flex flex-col gap-2">
@@ -2493,30 +2494,17 @@
                           </div>
                         </div>
                        </div>
-                       <hr>
-                       @endforeach                       <!-- male -->
 
-                      <!-- female preview -->
-                        <div class="p-6.5 female-donation-result donation-result hidden">
+                       <!-- male -->
+<!-- xyz! -->
+                       <hr>
+                       @elseif($thegender == "female")
+                       <!-- female preview -->
+                          <!-- female preview -->
+                          <div class="p-6.5 female-donation-result donation-result">
+                          <div class="text-primary"><a href="/donatinghistory/edit/{{$params2->id}}"><b>Edit</b></a></div>
                           <!--  -->
                           <div class="mt-4 grid grid-cols-2 gap-6 gap-y-8">
-                            <div class="flex flex-col gap-2">
-                              <span class="flex items-center gap-2 font-semibold">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 448 512"
-                                  class="h-6 w-6 fill-primary"
-                                >
-                                  <path
-                                    d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm0 160l0 40c0 8.8-7.2 16-16 16l-64 0 0-56 80 0zm-128 0l0 56-96 0 0-56 96 0zm-144 0l0 56-64 0c-8.8 0-16-7.2-16-16l0-40 80 0zM272 248l-96 0 0-56 96 0 0 56z"
-                                  />
-                                </svg>
-
-                                Date of Sample Collection
-                              </span>
-                              <span>October 9, 2024 </span>
-                            </div>
-
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
                                 <svg
@@ -2546,7 +2534,7 @@
 
                                 Down Regulation Protocol (DRG) Used
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->dwn_reg_prct}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2577,7 +2565,7 @@
 
                                 Antagonant Protocol (AGP) Used
                               </span>
-                              <span>Yes </span>
+                              <span>{{$params2->Ant_Used}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2593,7 +2581,7 @@
 
                                 Human Chorionic Gonadotropin (hCG) Used
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->hCG}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2609,7 +2597,7 @@
 
                                 Follicle-Stimulating Hormone (FSH) Used
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->FSH}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2638,7 +2626,7 @@
 
                                 Human Menopausal Gonadotropin (hMG) Used
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->hMG}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2655,7 +2643,7 @@
 
                                 Duration of Drugs
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->drugs_duration}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2672,7 +2660,7 @@
 
                                 Number of Follicles Generated
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->follicles_generated}}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2688,7 +2676,7 @@
 
                                 Number of positives
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->positives}}</span>
                             </div>
                             <div class="col-span-2 flex flex-col gap-2">
                               <span class="flex items-center gap-2 font-semibold">
@@ -2704,12 +2692,14 @@
 
                                 Comments
                               </span>
-                              <span>---</span>
+                              <span>{{$params2->comment}}</span>
                             </div>
                           </div>
                           <!--  -->
                         </div>
-                        <!-- </div> -->
+                        <hr>
+                        @endif
+                        @endforeach
                       </div>
                       <div
                         class="p-6.5 bg-white shadow-default"
@@ -3506,12 +3496,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-dwn-reg-prct"
                               >
-                                <option value="" class="text-body">
-                                  Down Regulation Protocol Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yeees</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3551,12 +3539,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-Ant-Used"
                               >
                                 <option value="" class="text-body">
                                   Antagonant Protocol Used
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3596,12 +3585,13 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-hCG"
                               >
                                 <option value="" class="text-body">
                                   Human Chorionic Gonadotropin (hCG) Used
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3642,13 +3632,14 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-FSH"
                               >
                                 <option value="" class="text-body">
                                   Follicle-Stimulating Hormone (FSH) Medications
                                   Used
                                 </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3689,13 +3680,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-hMG"
                               >
-                                <option value="" class="text-body">
-                                  Human Menopausal Gonadotropin (hMG)
-                                  Medications Used
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3735,12 +3723,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-drugs-duration"
                               >
-                                <option value="" class="text-body">
-                                  Duration of Drugs
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3780,12 +3766,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-follicles-generated"
                               >
-                                <option value="" class="text-body">
-                                  Number of Follicles Generated
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3825,12 +3809,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
+                                id="female-donor-positives"
                               >
-                                <option value="" class="text-body">
-                                  Number of Positives
-                                </option>
-                                <option value="" class="text-body">Yes</option>
-                                <option value="" class="text-body">No</option>
+                                <option value="yes" class="text-body">Yes</option>
+                                <option value="no" class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3866,7 +3848,13 @@
                               <textarea
                                 rows="3"
                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                id="female-donor-comment"
                               ></textarea>
+
+                              <button 
+                              class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                              id="update_female_donor_form"
+                            >Update</button>
                             </div>
                           </div>
                         </div>

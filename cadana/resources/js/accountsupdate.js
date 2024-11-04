@@ -298,6 +298,47 @@ $('body').on('click', '#update_edited_male_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// update_edited_female_donor_form
+$('body').on('click', '#update_edited_female_donor_form', function(event) {
+    event.preventDefault();
+
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var owner = "update_edited_male_donor_record";
+
+    var postid = $(this).attr("postid");
+
+    var female_dwn_reg = $("#donation-female-dwn-reg").val();
+    var female_Anta = $("#donation-female-Anta").val();
+    var female_hCG = $("#donation-female-hCG").val();
+    var female_FSH = $("#donation-female-FSH").val();
+    var female_hMG = $("#donation-female-hMG").val();
+    var female_drugs_duration = $("#donation-female-drugs-duration").val();
+    var female_follicles = $("#donation-female-follicles").val();
+    var female_positives = $("#donation-female-positives").val();
+    var female_comment = $("#donation-female-comment").val();
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        postid: postid,
+        female_dwn_reg: female_dwn_reg,
+        female_Anta: female_Anta,
+        female_hCG: female_hCG,
+        female_FSH: female_FSH,
+        female_hMG: female_hMG,
+        female_drugs_duration: female_drugs_duration,
+        female_follicles: female_follicles,
+        female_positives: female_positives,
+        female_comment: female_comment
+    };
+    alert("postid: "+postid);
+    alert("ownerid: "+ownerid);
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    // updateDatabase(theurl, formData);
+});
+
 // create documents
 // $('body').on('submit', '.documentUploadForm', function(event) {
     // $(document).ready(function() {
@@ -417,6 +458,43 @@ $('body').on('click', '#update_male_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// update_female_donor_form
+$('body').on('click', '#update_female_donor_form', function(event) {
+    event.preventDefault();//alert("donor bons!");
+
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var owner = "update_female_donor_record";
+
+    var dwn_reg_prct = $("#female-donor-dwn-reg-prct").val();alert(dwn_reg_prct);
+    var Ant_Used = $("#female-donor-Ant-Used").val();alert(Ant_Used);
+    var hCG = $("#female-donor-hCG").val();alert(hCG);
+    var FSH = $("#female-donor-FSH").val();alert(FSH);
+    var hMG = $("#female-donor-hMG").val();alert(hMG);
+    var drugs_duration = $("#female-donor-drugs-duration").val();alert(drugs_duration);
+    var follicles_generated = $("#female-donor-follicles-generated").val();alert(follicles_generated);
+    var positives = $("#female-donor-positives").val();alert(positives);
+    var comment = $("#female-donor-comment").val();alert(comment);
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid,
+        dwn_reg_prct: dwn_reg_prct,
+        Ant_Used: Ant_Used,
+        hCG: hCG,
+        FSH: FSH,
+        hMG: hMG,
+        drugs_duration: drugs_duration,
+        follicles_generated: follicles_generated,
+        positives: positives,
+        comment: comment
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // update_password
 $('body').on('click', '#update_password', function(event) {
     
@@ -493,6 +571,8 @@ function updateDatabase(theurl, formData) {
                 $("#processing-medical-history").hide();
             }else if("update_male_donor_record"){
                 alert(response);
+            }else if("update_female_donor_record"){
+                alert("female"+response);
             }
         },
         error: function(response) {

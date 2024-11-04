@@ -10,13 +10,15 @@ class CadanaDonorSettings extends Component
 {
     public $params;
     public $params2;
+    public $thegender;
     /**
      * Create a new component instance.
      */
-    public function __construct($params, $params2)
+    public function __construct($params, $params2, $thegender)
     {
         $this->params = $params;
         $this->params2 = $params2;
+        $this->thegender = $thegender;
         //
     }
 
