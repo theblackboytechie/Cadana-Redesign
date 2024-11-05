@@ -157,6 +157,20 @@ class CadanaDashboardPages extends Controller
                     $tabledb = "female_donation_report";
                 }
 
+                // return $verify_status = $getgender->verfy_status;
+                $tabledbb = "users";
+
+                $where_array = [
+                    'id' => $request->x,
+                ];
+        
+                $get_verify_status = CrudHelper::Get($tabledbb, $where_array);
+
+                foreach($get_verify_status as $get_verify){
+                    $verify_status = $get_verify->verfy_status;
+                }
+                // 
+
                 $thegender = $getgender->gender;
 
                 $where_array = [
@@ -164,9 +178,8 @@ class CadanaDashboardPages extends Controller
                 ];
         
                 $params2 = CrudHelper::Get($tabledb, $where_array);
-                // return count($params2);
 
-                return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender'));
+                return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
             }
         }else{
             // return "this is yo!";
@@ -174,7 +187,7 @@ class CadanaDashboardPages extends Controller
             $params2 = [];
             $thegender = "";
             
-            return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender'));
+            return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
         }
     }
 

@@ -14,6 +14,7 @@ class CadanaUpdateDatabaseController extends Controller
     {
         // return $request->account_type;
         $currenttime = Carbon::now();
+
         if($request->owner == "download_latest_user_details"){
             $tabledb = "users_primary_details";
 
@@ -223,6 +224,34 @@ class CadanaUpdateDatabaseController extends Controller
             ];
 
             CrudHelper::Update($tabledb, $where_array, $update_array);
+        }elseif($request->owner == "verification_toggle"){
+            // get verification status
+            $tabledb = "users";
+
+            $where_array = [
+                'id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($output as $output){
+                // return $output->verfy_status.": ooooo";
+                // if it is empty
+                if($output->verfy_status === null || $output->verfy_status == 0){
+                    $new_verify_status = 1;
+                }elseif($output->verfy_status == 1){
+                    $new_verify_status = 0;
+                }
+
+                $update_array = [
+                    'verfy_status' => $new_verify_status,
+                    'updated_at' => $currenttime,
+                ];
+    
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+
+                return $new_verify_status;
+            }
         }elseif($request->owner == "update_password"){
             // return "na in the password!";
             $ownerid = $request->ownerid;

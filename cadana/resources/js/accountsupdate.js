@@ -458,6 +458,25 @@ $('body').on('click', '#update_male_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// trigger-verification-toggle
+$('body').on('click', '#trigger_verification_toggle', function(event) {
+    // get the account id
+    event.preventDefault();
+
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    var owner = "verification_toggle";
+
+    var formData = {
+        owner: owner,
+        ownerid: ownerid
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // update_female_donor_form
 $('body').on('click', '#update_female_donor_form', function(event) {
     event.preventDefault();//alert("donor bons!");
@@ -569,10 +588,17 @@ function updateDatabase(theurl, formData) {
                 $("#comments_frm").val("");
             }else if(formData.owner == "update_edited_medical_hist"){
                 $("#processing-medical-history").hide();
-            }else if("update_male_donor_record"){
+            }else if(formData.owner == "update_male_donor_record"){
                 alert(response);
-            }else if("update_female_donor_record"){
-                alert("female"+response);
+            }else if(formData.owner == "update_female_donor_record"){
+                alert("female: "+response);
+            }else if(formData.owner == "verification_toggle"){
+                // alert(response);
+                if(response == 1){
+                    $("#verification_status_wraps").html("<i class='fa-solid fa-toggle-off text-primary drop-shadow-sm' id='trigger_verification_toggle'></i>");
+                }else if(response == 0){
+                    $("#verification_status_wraps").html("<i class='fa-solid fa-toggle-on text-primary drop-shadow-sm' id='trigger_verification_toggle'></i>");
+                }
             }
         },
         error: function(response) {

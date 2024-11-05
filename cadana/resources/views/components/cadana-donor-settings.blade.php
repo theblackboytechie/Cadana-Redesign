@@ -849,7 +849,12 @@
                           has access to all the features of our fertility app.
                         </p>
                       </div>
-                      <div class="p-6.5"><i class="fa-solid fa-toggle-on text-primary drop-shadow-sm"></i></div>
+                      
+                      @if($verifystatus === null || $verifystatus == 0)
+                        <div class="p-6.5" id="verification_status_wraps"><i class="fa-solid fa-toggle-on text-primary drop-shadow-sm" id="trigger_verification_toggle"></i></div>
+                      @elseif($verifystatus == 1)
+                        <div class="p-6.5" id="verification_status_wraps"><i class="fa-solid fa-toggle-off text-primary drop-shadow-sm" id="trigger_verification_toggle"></i></div>
+                      @endif
                     </div>
                   </div>
                   <div
