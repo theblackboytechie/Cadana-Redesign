@@ -640,6 +640,14 @@ class CadanaUpdateDatabaseController extends Controller
         }
     }
 
+    // database_upload_file
+    public function database_upload_file(Request $request)
+    {
+        // return "jabilani!";
+        $file = $request->file('file');
+        $filePath = $file->store('uploads');
+    }
+
     private function get_accounttype($id)
     {
         $tabledb = "users";

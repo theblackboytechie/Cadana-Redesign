@@ -53,6 +53,19 @@ $(document).ready(function() {
         var theurl = $("#cadanamaps").attr("database_update");
         
         getFromDatabase(theurl, formData);
+
+        // determine what to display based on the verification status
+        var verfify_status = $("#verification_status_checker").attr("status");
+        // alert("verfify_status: "+verfify_status);
+        if(verfify_status == 1){
+            $("#user_verified_icon").show();
+            $("#user_verified_text").show();
+            $("#user_un-verified_icon").hide();
+        }else{
+            $("#user_verified_icon").hide();
+            $("#user_verified_text").hide();
+            $("#user_un-verified_icon").show();
+        }
     }else if(ownerid === "settings"){
         // alert("this is settings page!")
         // name, primary phone, primary email, bio

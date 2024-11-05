@@ -16,6 +16,7 @@
         :class="{'dark text-bodydark bg-boxdark-2': darkMode === true} font-sans antialiased"
         id="cadanamaps"
         database_update="{{ route('database_update') }}"
+        database_upload_file="{{ route('database_upload_file') }}"
     >
     <!-- ===== Preloader Start ===== -->
     <div

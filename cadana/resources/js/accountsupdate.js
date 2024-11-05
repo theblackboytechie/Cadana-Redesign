@@ -514,9 +514,35 @@ $('body').on('click', '#update_female_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// on change documents_file_tag
+$('body').on('change', '#documents_file_tag', function(event) {
+    var file = event.target.files[0];
+    var formData = new FormData();
+    formData.append('file', file);
+    // alert("oyoyo!: "+file);
+    var theurl = $("#cadanamaps").attr("database_upload_file");//alert("url: "+theurl);return;
+
+    console.log("oyoyo!: "+file);
+    var owner = "upload_file_document";
+
+    $.ajax({
+        type: 'POST',
+        url: theurl,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          console.log(response);
+          alert(response);
+        },
+        error: function(xhr, status, error) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
 // update_password
 $('body').on('click', '#update_password', function(event) {
-    
     event.preventDefault();
 
     // show the processing of password spinner
@@ -596,8 +622,14 @@ function updateDatabase(theurl, formData) {
                 // alert(response);
                 if(response == 1){
                     $("#verification_status_wraps").html("<i class='fa-solid fa-toggle-off text-primary drop-shadow-sm' id='trigger_verification_toggle'></i>");
+                    $("#user_verified_icon").show();
+                    $("#user_verified_text").show();
+                    $("#user_un-verified_icon").hide();
                 }else if(response == 0){
                     $("#verification_status_wraps").html("<i class='fa-solid fa-toggle-on text-primary drop-shadow-sm' id='trigger_verification_toggle'></i>");
+                    $("#user_verified_icon").hide();
+                    $("#user_verified_text").hide();
+                    $("#user_un-verified_icon").show();
                 }
             }
         },
