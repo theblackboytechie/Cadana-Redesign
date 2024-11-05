@@ -147,26 +147,35 @@ class CadanaDashboardPages extends Controller
 
         $getgender = CrudHelper::Get($tabledb, $where_array);
 
-        foreach($getgender as $getgender){
-            if($getgender->gender == "male"){
-                // donor history
-                $tabledb = "male_donation_report";
-            }elseif($getgender->gender == "female"){
-                // donor history
-                $tabledb = "female_donation_report";
+        if(count($getgender) > 0){
+            foreach($getgender as $getgender){
+                if($getgender->gender == "male"){
+                    // donor history
+                    $tabledb = "male_donation_report";
+                }elseif($getgender->gender == "female"){
+                    // donor history
+                    $tabledb = "female_donation_report";
+                }
+
+                $thegender = $getgender->gender;
+
+                $where_array = [
+                    'owner_id' => $request->x,
+                ];
+        
+                $params2 = CrudHelper::Get($tabledb, $where_array);
+                // return count($params2);
+
+                return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender'));
             }
-
-            $thegender = $getgender->gender;
-
-            $where_array = [
-                'owner_id' => $request->x,
-            ];
-    
-            $params2 = CrudHelper::Get($tabledb, $where_array);
-            // return count($params2);
+        }else{
+            // return "this is yo!";
+            $params = [];
+            $params2 = [];
+            $thegender = "";
+            
             return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender'));
         }
-
     }
 
     // edit_medical_history

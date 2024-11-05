@@ -849,6 +849,7 @@
                           has access to all the features of our fertility app.
                         </p>
                       </div>
+                      <div class="p-6.5"><i class="fa-solid fa-toggle-on text-primary drop-shadow-sm"></i></div>
                     </div>
                   </div>
                   <div
@@ -2749,11 +2750,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-duration-abstinence"
                               >
-                                <option value="" class="text-body">
-                                  Select any Health Family History (1)
-                                </option>
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }} Days" class="text-body">{{ $i }} Days</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2794,9 +2793,6 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-difficulty-producing"
                               >
-                                <option value="" class="text-body">
-                                  Select any Health Family History (2)
-                                </option>
                                 <option value="yes" class="text-body">Yes</option>
                                 <option value="no" class="text-body">No</option>
                               </select>
@@ -2842,9 +2838,6 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-sample-collected"
                               >
-                                <option value="" class="text-body">
-                                  Was All the Sample Collected
-                                </option>
                                 <option value="yes" class="text-body">Yes</option>
                                 <option value="no" class="text-body">No</option>
                               </select>
@@ -2887,11 +2880,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-production-time"
                               >
-                                <option value="" class="text-body">
-                                  Time of Production
-                                </option>
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 50; $i++)
+                                  <option value="Up to {{ $i }} Hours" class="text-body">Up to {{ $i }} Hours</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2947,8 +2938,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-production-volume"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="Up to {{ $i }} Mls" class="text-body">Up to {{ $i }} Mls</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -2992,8 +2984,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-liquefaction"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Normal Viscosity">Normal Viscosity</option>
+                                <option value="High Viscosity">High Viscosity</option>
+                                <option value="Low Viscosity">Low Viscosity</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3034,8 +3027,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-debris"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Cellular debris">Cellular debris</option>
+                                <option value="Bacterial or fungal particles">Bacterial or fungal particles</option>
+                                <option value="Other foreign particles">Other foreign particles</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3079,8 +3073,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-agglutination"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Head-to-head agglutination">Head-to-head agglutination</option>
+                                <option value="Tail-to-tail agglutination">Tail-to-tail agglutination</option>
+                                <option value="Mixed agglutination">Mixed agglutination</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3121,8 +3116,12 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-concentration"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Normal concentration">Normal concentration</option>
+                                <option value="Low concentration (Oligospermia)">Low concentration (Oligospermia)</option>
+                                <option value="Moderate concentration">Moderate concentration</option>
+                                <option value="High concentration (Oligozoospermia)">High concentration (Oligozoospermia)</option>
+                                <option value="Varied concentration">Varied concentration</option>
+                                <option value="Zero concentration (Azoospermia)">Zero concentration (Azoospermia)</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3166,8 +3165,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-ejaculate-count"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 150; $i++)
+                                  <option value="{{ $i }} X 10 ^ 6 ml or more" class="text-body">{{ $i }} X 10 ^ 6 ml or more</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3199,7 +3199,7 @@
                               Sperm Motility
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-sperm-motility"
                             />
@@ -3214,7 +3214,7 @@
                               Fast Progression
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-fast-progression"
                             />
@@ -3226,7 +3226,7 @@
                               Slow Progression
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-slow-progression"
                             />
@@ -3241,7 +3241,7 @@
                               Non Progression
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-non-progression"
                             />
@@ -3253,7 +3253,7 @@
                               Sperm Motile
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-sperm-motile"
                             />
@@ -3268,7 +3268,7 @@
                               Sperm Immotile
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-sperm-immotile"
                             />
@@ -3283,36 +3283,11 @@
                               x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                :class="isOptionSelected && 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
+                              <input
+                                type="number"
+                                class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 id="donation-male-other-cells"
-                              >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
-                              </select>
-                              <span
-                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-                              >
-                                <svg
-                                  class="fill-current"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g opacity="0.8">
-                                    <path
-                                      fill-rule="evenodd"
-                                      clip-rule="evenodd"
-                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                                      fill=""
-                                    ></path>
-                                  </g>
-                                </svg>
-                              </span>
+                              />
                             </div>
                           </div>
                         </div>
@@ -3325,7 +3300,7 @@
                             Round Cells
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-round-cells"
                             />
@@ -3337,7 +3312,7 @@
                               White Blood Cells
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-White-blood-cells"
                             />
@@ -3356,7 +3331,7 @@
                               Normal Forms
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-normal-forms-piece"
                             />
@@ -3382,7 +3357,7 @@
                               Head Defects
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-head-defects-piece"
                             />
@@ -3394,7 +3369,7 @@
                               Mid-piece Defects
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-mid-piece-defect"
                             />
@@ -3409,7 +3384,7 @@
                               Tail Defects
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                               id="donation-male-tail-defect"
                             />
@@ -3433,27 +3408,6 @@
                                 <option value="yes" class="text-body">Yes</option>
                                 <option value="no" class="text-body">No</option>
                               </select>
-                              <span
-                                class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-                              >
-                                <svg
-                                  class="fill-current"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g opacity="0.8">
-                                    <path
-                                      fill-rule="evenodd"
-                                      clip-rule="evenodd"
-                                      d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                                      fill=""
-                                    ></path>
-                                  </g>
-                                </svg>
-                              </span>
                             </div>
                           </div>
                         </div>
@@ -3498,8 +3452,7 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-dwn-reg-prct"
                               >
-                                <option value="yes" class="text-body">Yeees</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Buserelin" class="text-body">Buserelin</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3541,11 +3494,12 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-Ant-Used"
                               >
-                                <option value="" class="text-body">
-                                  Antagonant Protocol Used
-                                </option>
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                  <option value="Cetrotide">Cetrotide</option>
+                                  <option value="Cetrorelix">Cetrorelix</option>
+                                  <option value="Degarelix">Degarelix</option>
+                                  <option value="Ganirelix Acetate">Ganirelix Acetate</option>
+                                  <option value="Elagolix">Elagolix</option>
+                                  <option value="Abarelix">Abarelix</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3587,11 +3541,10 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-hCG"
                               >
-                                <option value="" class="text-body">
-                                  Human Chorionic Gonadotropin (hCG) Used
-                                </option>
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Ovidrel">Ovidrel </option>
+                                <option value="Pregnyl">Pregnyl</option>
+                                <option value="Profasi">Profasi</option>
+                                <option value="Novarel">Novarel</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3634,12 +3587,10 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-FSH"
                               >
-                                <option value="" class="text-body">
-                                  Follicle-Stimulating Hormone (FSH) Medications
-                                  Used
-                                </option>
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Bravelle">Bravelle</option>
+                                <option value="Fertinex">Fertinex</option>
+                                <option value="Gonal-F">Gonal-F</option>
+                                <option value="Follistim">Follistim</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3682,8 +3633,13 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-hMG"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                <option value="Menopur">Menopur</option>
+                                <option value="Menotropin">Menotropin</option>
+                                <option value="Pergonal">Pergonal</option>
+                                <option value="Follistim">Follistim</option>
+                                <option value="GnRH (Gonadotropin-releasing hormone)">GnRH (Gonadotropin-releasing hormone)</option>
+                                <option value="Factrel">Factrel</option>
+                                <option value="Lutrepulse">Lutrepulse</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3725,8 +3681,9 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-drugs-duration"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }} Days" class="text-body">{{ $i }} Days</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3768,8 +3725,9 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-follicles-generated"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }} Follicles" class="text-body">{{ $i }} Follicles</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3811,8 +3769,9 @@
                                 @change="isOptionSelected = true"
                                 id="female-donor-positives"
                               >
-                                <option value="yes" class="text-body">Yes</option>
-                                <option value="no" class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="{{ $i }} Positives" class="text-body">{{ $i }} Positives</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -3855,6 +3814,7 @@
                               class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                               id="update_female_donor_form"
                             >Update</button>
+                            <i class="fa-solid fa-circle-notch"></i>
                             </div>
                           </div>
                         </div>

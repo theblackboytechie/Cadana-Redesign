@@ -304,7 +304,7 @@ $('body').on('click', '#update_edited_female_donor_form', function(event) {
 
     var url = window.location.href;
     var ownerid = url.substring(url.lastIndexOf('/') + 1);
-    var owner = "update_edited_male_donor_record";
+    var owner = "update_edited_female_donor_record";
 
     var postid = $(this).attr("postid");
 
@@ -332,11 +332,11 @@ $('body').on('click', '#update_edited_female_donor_form', function(event) {
         female_positives: female_positives,
         female_comment: female_comment
     };
-    alert("postid: "+postid);
-    alert("ownerid: "+ownerid);
+    // alert("postid: "+postid);
+    // alert("ownerid: "+ownerid);
     var theurl = $("#cadanamaps").attr("database_update");
 
-    // updateDatabase(theurl, formData);
+    updateDatabase(theurl, formData);
 });
 
 // create documents

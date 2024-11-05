@@ -98,10 +98,10 @@
                                 :class="isOptionSelected && 'text-black dark:text-white'"
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-duration-abstinence"
-                                value="{{$params->collection_time}}"
                               >
-                                <option value="yes" @if($params->collection_time == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->collection_time == "no") selected @endif class="text-body">No</option>
+                                @for ($i = 0; $i <= 50; $i++)
+                                  <option value="{{ $i }} Days" class="text-body" @if($params->duration_abstinence == "$i Days") selected @endif>{{ $i }} Days</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -188,7 +188,7 @@
                                 id="donation-male-sperm-sample-collected"
                               >
                                 <option value="yes" @if($params->all_sample_collected == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->all_sample_collected == "yes") selected @endif class="text-body">No</option>
+                                <option value="no" @if($params->all_sample_collected == "no") selected @endif class="text-body">No</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -229,8 +229,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-production-time"
                               >
-                                <option value="yes" @if($params->production_time == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->production_time == "yes") selected @endif class="text-body">No</option>
+                                @for ($i = 0; $i <= 50; $i++)
+                                  <option value="Up to {{ $i }} Hours" class="text-body" @if($params->production_time == "Up to $i Hours") selected @endif>Up to {{ $i }} Hours</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -287,8 +288,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-production-volume"
                               >
-                                <option value="yes" @if($params->production_volume == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->production_volume == "no") selected @endif class="text-body">No</option>
+                                @for ($i = 0; $i <= 15; $i++)
+                                  <option value="Up to {{ $i }} Mls" class="text-body" @if($params->production_volume == "Up to $i Mls") selected @endif>Up to {{ $i }} Mls</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -332,8 +334,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-liquefaction"
                               >
-                                <option value="yes" @if($params->liquefaction == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->liquefaction == "no") selected @endif class="text-body">No</option>
+                                <option value="Normal Viscosity" @if($params->liquefaction == "Normal Viscosity") selected @endif>Normal Viscosity</option>
+                                <option value="High Viscosity" @if($params->liquefaction == "High Viscosity") selected @endif>High Viscosity</option>
+                                <option value="Low Viscosity" @if($params->liquefaction == "Low Viscosity") selected @endif>Low Viscosity</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -374,8 +377,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-debris"
                               >
-                                <option value="yes" @if($params->debris == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->debris == "no") selected @endif class="text-body">No</option>
+                                <option value="Cellular debris" @if($params->debris == "Cellular debris") selected @endif>Cellular debris</option>
+                                <option value="Bacterial or fungal particles" @if($params->debris == "Bacterial or fungal particles") selected @endif>Bacterial or fungal particles</option>
+                                <option value="Other foreign particles" @if($params->debris == "Other foreign particles") selected @endif>Other foreign particles</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -419,8 +423,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-agglutination"
                               >
-                                <option value="yes" @if($params->agglutination == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->agglutination == "no") selected @endif class="text-body">No</option>
+                                <option value="Head-to-head agglutination" @if($params->agglutination == "Head-to-head agglutination") selected @endif>Head-to-head agglutination</option>
+                                <option value="Tail-to-tail agglutination" @if($params->agglutination == "Tail-to-tail agglutination") selected @endif>Tail-to-tail agglutination</option>
+                                <option value="Mixed agglutination" @if($params->agglutination == "Mixed agglutination") selected @endif>Mixed agglutination</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -461,8 +466,12 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-sperm-concentration"
                               >
-                                <option value="yes" @if($params->concentration == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->concentration == "no") selected @endif class="text-body">No</option>
+                                <option value="Normal concentration" @if($params->concentration == "Normal concentration") selected @endif>Normal concentration</option>
+                                <option value="Low concentration (Oligospermia)" @if($params->concentration == "Low concentration (Oligospermia)") selected @endif>Low concentration (Oligospermia)</option>
+                                <option value="Moderate concentration" @if($params->concentration == "Moderate concentration") selected @endif>Moderate concentration</option>
+                                <option value="High concentration (Oligozoospermia)" @if($params->concentration == "High concentration (Oligozoospermia)") selected @endif>High concentration (Oligozoospermia)</option>
+                                <option value="Varied concentration" @if($params->concentration == "Varied concentration") selected @endif>Varied concentration</option>
+                                <option value="Zero concentration (Azoospermia)" @if($params->concentration == "Zero concentration (Azoospermia)") selected @endif>Zero concentration (Azoospermia)</option>
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -506,8 +515,9 @@
                                 @change="isOptionSelected = true"
                                 id="donation-male-ejaculate-count"
                               >
-                                <option value="yes" @if($params->ejaculate_count == "yes") selected @endif class="text-body">Yes</option>
-                                <option value="no" @if($params->ejaculate_count == "no") selected @endif class="text-body">No</option>
+                                @for ($i = 0; $i <= 150; $i++)
+                                  <option value="{{ $i }} X 10 ^ 6 ml or more" class="text-body" @if($params->ejaculate_count == "{{ $i }} X 10 ^ 6 ml or more") selected @endif>{{ $i }} X 10 ^ 6 ml or more</option>
+                                @endfor
                               </select>
                               <span
                                 class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -1085,7 +1095,7 @@
                                 id="donation-female-drugs-duration"
                               >
                                 @for ($i = 0; $i <= 15; $i++)
-                                  <option value="{{ $i }}" class="text-body" @if($params->drugs_duration == "$i") selected @endif>{{ $i }} days</option>
+                                  <option value="{{ $i }} Days" class="text-body" @if($params->drugs_duration == "$i Days") selected @endif>{{ $i }} Days</option>
                                 @endfor
                               </select>
                               <span
@@ -1129,7 +1139,7 @@
                                 id="donation-female-follicles"
                               >
                                 @for ($i = 0; $i <= 15; $i++)
-                                  <option value="{{ $i }}" class="text-body" @if($params->follicles_generated == "$i") selected @endif>{{ $i }} Follicles</option>
+                                  <option value="{{ $i }} Follicles" @if($params->follicles_generated == "$i Follicles") selected @endif class="text-body">{{ $i }} Follicles</option>
                                 @endfor
                               </select>
                               <span
@@ -1163,7 +1173,7 @@
                               Number of Positives
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
+                              x-data="{ isOptionSelected: false }"                                                                                                                                                                 
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1173,7 +1183,7 @@
                                 id="donation-female-positives"
                               >
                                 @for ($i = 0; $i <= 15; $i++)
-                                  <option value="{{ $i }}" class="text-body" @if($params->positives == "$i") selected @endif>{{ $i }} Positives</option>
+                                  <option value="{{ $i }} Positives" class="text-body" @if($params->positives == "$i Positives") selected @endif>{{ $i }} Positives</option>
                                 @endfor
                               </select>
                               <span
@@ -1212,7 +1222,6 @@
                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-sm font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 id="donation-female-comment"
                               >{{$params->comment}}</textarea>
-                              <!-- ooooo -->
                               <button 
                                 class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                                 id="update_edited_female_donor_form"

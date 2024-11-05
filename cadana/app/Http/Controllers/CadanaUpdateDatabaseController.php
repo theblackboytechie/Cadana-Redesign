@@ -517,40 +517,97 @@ class CadanaUpdateDatabaseController extends Controller
 
                 CrudHelper::Create($tabledb, $create_array);
             }
-        }elseif($request->owner == "update_female_donor_record"){
+        }elseif($request->owner == "update_female_donor_record" || $request->owner == "update_edited_female_donor_record"){
             // return "flow!";
             $authorid = Auth::id();
 
-            $ownerid = $request->ownerid;
-            $dwn_reg_prct = $request->dwn_reg_prct;
-            $Ant_Used = $request->Ant_Used;
-            $hCG = $request->hCG;
-            $FSH = $request->FSH;
-            $hMG = $request->hMG;
-            $drugs_duration = $request->drugs_duration;
-            $follicles_generated = $request->follicles_generated;
-            $positives = $request->positives;
-            $comment = $request->comment;
+            if($request->owner == "update_female_donor_record"){
+                $ownerid = $request->ownerid;
+                $dwn_reg_prct = $request->dwn_reg_prct;
+                $Ant_Used = $request->Ant_Used;
+                $hCG = $request->hCG;
+                $FSH = $request->FSH;
+                $hMG = $request->hMG;
+                $drugs_duration = $request->drugs_duration;
+                $follicles_generated = $request->follicles_generated;
+                $positives = $request->positives;
+                $comment = $request->comment;
 
-            $create_array = [
-                'author_id' => $authorid,
-                'owner_id' => $ownerid,
+                $create_array = [
+                    'author_id' => $authorid,
+                    'owner_id' => $ownerid,
 
-                'dwn_reg_prct' => $dwn_reg_prct,
-                'Ant_Used' => $Ant_Used,
-                'hCG' => $hCG,
-                'FSH' => $FSH,
-                'hMG' => $hMG,
-                'drugs_duration' => $drugs_duration,
-                'follicles_generated' => $follicles_generated,
-                'positives' => $positives,
-                'comment' => $comment,
-                'created_at' => $currenttime,
-                'updated_at' => $currenttime,
-            ];
+                    'dwn_reg_prct' => $dwn_reg_prct,
+                    'Ant_Used' => $Ant_Used,
+                    'hCG' => $hCG,
+                    'FSH' => $FSH,
+                    'hMG' => $hMG,
+                    'drugs_duration' => $drugs_duration,
+                    'follicles_generated' => $follicles_generated,
+                    'positives' => $positives,
+                    'comment' => $comment,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
 
-            $tabledb = "female_donation_report";
-            CrudHelper::Create($tabledb, $create_array);
+                $tabledb = "female_donation_report";
+                CrudHelper::Create($tabledb, $create_array);
+            }elseif($request->owner == "update_edited_female_donor_record"){
+                // create new donating history
+                $records_owner = $request->postid;
+                $ownerid = $request->ownerid;
+                $dwn_reg_prct = $request->female_dwn_reg;
+                $Ant_Used = $request->female_Anta;
+                $hCG = $request->female_hCG;
+                $FSH = $request->female_FSH;
+                $hMG = $request->female_hMG;
+                $drugs_duration = $request->female_drugs_duration;
+                $follicles_generated = $request->female_follicles;
+                $positives = $request->female_positives;
+                $comment = $request->female_comment;
+
+                $create_array = [
+                    'author_id' => $authorid,
+                    'owner_id' => $ownerid,
+
+                    'records_owner' => $records_owner,
+                    'dwn_reg_prct' => $dwn_reg_prct,
+                    'Ant_Used' => $Ant_Used,
+                    'hCG' => $hCG,
+                    'FSH' => $FSH,
+                    'hMG' => $hMG,
+                    'drugs_duration' => $drugs_duration,
+                    'follicles_generated' => $follicles_generated,
+                    'positives' => $positives,
+                    'comment' => $comment,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+
+                $tabledb = "female_donation_report_history";
+                CrudHelper::Create($tabledb, $create_array);
+
+                // update the main donating history
+                $where_array = [
+                    'id' => $request->postid
+                ];
+
+                $update_array = [
+                    'dwn_reg_prct' => $dwn_reg_prct,
+                    'Ant_Used' => $Ant_Used,
+                    'hCG' => $hCG,
+                    'FSH' => $FSH,
+                    'hMG' => $hMG,
+                    'drugs_duration' => $drugs_duration,
+                    'follicles_generated' => $follicles_generated,
+                    'positives' => $positives,
+                    'comment' => $comment,
+                    'updated_at' => $currenttime,
+                ];
+
+                $tabledb = "female_donation_report";
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+            }
         }
     }
 
