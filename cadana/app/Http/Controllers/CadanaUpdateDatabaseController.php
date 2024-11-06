@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CadanaUpdateDatabaseController extends Controller
 {
@@ -637,6 +638,60 @@ class CadanaUpdateDatabaseController extends Controller
                 $tabledb = "female_donation_report";
                 CrudHelper::Update($tabledb, $where_array, $update_array);
             }
+        }elseif($request->owner == "load_all_uploaded_documents"){
+            // return "dimension! $request->ownerid!";
+
+            $tabledb = "users_documents";
+
+            $where_array = [
+                'owner_id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            $alltheoutput = "";
+
+            foreach($output as $output){
+                // 
+                $alltheoutput .= "<div
+                class='grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5'
+                >
+                <div class='col-span-5 flex items-center'>
+                  <div
+                    class='flex flex-col gap-4 sm:flex-row sm:items-center'
+                  >
+                    <input
+                      class='w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary'
+                    />
+                    <span>Update</span>
+                  </div>
+                </div>
+                <div class='col-span-1 items-center sm:flex'>
+                  <button class='hover:text-primary' id='trigger-view-document' documentname='$output->document_name'>
+                    <svg
+                      class='fill-current'
+                      width='18'
+                      height='18'
+                      viewBox='0 0 18 18'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z'
+                        fill=''
+                      />
+                      <path
+                        d='M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z'
+                        fill=''
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>";
+                // 
+            }
+
+            return $alltheoutput;
         }
     }
 
@@ -644,15 +699,39 @@ class CadanaUpdateDatabaseController extends Controller
     public function database_upload_file(Request $request)
     {
         // return "jabilani!";
-        $validatedData = $request->validate([
-            'file' => 'required|file|max:1024',
-            'documents_file_name' => 'required|max:100',
-        ]);
+        // $validatedData = $request->validate([
+        //     'file' => 'required|file|max:1024',
+        //     'documents_file_name' => 'required|max:100',
+        // ]);
+        $authorid = Auth::id();
+        $currenttime = Carbon::now();
 
+        $ownerid = $request->ownerid;
+
+        $timestamp = time();
+        $randomString = Str::random(10);
         $file = $request->file('file');
-        $filePath = $file->store('uploads');
-        $filePath = $request->file('file')->store('uploads', 'public');
-        return $documents_file_name = $request->documents_file_name;
+        $extension = $file->getClientOriginalExtension();
+        $fileName = $randomString . $timestamp . '.' . $extension;
+        $filePath = $file->storeAs('uploads', $fileName, 'public');
+
+        $tabledb = "users_documents";
+
+        $create_array = [
+            'author_id' => $authorid,
+            'owner_id' => $ownerid,
+            'document_name' => $fileName,
+            'document_type' => $extension,
+            'created_at' => $currenttime,
+            'updated_at' => $currenttime,
+        ];
+
+        CrudHelper::Create($tabledb, $create_array);
+
+        // $file = $request->file('file');
+        // // $filePath = $file->store('uploads');
+        // $filePath = $request->file('file')->store('uploads', 'public');
+        // $documents_file_name = $request->documents_file_name;
     }
 
     private function get_accounttype($id)

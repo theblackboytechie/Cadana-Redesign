@@ -66,6 +66,21 @@ $(document).ready(function() {
             $("#user_verified_text").hide();
             $("#user_un-verified_icon").show();
         }
+
+        // 
+        var owner = "load_all_uploaded_documents";
+
+        var url = window.location.href;
+        var ownerid = url.substring(url.lastIndexOf('/') + 1);
+
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+    
+        getFromDatabase(theurl, formData);
     }else if(ownerid === "settings"){
         // alert("this is settings page!")
         // name, primary phone, primary email, bio
@@ -147,6 +162,9 @@ function getFromDatabase(theurl, formData) {
                     $(".male-donation-form").remove();
                     $(".male-donation-result").remove();
                 }
+            }else if(formData.owner == "load_all_uploaded_documents"){
+                // alert(response);
+                $("#list_of_all_documents").html(response);
             }
         },
         error: function(response) {

@@ -516,19 +516,24 @@ $('body').on('click', '#update_female_donor_form', function(event) {
 
 // on change documents_file_tag
 $('body').on('change', '#documents_file_tag', function(event) {
+    $("#document-uploading-processing").show();
     var file = event.target.files[0];
     var formData = new FormData();
     formData.append('file', file);
 
-    var textFieldValue = $('#documents_file_text_name').val();
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    formData.append('ownerid', ownerid);
 
-    formData.append('documents_file_name', textFieldValue);
+    // var textFieldValue = $('#documents_file_text_name').val();
+
+    // formData.append('documents_file_name', textFieldValue);
 
     // alert("oyoyo!: "+file);
     var theurl = $("#cadanamaps").attr("database_upload_file");//alert("url: "+theurl);return;
 
-    console.log("oyoyo!: "+file);
-    var owner = "upload_file_document";
+    // console.log("oyoyo!: "+file);
+    // var owner = "upload_file_document";
 
     $.ajax({
         type: 'POST',
@@ -537,10 +542,28 @@ $('body').on('change', '#documents_file_tag', function(event) {
         contentType: false,
         processData: false,
         success: function(response) {
-          console.log(response);
-          alert(response);
+        //   console.log(response);
+        //   alert(response);
+            $("#document-uploading-processing").hide();
+            $("#documents_file_tag").val("");
+
+            var owner = "load_all_uploaded_documents";
+
+            var url = window.location.href;
+            var ownerid = url.substring(url.lastIndexOf('/') + 1);
+
+            var formData = {
+                owner: owner,
+                ownerid: ownerid
+            };
+        
+            var theurl = $("#cadanamaps").attr("database_update");
+        
+            updateDatabase(theurl, formData);
+            //   
         },
         error: function(xhr, status, error) {
+            $("#document-uploading-processing").hide();
             console.log(xhr.responseText);
             $('#' + 'credentials_error_wraps').text(xhr.responseText);
             var errorResponse = JSON.parse(xhr.responseText);
@@ -656,6 +679,9 @@ function updateDatabase(theurl, formData) {
                     $("#user_verified_text").hide();
                     $("#user_un-verified_icon").show();
                 }
+            }else if(formData.owner == "load_all_uploaded_documents"){
+                // alert(response);
+                $("#list_of_all_documents").html(response);
             }
         },
         error: function(response) {
