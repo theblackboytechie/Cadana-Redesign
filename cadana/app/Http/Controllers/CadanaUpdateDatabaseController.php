@@ -644,8 +644,15 @@ class CadanaUpdateDatabaseController extends Controller
     public function database_upload_file(Request $request)
     {
         // return "jabilani!";
+        $validatedData = $request->validate([
+            'file' => 'required|file|max:1024',
+            'documents_file_name' => 'required|max:100',
+        ]);
+
         $file = $request->file('file');
         $filePath = $file->store('uploads');
+        $filePath = $request->file('file')->store('uploads', 'public');
+        return $documents_file_name = $request->documents_file_name;
     }
 
     private function get_accounttype($id)

@@ -519,6 +519,11 @@ $('body').on('change', '#documents_file_tag', function(event) {
     var file = event.target.files[0];
     var formData = new FormData();
     formData.append('file', file);
+
+    var textFieldValue = $('#documents_file_text_name').val();
+
+    formData.append('documents_file_name', textFieldValue);
+
     // alert("oyoyo!: "+file);
     var theurl = $("#cadanamaps").attr("database_upload_file");//alert("url: "+theurl);return;
 
@@ -536,7 +541,27 @@ $('body').on('change', '#documents_file_tag', function(event) {
           alert(response);
         },
         error: function(xhr, status, error) {
-          console.log(xhr.responseText);
+            console.log(xhr.responseText);
+            $('#' + 'credentials_error_wraps').text(xhr.responseText);
+            var errorResponse = JSON.parse(xhr.responseText);
+            var errorMessage = errorResponse.message;
+            var errors = errorResponse.errors;
+        
+            var errorHtml = '';
+        
+            // Display general error message
+            errorHtml += '<p>' + errorMessage + '</p>';
+        
+            // Display field-specific errors
+            $.each(errors, function(field, error) {
+                errorHtml += '<p>' + field + ': ' + error[0] + '</p>';
+            });
+        
+            $('#' + 'credentials_error_wraps').html(errorHtml);
+            // $('#error-message').text(errorMessage);
+            // $.each(xhr.responseText, function(field, error) {
+            //     $('#' + 'credentials_error_wraps').text(error[0]);
+            // });
         }
     });
 });
