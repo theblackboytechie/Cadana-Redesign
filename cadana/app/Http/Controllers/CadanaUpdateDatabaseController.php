@@ -652,6 +652,12 @@ class CadanaUpdateDatabaseController extends Controller
             $alltheoutput = "";
 
             foreach($output as $output){
+                // determine what to display
+                if(empty($output->document_descript)){
+                    $displaycontent = $output->document_name;
+                }else{
+                    $displaycontent = $output->document_descript;
+                }
                 // 
                 $alltheoutput .= "<div
                 class='grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5'
@@ -662,8 +668,11 @@ class CadanaUpdateDatabaseController extends Controller
                   >
                     <input
                       class='w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary'
+                      value='$displaycontent'
+                      id='document_name_$output->id'
                     />
-                    <span>Update</span>
+                    <span id='trigger_documentname_update' class='transition duration-300 ease-in-out cursor-pointer' document_id='$output->id'>Update</span>
+                    <i class='fa-solid fa-circle-notch fa-spin' id='document_name_processing_$output->id' style='display: none;'></i>
                   </div>
                 </div>
                 <div class='col-span-1 items-center sm:flex'>
@@ -692,6 +701,23 @@ class CadanaUpdateDatabaseController extends Controller
             }
 
             return $alltheoutput;
+        }elseif($request->owner == "update_for_documents_name"){
+            $authorid = Auth::id();
+            
+            $tabledb = "users_documents";
+
+            $where_array = [
+                'id' => $request->document_id
+            ];
+
+            $update_array = [
+                'author_id' => $authorid,
+                'document_descript' => $request->document_desc,
+                'updated_at' => $currenttime,
+            ];
+
+            // this returns either 1 or zero
+            return CrudHelper::Update($tabledb, $where_array, $update_array);
         }
     }
 

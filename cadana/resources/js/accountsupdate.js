@@ -514,6 +514,25 @@ $('body').on('click', '#update_female_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// trigger_documentname_update
+$('body').on('click', '#trigger_documentname_update', function(event) {
+    event.preventDefault();
+    var document_id = $(this).attr("document_id");
+    var document_desc = $("#document_name_"+document_id).val();
+    var owner = "update_for_documents_name";
+    $("#document_name_processing_"+document_id).show();
+
+    var formData = {
+        owner: owner,
+        document_id: document_id,
+        document_desc: document_desc
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
+
 // on change documents_file_tag
 $('body').on('change', '#documents_file_tag', function(event) {
     $("#document-uploading-processing").show();
@@ -682,6 +701,9 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "load_all_uploaded_documents"){
                 // alert(response);
                 $("#list_of_all_documents").html(response);
+            }else if(formData.owner == "update_for_documents_name"){
+                alert(response);
+                $("#document_name_processing_"+formData.document_id).hide();
             }
         },
         error: function(response) {
