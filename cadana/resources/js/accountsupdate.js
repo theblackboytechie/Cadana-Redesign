@@ -514,6 +514,13 @@ $('body').on('click', '#update_female_donor_form', function(event) {
     updateDatabase(theurl, formData);
 });
 
+// trigger_toggle_document_view
+$('body').on('click', '#trigger_toggle_document_view', function(event) {
+    event.preventDefault();
+    var theid = $(this).attr("theid");
+    $("#toggle_document_view_"+theid).toggle();
+});
+
 // trigger_documentname_update
 $('body').on('click', '#trigger_documentname_update', function(event) {
     event.preventDefault();

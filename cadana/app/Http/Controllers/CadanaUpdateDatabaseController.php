@@ -676,7 +676,7 @@ class CadanaUpdateDatabaseController extends Controller
                   </div>
                 </div>
                 <div class='col-span-1 items-center sm:flex'>
-                  <a class='hover:text-primary' target='_blank' id='trigger-view-document' documentname='$output->document_name'>
+                  <a class='hover:text-primary' target='_blank' id='trigger_toggle_document_view' theid='$output->id' documentname='$output->document_name'>
                     <svg
                       class='fill-current'
                       width='18'
@@ -696,8 +696,15 @@ class CadanaUpdateDatabaseController extends Controller
                     </svg>
                   </a>
                 </div>
-                <div>ooo</div>
+                
               </div>";
+
+              if($output->document_type == "pdf"){
+                // $alltheoutput .= "<div class='p-6.5'><img src='/storage/uploads/$output->document_name' alt='Logo' class='h-44' /></div>";
+                $alltheoutput .= "<embed class='p-6.5 hidden' id='toggle_document_view_$output->id' src='/storage/uploads/$output->document_name' type='application/pdf' width='100%' height='500px'>";
+              }else{
+                $alltheoutput .= "<div class='p-6.5 hidden' id='toggle_document_view_$output->id'><img src='/storage/uploads/$output->document_name' alt='Logo' class='h-44' /></div>";
+              }
                 // 
             }
 
