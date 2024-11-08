@@ -676,7 +676,7 @@ class CadanaUpdateDatabaseController extends Controller
                   </div>
                 </div>
                 <div class='col-span-1 items-center sm:flex'>
-                  <button class='hover:text-primary' id='trigger-view-document' documentname='$output->document_name'>
+                  <a class='hover:text-primary' href='/viewdocuments/' target='_blank' id='trigger-view-document' documentname='$output->document_name'>
                     <svg
                       class='fill-current'
                       width='18'
@@ -694,7 +694,7 @@ class CadanaUpdateDatabaseController extends Controller
                         fill=''
                       />
                     </svg>
-                  </button>
+                  </a>
                 </div>
               </div>";
                 // 
