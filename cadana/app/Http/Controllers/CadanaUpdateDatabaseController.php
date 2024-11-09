@@ -726,6 +726,20 @@ class CadanaUpdateDatabaseController extends Controller
 
             // this returns either 1 or zero
             return CrudHelper::Update($tabledb, $where_array, $update_array);
+        }elseif($request->owner == "get_accounttype_ofthis"){
+            $authorid = Auth::id();
+
+            $tabledb = "users";
+
+            $where_array = [
+                'id' => $request->ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($output as $output){
+                return $output->accounttype;
+            }
         }
     }
 

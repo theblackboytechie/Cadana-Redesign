@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class CadanaDonorSettings extends Component
 {
+    public $owner;
     public $params;
     public $params2;
     public $thegender;
@@ -15,8 +16,9 @@ class CadanaDonorSettings extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($params, $params2, $thegender, $verifystatus)
+    public function __construct($owner, $params, $params2, $thegender, $verifystatus)
     {
+        $this->owner = $owner;
         $this->params = $params;
         $this->params2 = $params2;
         $this->thegender = $thegender;

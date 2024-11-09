@@ -36,10 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/clinicprofile', [CadanaDashboardPages::class, 'clinicprofile'])->name('clinicprofile');
     Route::get('/clinicsettings', [CadanaDashboardPages::class, 'clinicsettings'])->name('clinicsettings');
 
-
-
     Route::get('/donorprofile', [CadanaDashboardPages::class, 'donorprofile'])->name('donorprofile');
     Route::get('/usersettings/{x}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
+    Route::get('/vettedcredentials/{x}', [CadanaDashboardPages::class, 'vettedcredentials'])->name('vettedcredentials');
+    Route::get('/updatepassword/{x}', [CadanaDashboardPages::class, 'updatepassword'])->name('updatepassword');
+    Route::get('/accountsverification/{x}', [CadanaDashboardPages::class, 'accountsverification'])->name('accountsverification');
+    Route::get('/medicalrecords/{x}', [CadanaDashboardPages::class, 'medicalrecords'])->name('medicalrecords');
+    Route::get('/donationrecords/{x}', [CadanaDashboardPages::class, 'donationrecords'])->name('donationrecords');
 
     Route::get('/donorsettings/{x}/{y}', [CadanaDashboardPages::class, 'donorsettings'])->name('donorsettings');
 

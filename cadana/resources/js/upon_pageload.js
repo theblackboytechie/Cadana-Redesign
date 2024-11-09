@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    var thegender = $(".gender_checker").attr("thegender");
+
+    if(thegender == "male"){
+        $(".male-donation-form").hide();
+        $(".female-donation-form").remove();
+    }else{
+        $(".male-donation-form").remove();
+        $(".female-donation-form").hide();
+    }
+    
+
     var urlPath = window.location.pathname;
 
     var path = urlPath.split("/");
@@ -20,7 +31,8 @@ $(document).ready(function() {
         getFromDatabase(theurl, formData);
     }
 
-    if (secondToLast === "usersettings") {
+    if (secondToLast === "usersettings" || secondToLast === "vettedcredentials" || secondToLast === "viewupdatepassword" || secondToLast === "accountsverification" || secondToLast === "viewmedicalrecords" || secondToLast === "viewdonationrecords" || secondToLast === "updatepassword") {
+
         var owner = "download_latest_user_details";
         // load from primary information of the user from the database
         var formData = {
@@ -72,6 +84,18 @@ $(document).ready(function() {
 
         var url = window.location.href;
         var ownerid = url.substring(url.lastIndexOf('/') + 1);
+
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+    
+        getFromDatabase(theurl, formData);
+
+        // get account type
+        var owner = "get_accounttype_ofthis";
 
         var formData = {
             owner: owner,
@@ -165,6 +189,13 @@ function getFromDatabase(theurl, formData) {
             }else if(formData.owner == "load_all_uploaded_documents"){
                 // alert(response);
                 $("#list_of_all_documents").html(response);
+            }else if(formData.owner == "get_accounttype_ofthis"){
+                // alert(response);
+                if(response == "superadmin" || response == "clinic" || response == "professional"){
+                    $(".for_donors_only").remove();
+                }else if(response == "donors"){
+                    $(".for_donors_only").show();//alert("shout lowder!");
+                }
             }
         },
         error: function(response) {

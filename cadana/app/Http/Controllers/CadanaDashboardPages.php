@@ -125,71 +125,51 @@ class CadanaDashboardPages extends Controller
         return view('/publicpages/router', compact('owner', 'params'));
     }
 
+    // vettedcredentials
+    public function vettedcredentials(Request $request)
+    {
+        $owner = "viewvettedcredentials";
+        
+        return $this->get_alldetails_for_settings($request->x, $owner);
+    }
+
     public function donorsettings(Request $request)
     {
         $owner = "viewdonorsettings";
-        
-        // medical history
-        $tabledb = "users_medical_history";
 
-        $where_array = [
-            'owner_id' => $request->x,
-        ];
+        return $this->get_alldetails_for_settings($request->x, $owner);
+    }
 
-        $params = CrudHelper::Get($tabledb, $where_array);
+    // updatepassword
+    public function updatepassword(Request $request)
+    {
+        $owner = "viewupdatepassword";
 
-        // get the gender of the owneraccount
-        $tabledb = "users_primary_details";
+        return $this->get_alldetails_for_settings($request->x, $owner);
+    }
 
-        $where_array = [
-            'owner_id' => $request->x,
-        ];
+    // accountsverification
+    public function accountsverification(Request $request)
+    {
+        $owner = "viewaccountsverification";
 
-        $getgender = CrudHelper::Get($tabledb, $where_array);
+        return $this->get_alldetails_for_settings($request->x, $owner);
+    }
 
-        if(count($getgender) > 0){
-            foreach($getgender as $getgender){
-                if($getgender->gender == "male"){
-                    // donor history
-                    $tabledb = "male_donation_report";
-                }elseif($getgender->gender == "female"){
-                    // donor history
-                    $tabledb = "female_donation_report";
-                }
+    // medicalrecords
+    public function medicalrecords(Request $request)
+    {
+        $owner = "viewmedicalrecords";
 
-                // return $verify_status = $getgender->verfy_status;
-                $tabledbb = "users";
+        return $this->get_alldetails_for_settings($request->x, $owner);
+    }
 
-                $where_array = [
-                    'id' => $request->x,
-                ];
-        
-                $get_verify_status = CrudHelper::Get($tabledbb, $where_array);
+    // donationrecords
+    public function donationrecords(Request $request)
+    {
+        $owner = "viewdonationrecords";
 
-                foreach($get_verify_status as $get_verify){
-                    $verify_status = $get_verify->verfy_status;
-                }
-                // 
-
-                $thegender = $getgender->gender;
-
-                $where_array = [
-                    'owner_id' => $request->x,
-                ];
-        
-                $params2 = CrudHelper::Get($tabledb, $where_array);
-
-                return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
-            }
-        }else{
-            // return "this is yo!";
-            $params = [];
-            $params2 = [];
-            $thegender = "";
-            $verify_status = "";
-            
-            return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
-        }
+        return $this->get_alldetails_for_settings($request->x, $owner);
     }
 
     // edit_medical_history
@@ -264,5 +244,70 @@ class CadanaDashboardPages extends Controller
         return "omooo!";
 
         return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    private function get_alldetails_for_settings($x, $owner)
+    {
+        // medical history
+        $tabledb = "users_medical_history";
+
+        $where_array = [
+            'owner_id' => $x,
+        ];
+
+        $params = CrudHelper::Get($tabledb, $where_array);
+
+        // get the gender of the owneraccount
+        $tabledb = "users_primary_details";
+
+        $where_array = [
+            'owner_id' => $x,
+        ];
+
+        $getgender = CrudHelper::Get($tabledb, $where_array);
+
+        if(count($getgender) > 0){
+            foreach($getgender as $getgender){
+                if($getgender->gender == "male"){
+                    // donor history
+                    $tabledb = "male_donation_report";
+                }elseif($getgender->gender == "female"){
+                    // donor history
+                    $tabledb = "female_donation_report";
+                }
+
+                // return $verify_status = $getgender->verfy_status;
+                $tabledbb = "users";
+
+                $where_array = [
+                    'id' => $x,
+                ];
+        
+                $get_verify_status = CrudHelper::Get($tabledbb, $where_array);
+
+                foreach($get_verify_status as $get_verify){
+                    $verify_status = $get_verify->verfy_status;
+                }
+                // 
+
+                $thegender = $getgender->gender;
+
+                $where_array = [
+                    'owner_id' => $x,
+                ];
+        
+                $params2 = CrudHelper::Get($tabledb, $where_array);
+                
+                return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
+            }
+        }else{
+            // return "this is yo!";
+            $params = [];
+            $params2 = [];
+            $thegender = "";
+            $verify_status = "";
+            
+            return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
+        }
     }
 }

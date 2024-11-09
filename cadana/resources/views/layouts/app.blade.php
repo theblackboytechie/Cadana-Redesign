@@ -21,7 +21,8 @@
             'resources/js/app.js', 
             'resources/js/bundle.js', 
             'resources/js/accountsupdate.js',
-            'resources/js/upon_pageload.js'
+            'resources/js/upon_pageload.js',
+            'resources/js/locations_database.js'
         ])
     </head>
 

@@ -829,7 +829,7 @@
                 <x-cadana-clinic-profile :params="$params" />
             @elseif($owner == "viewdonorprofile")
                 <x-cadana-donor-profile />
-            @elseif($owner == "viewdonorsettings")
+            @elseif($owner == "viewdonorsettings" || $owner == "viewvettedcredentials" || $owner == "viewupdatepassword" || $owner == "viewaccountsverification" || $owner == "viewmedicalrecords" || $owner == "viewdonationrecords")
                 <x-cadana-donor-settings :params="$params" :owner="$owner" :params2="$params2" :thegender="$thegender" :verifystatus="$verify_status" />
             @elseif($owner == "viewclinicsettings")
                 <x-cadana-clinic-settings />
