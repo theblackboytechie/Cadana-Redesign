@@ -186,6 +186,7 @@ class CadanaDashboardPages extends Controller
             $params = [];
             $params2 = [];
             $thegender = "";
+            $verify_status = "";
             
             return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
         }

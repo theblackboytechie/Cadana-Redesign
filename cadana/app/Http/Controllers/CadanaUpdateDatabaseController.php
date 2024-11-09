@@ -737,6 +737,10 @@ class CadanaUpdateDatabaseController extends Controller
         //     'file' => 'required|file|max:1024',
         //     'documents_file_name' => 'required|max:100',
         // ]);
+        $request->validate([
+            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:1024',
+        ]);
+        
         $authorid = Auth::id();
         $currenttime = Carbon::now();
 

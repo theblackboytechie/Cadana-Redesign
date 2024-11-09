@@ -15,6 +15,14 @@ $('body').on('click', '#update-account-type', function() {
     }
 });
 
+// password_form_wraps
+$('body').on('click', '#password_form_button', function(event) {
+    event.preventDefault();
+    // alert("yo to the izzo!");
+    $(".form_components").hide();
+    $("#password_form_wraps").show();
+});
+
 // update_primary_info1
 $('body').on('click', '#update_primary_info1', function(event) {
     // var account_type = $("#account-type-list").val();
