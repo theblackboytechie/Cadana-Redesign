@@ -509,7 +509,7 @@
                       <form action="#">
                         <div class="mb-4 flex items-center gap-3">
                           <div class="h-14 w-14 rounded-full">
-                            <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" />
+                            <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" id="profile_picture_thumbnail" />
                           </div>
                           <div>
                             <span
@@ -539,6 +539,7 @@
                             type="file"
                             accept="image/*"
                             class="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
+                            id="file_profile_picture_input_tag"
                           />
                           <div
                             class="flex flex-col items-center justify-center space-y-3"

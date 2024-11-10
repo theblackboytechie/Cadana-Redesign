@@ -23,6 +23,23 @@ $('body').on('click', '#password_form_button', function(event) {
     $("#password_form_wraps").show();
 });
 
+// file_profile_picture_input_tag
+$('#file_profile_picture_input_tag').change(function() {
+    readURL(this);
+});
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = function(e) {
+        $('#profile_picture_thumbnail').attr('src', e.target.result);
+      };
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+}
+
 // update_primary_info1
 $('body').on('click', '#update_primary_info1', function(event) {
     // var account_type = $("#account-type-list").val();
