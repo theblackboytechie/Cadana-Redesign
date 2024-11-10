@@ -779,11 +779,39 @@ class CadanaUpdateDatabaseController extends Controller
         ];
 
         CrudHelper::Create($tabledb, $create_array);
+    }
 
-        // $file = $request->file('file');
-        // // $filePath = $file->store('uploads');
-        // $filePath = $request->file('file')->store('uploads', 'public');
-        // $documents_file_name = $request->documents_file_name;
+    // database_upload_profileimg
+    public function database_upload_profileimg(Request $request)
+    {
+        // return "bangini!";
+        $request->validate([
+            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:2024',
+        ]);
+        
+        $authorid = Auth::id();
+        $currenttime = Carbon::now();
+
+        $timestamp = time();
+        $randomString = Str::random(10);
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = $randomString . $timestamp . '.' . $extension;
+        $filePath = $file->storeAs('uploads', $fileName, 'public');
+
+        $tabledb = "users";
+
+        $where_array = [
+            'id' => $authorid
+        ];
+
+        $update_array = [
+            'profile_picture' => $fileName,
+            'updated_at' => $currenttime,
+        ];
+
+        // this returns either 1 or zero
+        CrudHelper::Update($tabledb, $where_array, $update_array);
     }
 
     private function get_accounttype($id)

@@ -24,8 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/assignaccount', [CadanaDashboardPages::class, 'assignaccount'])->name('assignaccount');
 
     Route::post('/database_update', [CadanaUpdateDatabaseController::class, 'database_update'])->name('database_update');
-    // database_upload_file
+    // database_upload_profileimg
     Route::post('/database_upload_file', [CadanaUpdateDatabaseController::class, 'database_upload_file'])->name('database_upload_file');
+    Route::post('/database_upload_profileimg', [CadanaUpdateDatabaseController::class, 'database_upload_profileimg'])->name('database_upload_profileimg');
 
     Route::get('/allusers', [CadanaDashboardPages::class, 'allusers'])->name('allusers');
     Route::get('/clinics', [CadanaDashboardPages::class, 'allclinics'])->name('allclinics');

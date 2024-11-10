@@ -26,6 +26,54 @@ $('body').on('click', '#password_form_button', function(event) {
 // file_profile_picture_input_tag
 $('#file_profile_picture_input_tag').change(function() {
     readURL(this);
+    // upload the image to the database
+    $("#profileimage-uploading-processing-loading").show();
+    var file = event.target.files[0];
+    // alert(file);console.log(file);
+    // return;
+    var formData = new FormData();
+    formData.append('file', file);
+
+    var owner = "upload_profile_image_authenticated";
+    formData.append('owner', owner);
+
+    var theurl = $("#cadanamaps").attr("database_upload_profileimg");//alert("url: "+theurl);return;
+
+    $.ajax({
+        type: 'POST',
+        url: theurl,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+        //   console.log(response);
+          alert(response);
+          $("#profileimage-uploading-processing-loading").hide();
+        },
+        error: function(xhr, status, error) {
+            
+            $("#document-uploading-processing").hide();
+            console.log(xhr.responseText);
+            $('#' + 'credentials_error_wraps').text(xhr.responseText);
+            var errorResponse = JSON.parse(xhr.responseText);
+            var errorMessage = errorResponse.message;
+            var errors = errorResponse.errors;
+        
+            var errorHtml = '';
+        
+            // Display general error message
+            errorHtml += '<p>' + errorMessage + '</p>';
+        
+            // Display field-specific errors
+            $.each(errors, function(field, error) {
+                errorHtml += '<p>' + field + ': ' + error[0] + '</p>';
+            });
+        
+            $('#' + 'credentials_error_wraps').html(errorHtml);
+
+            $("#profileimage-uploading-processing-loading").hide();
+        }
+    });
 });
 
 function readURL(input) {
@@ -33,7 +81,7 @@ function readURL(input) {
       var reader = new FileReader();
   
       reader.onload = function(e) {
-        $('#profile_picture_thumbnail').attr('src', e.target.result);
+        $('.profile_picture_thumbnail').attr('src', e.target.result);
       };
   
       reader.readAsDataURL(input.files[0]);
@@ -54,14 +102,14 @@ $('body').on('click', '#update_primary_info1', function(event) {
     var donor_primary_phone = $("#donor_primary_phone").val();
     var donor_secondary_phone = $("#donor_secondary_phone").val();
     var donor_primary_address = $("#donor_primary_address").val();
-    var donor_primary_city = $("#donor_primary_city").val();
-    var donor_primary_state = $("#donor_primary_state").val();
-    var donor_primary_country = $("#donor_primary_country").val();
+    var donor_primary_city = $("#gbpeter-primary-city").val();
+    var donor_primary_state = $("#gbpeter-primary-state").val();
+    var donor_primary_country = $("#gbpeter-primary-country").val();
     var donor_primary_zipcode = $("#donor_primary_zipcode").val();
     var donor_secondary_address = $("#donor_secondary_address").val();
-    var donor_secondary_city = $("#donor_secondary_city").val();
-    var donor_secondary_state = $("#donor_secondary_state").val();
-    var donor_secondary_country = $("#donor_secondary_country").val();
+    var donor_secondary_city = $("#gbpeter-secondary-city").val();
+    var donor_secondary_state = $("#gbpeter-secondary-state").val();
+    var donor_secondary_country = $("#gbpeter-secondary-country").val();
     var donor_secondary_zipcode = $("#donor_secondary_zipcode").val();
 
     var url = window.location.href;
@@ -576,15 +624,7 @@ $('body').on('change', '#documents_file_tag', function(event) {
     var ownerid = url.substring(url.lastIndexOf('/') + 1);
     formData.append('ownerid', ownerid);
 
-    // var textFieldValue = $('#documents_file_text_name').val();
-
-    // formData.append('documents_file_name', textFieldValue);
-
-    // alert("oyoyo!: "+file);
     var theurl = $("#cadanamaps").attr("database_upload_file");//alert("url: "+theurl);return;
-
-    // console.log("oyoyo!: "+file);
-    // var owner = "upload_file_document";
 
     $.ajax({
         type: 'POST',
@@ -632,10 +672,6 @@ $('body').on('change', '#documents_file_tag', function(event) {
             });
         
             $('#' + 'credentials_error_wraps').html(errorHtml);
-            // $('#error-message').text(errorMessage);
-            // $.each(xhr.responseText, function(field, error) {
-            //     $('#' + 'credentials_error_wraps').text(error[0]);
-            // });
         }
     });
 });

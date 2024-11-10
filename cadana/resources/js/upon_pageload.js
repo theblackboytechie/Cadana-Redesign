@@ -138,14 +138,14 @@ function getFromDatabase(theurl, formData) {
                 $("#donor_secondary_email").val(response[5]);
                 $("#donor_primary_phone").val(response[6]);
                 $("#donor_secondary_phone").val(response[7]);
-                $("#donor_primary_country").val(response[8]);
-                $("#donor_primary_state").val(response[9]);
-                $("#donor_primary_city").val(response[10]);
+                $("#gbpeter-primary-country").append("<option value='"+response[8]+"' selected>"+response[8]+"</option>");
+                $("#gbpeter-primary-state").append("<option value='"+response[9]+"' selected>"+response[9]+"</option>");
+                $("#gbpeter-primary-city").append("<option value='"+response[10]+"' selected>"+response[10]+"</option>");
                 $("#donor_primary_address").val(response[11]);
                 $("#donor_primary_zipcode").val(response[12]);
-                $("#donor_secondary_country").val(response[13]);
-                $("#donor_secondary_state").val(response[14]);
-                $("#donor_secondary_city").val(response[15]);
+                $("#gbpeter-secondary-country").append("<option value='"+response[13]+"' selected>"+response[13]+"</option>");
+                $("#gbpeter-secondary-state").append("<option value='"+response[14]+"' selected>"+response[14]+"</option>");
+                $("#gbpeter-secondary-city").append("<option value='"+response[15]+"' selected>"+response[15]+"</option>");
                 $("#donor_secondary_address").val(response[16]);
                 $("#donor_secondary_zipcode").val(response[17]);
                 // we now insert into forms

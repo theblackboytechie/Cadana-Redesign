@@ -1355,17 +1355,17 @@ $(document).ready(function() {
 
         $("#gbpeter-primary-state").append("<option value='"+primary_state+"'>"+primary_state+"</option>");
 
-        var secondary_state = $("#gbpeter-secondary-state").attr("actual_result");
+        // var secondary_state = $("#gbpeter-secondary-state").attr("actual_result");
 
-        $("#gbpeter-secondary-state").append("<option value='"+secondary_state+"'>"+secondary_state+"</option>");
+        // $("#gbpeter-secondary-state").append("<option value='"+secondary_state+"'>"+secondary_state+"</option>");
 
-        var primary_city = $("#gbpeter-primary-city").attr("actual_result");
+        // var primary_city = $("#gbpeter-primary-city").attr("actual_result");
 
-        $("#gbpeter-primary-city").append("<option value='"+primary_city+"'>"+primary_city+"</option>");
+        // $("#gbpeter-primary-city").append("<option value='"+primary_city+"'>"+primary_city+"</option>");
 
-        var secondary_city = $("#gbpeter-secondary-city").attr("actual_result");
+        // var secondary_city = $("#gbpeter-secondary-city").attr("actual_result");
 
-        $("#gbpeter-secondary-city").append("<option value='"+secondary_city+"'>"+secondary_city+"</option>");
+        // $("#gbpeter-secondary-city").append("<option value='"+secondary_city+"'>"+secondary_city+"</option>");
     }
 
 });

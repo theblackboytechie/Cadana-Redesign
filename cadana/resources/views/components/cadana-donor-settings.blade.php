@@ -7,7 +7,7 @@
 @endphp
 
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-  <div class="mx-auto w-full">
+  <div class="mx-auto w-50">
     <!-- Breadcrumb Start -->
     <div
       class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
@@ -17,21 +17,67 @@
       </h2>
 
       <nav>
-        <ol class="flex items-center gap-2">
+        <ol class="flex items-center gap-1">
+          <li class="hidden lg:block"><i class="fa-solid fa-bars"></i> /</li>
           <li>
             <a class="font-medium" href="index.html">Dashboard /</a>
           </li>
-          <li>
-            <a class="font-medium" href="donors.html">Donorxx /</a>
-          </li>
+          <!-- <li> -->
+            <!-- <a class="font-medium" href="donors.html">Donorxx /</a> -->
+          <!-- </li> -->
           <li class="text-primary">Settings</li>
         </ol>
       </nav>
     </div>
+
+    <div class="flex items-center gap-2 mb-2">
+      <a
+        href="/usersettings/{{$accountId}}"
+        @click="formStep = 1"
+        class="group flex items-center gap-3.5 font-medium"
+        >
+          <div
+            class="@if($theowner_from_url == 'usersettings') bg-primary text-white @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
+          >
+            1
+          </div>
+          <span
+            class="@if($theowner_from_url == 'usersettings') text-primary @else text-black-2 @endif group-hover:text-primary"
+          >Primary Information</span>
+        </a>
+        <a
+          href="/vettedcredentials/{{$accountId}}"
+          class="group flex items-center gap-3.5 font-medium"
+        >
+          <div
+            class="@if($theowner_from_url == 'vettedcredentials') bg-primary text-white @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
+          >
+            2
+          </div>
+          <span
+            class="@if($theowner_from_url == 'vettedcredentials') text-primary @else text-black-2 @endif group-hover:text-primary"
+            >Vetted Credentials</span
+          >
+        </a>
+        <a
+          href="/updatepassword/{{$accountId}}"
+          class="group flex items-center gap-3.5 font-medium"
+        >
+          <div
+            class="@if($theowner_from_url == 'updatepassword') bg-primary text-white @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
+          >
+            3
+          </div>
+          <span
+            class="@if($theowner_from_url == 'updatepassword') text-primary @else text-black-2 @endif group-hover:text-primary"
+            >Account's Password</span
+          >
+        </a>      
+    </div>
     <!-- Breadcrumb End -->
     <form x-data="{ formStep: 1 }" class="flex items-start gap-8">
       <div
-        class="w-4/12 space-y-6 rounded-sm border border-stroke bg-white p-6.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+        class="w-4/12 space-y-6 rounded-sm border border-stroke bg-white p-6.5 shadow-default dark:border-strokedark dark:bg-boxdark hidden lg:block"
       >
         <a
           href="/usersettings/{{$accountId}}"
@@ -122,7 +168,7 @@
         </a>
         @endif
       </div>
-      <div class="w-8/12">
+      <div class="w-11/12 lg:w-8/12 ">
         @if($owner == "viewdonorsettings")
           <div>
             <div
@@ -320,7 +366,7 @@
                       class="relative z-20 bg-transparent dark:bg-form-input"
                     >
                       <select
-                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary gbpeter-select-state"
                         :class="isOptionSelected && 'text-black dark:text-white'"
                         @change="isOptionSelected = true"
                         id="gbpeter-primary-state"
@@ -365,7 +411,6 @@
                         class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         :class="isOptionSelected && 'text-black dark:text-white'"
                         @change="isOptionSelected = true"
-                        
                         id="gbpeter-primary-country"
                       >
                         <option value="" class="text-body">
@@ -472,7 +517,7 @@
                       class="relative z-20 bg-transparent dark:bg-form-input"
                     >
                       <select
-                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary gbpeter-select-state"
                         :class="isOptionSelected && 'text-black dark:text-white'"
                         @change="isOptionSelected = true"
                         id="gbpeter-secondary-state"
@@ -519,21 +564,6 @@
                         @change="isOptionSelected = true"
                         id="gbpeter-secondary-country"
                       >
-                        <option value="" class="text-body">
-                          Select
-                        </option>
-                        <option value="dfv1" class="text-body">
-                          IVF Clinic
-                        </option>
-                        <option value="dfv2" class="text-body">
-                          Fertility Hospital
-                        </option>
-                        <option value="dfv3" class="text-body">
-                          Reproductive Health Center
-                        </option>
-                        <option value="dfv4" class="text-body">
-                          Other (please specify)
-                        </option>
                       </select>
                       <span
                         class="absolute right-4 top-1/2 z-30 -translate-y-1/2"

@@ -17,6 +17,7 @@
         id="cadanamaps"
         database_update="{{ route('database_update') }}"
         database_upload_file="{{ route('database_upload_file') }}"
+        database_upload_profileimg="{{ route('database_upload_profileimg') }}"
     >
     <!-- ===== Preloader Start ===== -->
     <div
@@ -379,7 +380,7 @@
     </div>
 
     <div class="flex items-center gap-3 2xsm:gap-7">
-      <ul class="flex items-center gap-2 2xsm:gap-4">
+      <ul class="flex items-center gap-2 2xsm:gap-4 hidden">
         <!-- Notification Menu Area -->
         <li
           class="relative"
@@ -667,7 +668,12 @@
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" />
+            <!-- <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" /> -->
+            @if (!empty(auth()->user()->profile_picture))
+                <img src="{{ asset('storage/uploads/'.auth()->user()->profile_picture) }}" alt="User" class="profile_picture_thumbnail" style="height: 50px; width: 50px;border-radius: 50%;" />
+            @else
+                <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" class="profile_picture_thumbnail" />
+            @endif
           </span>
 
           <svg
@@ -696,7 +702,7 @@
           <ul
             class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"
           >
-            <li>
+            <li class="hidden">
               <a
                 href="profile.html"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
@@ -721,7 +727,7 @@
                 My Profile
               </a>
             </li>
-            <li>
+            <li class="hidden">
               <a
                 href="messages.html"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
