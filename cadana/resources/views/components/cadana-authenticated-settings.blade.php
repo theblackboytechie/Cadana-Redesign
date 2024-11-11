@@ -239,6 +239,7 @@
                           @if($owner == "view_accounts_profile")
 
                           @else
+                            <i class="fa-solid fa-circle-notch fa-spin" id="settingspage-processing-loading" style="display: none;"></i>
                             <button
                               class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90 trigger-settings-submit"
                               type="submit"
@@ -501,7 +502,7 @@
                               class="mb-1.5 font-medium text-black dark:text-white"
                               >Edit your photo</span
                             >
-                            <span class="flex gap-2.5 hidden">
+                            <!-- <span class="flex gap-2.5 hidden">
                               <button
                                 class="text-sm font-medium hover:text-primary"
                               >
@@ -512,7 +513,7 @@
                               >
                                 Update
                               </button>
-                            </span>
+                            </span> -->
                           </div>
                         </div>
                         <div id="credentials_error_wraps text-primary"></div>
@@ -574,7 +575,7 @@
                           </div>
                         </div>
 
-                        <div class="flex justify-end gap-4.5">
+                        <div class="flex justify-end gap-4.5 hidden">
                           <button
                             class="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                             type="submit"

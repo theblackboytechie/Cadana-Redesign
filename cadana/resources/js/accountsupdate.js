@@ -144,6 +144,7 @@ $('body').on('click', '#update_primary_info1', function(event) {
 // trigger-settings-submit
 $('body').on('click', '.trigger-settings-submit', function(event) {
     event.preventDefault();
+    $("#settingspage-processing-loading").show();
 
     var owner = "update_authen_settings_details";
     
@@ -750,9 +751,9 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "update_edited_medical_hist"){
                 $("#processing-medical-history").hide();
             }else if(formData.owner == "update_male_donor_record"){
-                alert(response);
+                // alert(response);
             }else if(formData.owner == "update_female_donor_record"){
-                alert("female: "+response);
+                // alert("female: "+response);
             }else if(formData.owner == "verification_toggle"){
                 // alert(response);
                 if(response == 1){
@@ -770,8 +771,11 @@ function updateDatabase(theurl, formData) {
                 // alert(response);
                 $("#list_of_all_documents").html(response);
             }else if(formData.owner == "update_for_documents_name"){
-                alert(response);
+                // alert(response);
                 $("#document_name_processing_"+formData.document_id).hide();
+            }else if(formData.owner == "update_authen_settings_details"){
+                // alert("romeo!");
+                $("#settingspage-processing-loading").hide();
             }
         },
         error: function(response) {

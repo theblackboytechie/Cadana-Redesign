@@ -242,6 +242,18 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
+              href="/search"
+              @click="selected = (selected === 'Search' ? '':'Search')"
+              :class="{ 'bg-primary text-white': (selected === 'Search') && (page === 'Search') }"
+              :class="page === 'Search' && 'bg-primary'"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Search
+            </a>
+          </li>
+          <li>
+            <a
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
               href="/usersettings/{{ auth()->id() }}"
               @click="selected = (selected === 'Settings' ? '':'Settings')"
               :class="{ 'bg-primary text-white': (selected === 'Settings') && (page === 'settings') }"
@@ -346,7 +358,7 @@
     <div class="hidden sm:block">
       <form action="https://formbold.com/s/unique_form_id" method="POST">
         <div class="relative">
-          <button class="absolute left-0 top-1/2 -translate-y-1/2">
+          <button class="absolute left-0 top-1/2 -translate-y-1/2 hidden">
             <svg
               class="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
               width="20"
@@ -373,7 +385,7 @@
           <input
             type="text"
             placeholder="Type to search..."
-            class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"
+            class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125 hidden"
           />
         </div>
       </form>
@@ -826,6 +838,11 @@
                   id="update-account-type"
                   class="inline-flex items-center justify-center rounded-md bg-primary px-2 py-2 text-center font-medium text-white hover:bg-opacity-90 mt-2 lg:px-2 xl:px-2"
                 >Update Account</button>
+              </div>
+            @elseif($owner == "viewsearch_page")
+              <div class="p-6.5">
+                <div class="mb-4"><input type="text" placeholder="Type to search..." class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"></div>
+                <div>There's no clinic available at the moment. Please check back later.</div>
               </div>
             @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />

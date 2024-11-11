@@ -238,10 +238,19 @@ class CadanaDashboardPages extends Controller
     // assignaccount
     public function assignaccount(Request $request)
     {
-        return "omooo!";
+        // return "omooo!";
         $owner = "viewauthenticatedsettings";
         $params = [];
-        return "omooo!";
+        // return "omooo!";
+
+        // return view('/publicpages/router', compact('owner', 'params'));
+    }
+
+    // search
+    public function search(Request $request)
+    {
+        $owner = "viewsearch_page";
+        $params = [];
 
         return view('/publicpages/router', compact('owner', 'params'));
     }

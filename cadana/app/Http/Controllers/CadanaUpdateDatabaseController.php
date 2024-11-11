@@ -752,7 +752,7 @@ class CadanaUpdateDatabaseController extends Controller
         //     'documents_file_name' => 'required|max:100',
         // ]);
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:1024',
+            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:4024',
         ]);
         
         $authorid = Auth::id();
@@ -765,7 +765,8 @@ class CadanaUpdateDatabaseController extends Controller
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
         $fileName = $randomString . $timestamp . '.' . $extension;
-        $filePath = $file->storeAs('uploads', $fileName, 'public');
+        // $filePath = $file->storeAs('uploads', $fileName, 'public');
+        $file->move(public_path('storage/uploads/'), $fileName);
 
         $tabledb = "users_documents";
 
@@ -786,7 +787,7 @@ class CadanaUpdateDatabaseController extends Controller
     {
         // return "bangini!";
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:2024',
+            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:4024',
         ]);
         
         $authorid = Auth::id();
@@ -797,7 +798,8 @@ class CadanaUpdateDatabaseController extends Controller
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
         $fileName = $randomString . $timestamp . '.' . $extension;
-        $filePath = $file->storeAs('uploads', $fileName, 'public');
+        // $filePath = $file->storeAs('uploads', $fileName, 'public');
+        $file->move(public_path('storage/uploads/'), $fileName);
 
         $tabledb = "users";
 

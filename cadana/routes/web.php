@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/donatinghistory/edit/{postid}', [CadanaDashboardPages::class, 'edit_donating_history'])->name('edit_donating_history');
 
     Route::get('/settings', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
+    Route::get('/search', [CadanaDashboardPages::class, 'search'])->name('search');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
