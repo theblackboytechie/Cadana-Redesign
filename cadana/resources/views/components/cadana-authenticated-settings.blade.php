@@ -492,9 +492,9 @@
                         <div class="mb-4 flex items-center gap-3">
                           <div class="h-14 w-14 rounded-full">
                             @if (!empty(auth()->user()->profile_picture))
-                                <img src="{{ asset('storage/uploads/'.auth()->user()->profile_picture) }}" alt="User" class="profile_picture_thumbnail" style="height: 40px; width: 40px;border-radius: 50%;" />
+                                <img src="{{ asset('storage/uploads/'.auth()->user()->profile_picture) }}" alt="User" id="upon_load_profile_image" class="profile_picture_thumbnail" style="height: 40px; width: 40px;border-radius: 50%;" />
                             @else
-                                <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" class="profile_picture_thumbnail" />
+                                <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" id="upon_load_profile_image" class="profile_picture_thumbnail" />
                             @endif
                           </div>
                           <div>

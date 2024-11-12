@@ -740,6 +740,21 @@ class CadanaUpdateDatabaseController extends Controller
             foreach($output as $output){
                 return $output->accounttype;
             }
+        }elseif($request->owner == "get_profile_picture_authenticated_page"){
+            // return "jump with me!";
+            $ownerid = $request->ownerid;
+
+            $tabledb = "users";
+
+            $where_array = [
+                'id' => $ownerid,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($output as $output){
+                return $output->profile_picture;
+            }
         }
     }
 
@@ -794,6 +809,12 @@ class CadanaUpdateDatabaseController extends Controller
         $ownerid = $request->ownerid;
         $currenttime = Carbon::now();
 
+        if ($ownerid == "settings") {
+            $idforuse = $authorid;
+        } else {
+            $idforuse = $ownerid;
+        }
+        // echo $idforuse;
         $timestamp = time();
         $randomString = Str::random(10);
         $file = $request->file('file');
@@ -805,7 +826,7 @@ class CadanaUpdateDatabaseController extends Controller
         $tabledb = "users";
 
         $where_array = [
-            'id' => $ownerid
+            'id' => $idforuse
         ];
 
         $update_array = [

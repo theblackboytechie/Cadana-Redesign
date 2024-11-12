@@ -57,8 +57,25 @@
                     >
                       <div class="">
                         <img
-                          src="{{ asset('storage/assets/images/user-01.png') }}"
-                          alt="Product"
+                            @if(empty($params->profile_picture))
+                              @php
+                                $img_for_use = "user-01.png";
+                                $imgowner = "asset";
+                              @endphp
+                            @else
+                              @php
+                                $img_for_use = "$params->profile_picture";
+                                $imgowner = "database";
+                              @endphp
+                            @endif
+                          @endphp
+
+                          @if($imgowner == "asset")
+                            src="{{ asset('storage/assets/images/'.$img_for_use) }}"
+                          @else
+                            src="{{ asset('storage/uploads/'.$img_for_use) }}"
+                          @endif
+                          alt="User Profile Image"
                           class="h-15 w-15 rounded-full"
                         />
                       </div>

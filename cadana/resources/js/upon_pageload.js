@@ -14,13 +14,27 @@ $(document).ready(function() {
 
     var path = urlPath.split("/");
     var secondToLast = path[path.length - 2];
-    var thirdToLast = path[path.length - 3];//alert("thirdToLast: "+thirdToLast);
+    var thirdToLast = path[path.length - 3];//alert("secondToLast: "+secondToLast);
 
     var ownerid = urlPath.split("/").pop();
     
     if(thirdToLast == "donatinghistory"){
         // load the gender of this user
         var owner = "get_gender_of_user_for_donating_history";
+        var formData = {
+            owner: owner,
+            ownerid: ownerid
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");//alert("ownerid: "+ownerid);
+        
+        getFromDatabase(theurl, formData);
+    }
+
+    if(secondToLast == "profile"){
+        // alert("this is the profile place!: "+ownerid);
+        var owner = "get_profile_picture_authenticated_page";
+
         var formData = {
             owner: owner,
             ownerid: ownerid
@@ -196,6 +210,14 @@ function getFromDatabase(theurl, formData) {
                 }else if(response == "donors"){
                     $(".for_donors_only").show();//alert("shout lowder!");
                 }
+            }else if(formData.owner == "get_profile_picture_authenticated_page"){
+                // alert(response);
+                if(response == ""){
+                    $("#upon_load_profile_image").attr("src", "/storage/assets/images/user-01.png");
+                }else{
+                    $("#upon_load_profile_image").attr("src", "/storage/uploads/"+response);
+                }
+                // storage/assets/images/user-01.png
             }
         },
         error: function(response) {
