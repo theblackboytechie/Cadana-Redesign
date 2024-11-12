@@ -34,6 +34,11 @@ $('#file_profile_picture_input_tag').change(function() {
     var formData = new FormData();
     formData.append('file', file);
 
+    var url = window.location.href;
+    var ownerid = url.substring(url.lastIndexOf('/') + 1);
+    formData.append('ownerid', ownerid);
+    // alert("ownerid: "+ownerid);
+    // return;
     var owner = "upload_profile_image_authenticated";
     formData.append('owner', owner);
 

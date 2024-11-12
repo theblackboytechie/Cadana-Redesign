@@ -791,6 +791,7 @@ class CadanaUpdateDatabaseController extends Controller
         ]);
         
         $authorid = Auth::id();
+        $ownerid = $request->ownerid;
         $currenttime = Carbon::now();
 
         $timestamp = time();
@@ -804,7 +805,7 @@ class CadanaUpdateDatabaseController extends Controller
         $tabledb = "users";
 
         $where_array = [
-            'id' => $authorid
+            'id' => $ownerid
         ];
 
         $update_array = [
