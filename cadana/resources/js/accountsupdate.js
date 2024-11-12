@@ -38,7 +38,12 @@ $('#file_profile_picture_input_tag').change(function() {
     formData.append('owner', owner);
 
     var theurl = $("#cadanamaps").attr("database_upload_profileimg");//alert("url: "+theurl);return;
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
     $.ajax({
         type: 'POST',
         url: theurl,

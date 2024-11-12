@@ -1,3 +1,9 @@
+
+@php
+  $thefullurl = Request::url();
+  $parts = explode('/', $thefullurl);
+  $accountId = end($parts);
+@endphp
 <x-app-layout>
     <?php
         if($owner == 'viewdashboard'){
@@ -680,11 +686,19 @@
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <!-- <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" /> -->
-            @if (!empty(auth()->user()->profile_picture))
-                <img src="{{ asset('storage/uploads/'.auth()->user()->profile_picture) }}" alt="User" class="profile_picture_thumbnail" style="height: 50px; width: 50px;border-radius: 50%;" />
+            @if($accountId == auth()->user()->id)
+              @php
+                $theclass = "profile_picture_thumbnail";
+              @endphp
             @else
-                <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" class="profile_picture_thumbnail" />
+              @php
+                $theclass = "";
+              @endphp
+            @endif
+            @if (!empty(auth()->user()->profile_picture))
+                <img src="{{ asset('storage/uploads/'.auth()->user()->profile_picture) }}" alt="User" class="{{$theclass}}" style="height: 50px; width: 50px;border-radius: 50%;" />
+            @else
+                <img src="{{ asset('storage/assets/images/user-01.png') }}" alt="User" class="{{$theclass}}" />
             @endif
           </span>
 

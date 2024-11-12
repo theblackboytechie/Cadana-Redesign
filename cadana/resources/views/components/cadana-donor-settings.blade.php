@@ -18,7 +18,6 @@
 
       <nav>
         <ol class="flex items-center gap-1">
-          <li class="hidden lg:block"><i class="fa-solid fa-bars"></i> /</li>
           <li>
             <a class="font-medium" href="index.html">Dashboard /</a>
           </li>
@@ -30,7 +29,7 @@
       </nav>
     </div>
 
-    <div class="flex items-center gap-2 mb-2">
+    <div class="grid grid-cols-2 items-center gap-2 mb-2 md:hidden lg:hidden xl:hidden block w-11/12 lg:w-8/12">
       <a
         href="/usersettings/{{$accountId}}"
         @click="formStep = 1"
