@@ -756,8 +756,13 @@ class CadanaUpdateDatabaseController extends Controller
                 return $output->profile_picture;
             }
         }elseif($request->owner == "search_cadana_app"){
-            // return "ameeseeyur!";
-            $allusers = $this->get_all_users();
+            $get_accounttype = $this->get_primary_user_details(Auth::id(), "getaccounttype");
+
+            if($get_accounttype == "donor"){
+                $allusers = $this->get_all_users("clinic");
+            }else{
+                $allusers = $this->get_all_users("all");
+            }
 
             // loop to create array that accomodates city and state
             $new_search_array_array = [];
@@ -767,13 +772,18 @@ class CadanaUpdateDatabaseController extends Controller
             $thesearchval = $request->thesearchval;
 
             foreach($allusers as $allusers){
+                $get_primary_address = $this->get_other_user_info($allusers->id, "primary_address");
                 $get_primary_city = $this->get_other_user_info($allusers->id, "primary_city");
                 $get_primary_state = $this->get_other_user_info($allusers->id, "primary_state");
                 $get_primary_country = $this->get_other_user_info($allusers->id, "primary_country");
-    
+
+                $get_secondary_address = $this->get_other_user_info($allusers->id, "secondary_address");
                 $get_secondary_city = $this->get_other_user_info($allusers->id, "secondary_city");
                 $get_secondary_state = $this->get_other_user_info($allusers->id, "secondary_state");
                 $get_secondary_country = $this->get_other_user_info($allusers->id, "secondary_country");
+
+                $get_primary_phone = $this->get_other_user_info($allusers->id, "primary_phone");
+                $get_secondary_phone = $this->get_other_user_info($allusers->id, "secondary_phone");
     
                 $get_accounttype = $this->get_primary_user_details($allusers->id, "getaccounttype");
     
@@ -790,15 +800,74 @@ class CadanaUpdateDatabaseController extends Controller
                     $getprofilepicture = $allusers->profile_picture;
     
                     if(empty($getprofilepicture)){
-                        $picture_side = "<div class='gbpeter-image'><i class='fa-regular fa-user'></i></div>";
+                        $picture_side = "<div><img src='/storage/uploads/1PhH4asRBK1730911962.png' class='gbpeter-image' /></div>";
                     }else{
-                        $picture_side = "<div><img src='/storage/profilepicture/$getprofilepicture' class='gbpeter-image' /></div>";
+                        $picture_side = "<div><img src='/storage/uploads/$getprofilepicture' class='gbpeter-image' /></div>";
                     }
     
-                    $finalresult .= "<a href='/profilepage/$allusers->id'><div class='gbpeter-each-row'>";
+                    // $finalresult .= "<a href='/profilepage/$allusers->id'><div class='gbpeter-each-row'>";
+                    //     $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
+                    //     $finalresult .= "<div class='gbpeter-name-wraps'><span class='gbpeter-realname'>$allusers->name</span><br><span>$get_accounttype</span></div>";
+                    // $finalresult .= "</div></a>";
+
+                    $finalresult .= "<div style='display: grid; grid-template-columns: 10% 79%;gap: 1%;margin-bottom: 2vh;'>";
                         $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
-                        $finalresult .= "<div class='gbpeter-name-wraps'><span class='gbpeter-realname'>$allusers->name</span><br><span>$allusers->account_type</span></div>";
-                    $finalresult .= "</div></a>";                
+                        $finalresult .= "<div>";
+                            $finalresult .= "<span style='font-size: 120%;font-weight: bold;'>$allusers->name</span><br>";
+                            if(!empty($get_primary_address) || !empty($get_primary_city) || !empty($get_primary_state) || !empty($get_primary_country)){
+                                $finalresult .= "<b>Primary Address: </b>";
+                            }
+
+                            if(!empty($get_primary_address)){
+                                $finalresult .= "$get_primary_address, ";
+                            }
+
+                            if(!empty($get_primary_city)){
+                                $finalresult .= "$get_primary_city, ";
+                            }
+
+                            if(!empty($get_primary_state)){
+                                $finalresult .= "$get_primary_state, ";
+                            }
+
+                            if(!empty($get_primary_country)){
+                                $finalresult .= "$get_primary_country.";
+                            }
+
+                            $finalresult .= "<br>";
+
+                            if(!empty($get_secondary_address) || !empty($get_secondary_city) || !empty($get_secondary_state) || !empty($get_secondary_country)){
+                                $finalresult .= "<b>Secondary Address: </b>";
+                            }
+
+                            if(!empty($get_secondary_address)){
+                                $finalresult .= "$get_secondary_address, ";
+                            }
+
+                            if(!empty($get_secondary_city)){
+                                $finalresult .= "$get_secondary_city, ";
+                            }
+
+                            if(!empty($get_secondary_state)){
+                                $finalresult .= "$get_secondary_state, ";
+                            }
+
+                            if(!empty($get_secondary_country)){
+                                $finalresult .= "$get_secondary_country.";
+                            }
+
+                            $finalresult .= "<br>";
+
+                            if(!empty($get_primary_phone)){
+                                $finalresult .= "<b>Primary Phone: </b>$get_primary_phone ";
+                            }
+
+                            if(!empty($get_secondary_phone)){
+                                $finalresult .= "<b>Secondary Phone: </b>$get_secondary_phone";
+                            }
+                            
+                        $finalresult .= "</div>";
+                    $finalresult .= "</div>";
                 }
             }
 
@@ -903,7 +972,7 @@ class CadanaUpdateDatabaseController extends Controller
                 if($owner_type == "getname"){
                     return $getdata->name;
                 }elseif($owner_type == "getaccounttype"){
-                    return $getdata->account_type;
+                    return $getdata->accounttype;
                 }
             }
         }
@@ -924,11 +993,19 @@ class CadanaUpdateDatabaseController extends Controller
         }
     }
 
-    private function get_all_users()
+    private function get_all_users($result_types)
     {
         $tabledb = "users";
 
-        return CrudHelper::Geteverything($tabledb);
+        if($result_types == "all"){
+            return CrudHelper::Geteverything($tabledb);
+        }else{
+            $where_array = [
+                'accounttype' => $result_types,
+            ];
+    
+            return CrudHelper::Get($tabledb, $where_array);
+        }
     }
 
     private function get_other_user_info($id, $ownertype)
@@ -943,12 +1020,20 @@ class CadanaUpdateDatabaseController extends Controller
         $getprofilepicture = CrudHelper::Get($tabledb, $where_array);
 
         foreach($getprofilepicture as $get){
-            if($ownertype == "primary_city"){
+            if($ownertype == "primary_phone"){
+                return $get->primary_phone;
+            }elseif($ownertype == "secondary_phone"){
+                return $get->secondary_phone;
+            }elseif($ownertype == "primary_address"){
+                return $get->primary_address;
+            }elseif($ownertype == "primary_city"){
                 return $get->primary_city;
             }elseif($ownertype == "primary_state"){
                 return $get->primary_state;
             }elseif($ownertype == "primary_country"){
                 return $get->primary_country;
+            }elseif($ownertype == "secondary_address"){
+                return $get->secondary_address;
             }elseif($ownertype == "secondary_city"){
                 return $get->secondary_city;
             }elseif($ownertype == "secondary_state"){

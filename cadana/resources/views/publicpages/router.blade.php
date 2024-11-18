@@ -859,8 +859,10 @@
               </h2> -->
               <div class="p-6.5">
                 <div class="mb-4"><input type="text" placeholder="Type to search..." id="keyup-trigger-search" class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"></div>
-                <div>There's no clinic available at the moment. Please check back later.</div>
+                <div class="load_search_results"></div>
               </div>
+            @elseif($owner == "view_chats_page")
+              <x-cadana-chat-dashboard />
             @elseif($owner == "viewdashboard")
                 <x-cadana-dashboard />
             @elseif($owner == "viewallusers" || $owner == "viewallprofessionals" || $owner == "viewalldonors" || $owner == "viewallclinics")

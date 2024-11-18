@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [CadanaDashboardPages::class, 'authenticatedsettings'])->name('authenticatedsettings');
     Route::get('/search', [CadanaDashboardPages::class, 'search'])->name('search');
 
+    Route::get('/chats', [CadanaDashboardPages::class, 'chats'])->name('chats');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

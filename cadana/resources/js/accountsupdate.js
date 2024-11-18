@@ -104,14 +104,18 @@ $('body').on('keyup', '#keyup-trigger-search', function(event) {
     var thesearchval = $(this).val();
     var owner = "search_cadana_app";
     // console.log(searchterm);
-    var formData = {
-        owner: owner,
-        thesearchval: thesearchval
-    };
-
-    var theurl = $("#cadanamaps").attr("database_update");
-
-    updateDatabase(theurl, formData);
+    if(thesearchval == ""){
+        $(".load_search_results").html("");
+    }else{
+        var formData = {
+            owner: owner,
+            thesearchval: thesearchval
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+    
+        updateDatabase(theurl, formData);
+    }
 });
 
 // update_primary_info1
@@ -748,7 +752,7 @@ function updateDatabase(theurl, formData) {
                     // output error
                 }
             }else if(formData.owner == "search_cadana_app"){
-                alert(response);
+                $(".load_search_results").html(response);
             }else if(formData.owner == "update_primary_details"){
                 $("#primaryinfo-processing-loading").hide();
             }else if(formData.owner == "update_password"){

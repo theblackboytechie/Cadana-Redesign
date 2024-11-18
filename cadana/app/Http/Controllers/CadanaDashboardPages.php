@@ -255,6 +255,15 @@ class CadanaDashboardPages extends Controller
         return view('/publicpages/router', compact('owner', 'params'));
     }
 
+    // chat
+    public function chats(Request $request)
+    {
+        $owner = "view_chats_page";
+        $params = [];
+
+        return view('/publicpages/router', compact('owner', 'params'));
+    }
+
     private function get_alldetails_for_settings($x, $owner)
     {
         // medical history
