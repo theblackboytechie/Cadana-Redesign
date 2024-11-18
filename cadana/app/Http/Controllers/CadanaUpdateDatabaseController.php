@@ -63,7 +63,7 @@ class CadanaUpdateDatabaseController extends Controller
                 return $output->gender;
             }
             // }
-        }elseif($request->owner =="get_auth_user_info"){
+        }elseif($request->owner == "get_auth_user_info"){
             $tabledb = "users_primary_details";
             
             $id = Auth::id();
@@ -755,6 +755,54 @@ class CadanaUpdateDatabaseController extends Controller
             foreach($output as $output){
                 return $output->profile_picture;
             }
+        }elseif($request->owner == "search_cadana_app"){
+            // return "ameeseeyur!";
+            $allusers = $this->get_all_users();
+
+            // loop to create array that accomodates city and state
+            $new_search_array_array = [];
+    
+            $finalresult = "";
+
+            $thesearchval = $request->thesearchval;
+
+            foreach($allusers as $allusers){
+                $get_primary_city = $this->get_other_user_info($allusers->id, "primary_city");
+                $get_primary_state = $this->get_other_user_info($allusers->id, "primary_state");
+                $get_primary_country = $this->get_other_user_info($allusers->id, "primary_country");
+    
+                $get_secondary_city = $this->get_other_user_info($allusers->id, "secondary_city");
+                $get_secondary_state = $this->get_other_user_info($allusers->id, "secondary_state");
+                $get_secondary_country = $this->get_other_user_info($allusers->id, "secondary_country");
+    
+                $get_accounttype = $this->get_primary_user_details($allusers->id, "getaccounttype");
+    
+                if($get_accounttype == "superadmin"){
+                    $get_accounttype = "";
+                }
+    
+                // $finalresult .= 
+                $search_name = "$allusers->name $get_primary_city $get_primary_state $get_primary_country $get_secondary_city $get_secondary_state $get_secondary_country $get_accounttype";
+                $position = strpos(strtolower($search_name), strtolower($thesearchval));
+
+                if ($position !== false) {
+                    // $getprofilepicture = $this->get_other_user_info($allusers->id, "profilepicture");
+                    $getprofilepicture = $allusers->profile_picture;
+    
+                    if(empty($getprofilepicture)){
+                        $picture_side = "<div class='gbpeter-image'><i class='fa-regular fa-user'></i></div>";
+                    }else{
+                        $picture_side = "<div><img src='/storage/profilepicture/$getprofilepicture' class='gbpeter-image' /></div>";
+                    }
+    
+                    $finalresult .= "<a href='/profilepage/$allusers->id'><div class='gbpeter-each-row'>";
+                        $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
+                        $finalresult .= "<div class='gbpeter-name-wraps'><span class='gbpeter-realname'>$allusers->name</span><br><span>$allusers->account_type</span></div>";
+                    $finalresult .= "</div></a>";                
+                }
+            }
+
+            return $finalresult;
         }
     }
 
@@ -838,6 +886,29 @@ class CadanaUpdateDatabaseController extends Controller
         CrudHelper::Update($tabledb, $where_array, $update_array);
     }
 
+    private function get_primary_user_details($id, $owner_type)
+    {
+        $tabledb = "users";
+
+        $where_array = [
+            'id' => $id
+        ];
+
+        $getdata = CrudHelper::Get($tabledb, $where_array);
+
+        if($owner_type == "alldetails"){
+            return $getdata;
+        }elseif($owner_type == "getname" || $owner_type == "getaccounttype"){
+            foreach($getdata as $getdata){
+                if($owner_type == "getname"){
+                    return $getdata->name;
+                }elseif($owner_type == "getaccounttype"){
+                    return $getdata->account_type;
+                }
+            }
+        }
+    }
+
     private function get_accounttype($id)
     {
         $tabledb = "users";
@@ -850,6 +921,41 @@ class CadanaUpdateDatabaseController extends Controller
 
         foreach($output as $output){
             return trim($output->accounttype);
+        }
+    }
+
+    private function get_all_users()
+    {
+        $tabledb = "users";
+
+        return CrudHelper::Geteverything($tabledb);
+    }
+
+    private function get_other_user_info($id, $ownertype)
+    {
+        // validation
+        $tabledb = "users_primary_details";
+
+        $where_array = [
+            'owner_id' => $id,
+        ];
+
+        $getprofilepicture = CrudHelper::Get($tabledb, $where_array);
+
+        foreach($getprofilepicture as $get){
+            if($ownertype == "primary_city"){
+                return $get->primary_city;
+            }elseif($ownertype == "primary_state"){
+                return $get->primary_state;
+            }elseif($ownertype == "primary_country"){
+                return $get->primary_country;
+            }elseif($ownertype == "secondary_city"){
+                return $get->secondary_city;
+            }elseif($ownertype == "secondary_state"){
+                return $get->secondary_state;
+            }elseif($ownertype == "secondary_country"){
+                return $get->secondary_country;
+            }
         }
     }
 }

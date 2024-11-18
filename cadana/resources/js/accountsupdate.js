@@ -28,6 +28,7 @@ $('#file_profile_picture_input_tag').change(function() {
     readURL(this);
     // upload the image to the database
     $("#profileimage-uploading-processing-loading").show();
+    $('.' + 'credentials_error_wraps2').html("");
     var file = event.target.files[0];
     // alert(file);console.log(file);
     // return;
@@ -57,13 +58,13 @@ $('#file_profile_picture_input_tag').change(function() {
         processData: false,
         success: function(response) {
         //   console.log(response);
-          alert(response);
+        //   alert(response);
           $("#profileimage-uploading-processing-loading").hide();
         },
         error: function(xhr, status, error) {
-            
+            // alert("major error!: "+xhr.responseText);
             $("#document-uploading-processing").hide();
-            console.log(xhr.responseText);
+            // console.log(xhr.responseText);
             $('#' + 'credentials_error_wraps').text(xhr.responseText);
             var errorResponse = JSON.parse(xhr.responseText);
             var errorMessage = errorResponse.message;
@@ -79,7 +80,7 @@ $('#file_profile_picture_input_tag').change(function() {
                 errorHtml += '<p>' + field + ': ' + error[0] + '</p>';
             });
         
-            $('#' + 'credentials_error_wraps').html(errorHtml);
+            $('.' + 'credentials_error_wraps2').html(errorHtml);
 
             $("#profileimage-uploading-processing-loading").hide();
         }
@@ -97,6 +98,21 @@ function readURL(input) {
       reader.readAsDataURL(input.files[0]);
     }
 }
+
+// keyup-trigger-search
+$('body').on('keyup', '#keyup-trigger-search', function(event) {
+    var thesearchval = $(this).val();
+    var owner = "search_cadana_app";
+    // console.log(searchterm);
+    var formData = {
+        owner: owner,
+        thesearchval: thesearchval
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+});
 
 // update_primary_info1
 $('body').on('click', '#update_primary_info1', function(event) {
@@ -731,6 +747,8 @@ function updateDatabase(theurl, formData) {
                 }else{
                     // output error
                 }
+            }else if(formData.owner == "search_cadana_app"){
+                alert(response);
             }else if(formData.owner == "update_primary_details"){
                 $("#primaryinfo-processing-loading").hide();
             }else if(formData.owner == "update_password"){

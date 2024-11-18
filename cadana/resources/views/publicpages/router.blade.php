@@ -854,8 +854,11 @@
                 >Update Account</button>
               </div>
             @elseif($owner == "viewsearch_page")
+              <!-- <h2 class="mt-6.5 ml-6.5 text-title-md2 font-bold text-black dark:text-white">
+                Account Settings
+              </h2> -->
               <div class="p-6.5">
-                <div class="mb-4"><input type="text" placeholder="Type to search..." class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"></div>
+                <div class="mb-4"><input type="text" placeholder="Type to search..." id="keyup-trigger-search" class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"></div>
                 <div>There's no clinic available at the moment. Please check back later.</div>
               </div>
             @elseif($owner == "viewdashboard")

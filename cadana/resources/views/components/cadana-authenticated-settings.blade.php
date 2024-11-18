@@ -83,8 +83,6 @@
                                     type="text"
                                     name="fullName"
                                     id="fullName"
-                                    
-                                    value="Devid Jhon"
                                   />
                               @endif
                             </div>
@@ -110,7 +108,6 @@
                                 name="phoneNumber"
                                 id="phoneNumber"
                                 placeholder="+990 3343 7865"
-                                value="+990 3343 7865"
                               />
                             @endif
                           </div>
@@ -162,7 +159,6 @@
                                 name="emailAddress"
                                 id="emailAddress"
                                 placeholder="devidjond45@gmail.com"
-                                value="devidjond45@gmail.com"
                               />
                             @endif
                           </div>
@@ -223,7 +219,6 @@
                                 rows="6"
                                 placeholder="Write your bio here"
                               >
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet.
                               </textarea>
                             @endif
                           </div>
@@ -502,21 +497,9 @@
                               class="mb-1.5 font-medium text-black dark:text-white"
                               >Edit your photo</span
                             >
-                            <!-- <span class="flex gap-2.5 hidden">
-                              <button
-                                class="text-sm font-medium hover:text-primary"
-                              >
-                                Delete
-                              </button>
-                              <button
-                                class="text-sm font-medium hover:text-primary"
-                              >
-                                Update
-                              </button>
-                            </span> -->
                           </div>
                         </div>
-                        <div id="credentials_error_wraps text-primary"></div>
+                        <div class="credentials_error_wraps2 text-primary"></div>
                         <div
                           id="FileUpload"
                           class="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border border-dashed border-primary bg-gray px-4 py-4 dark:bg-meta-4 sm:py-7.5"
