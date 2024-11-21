@@ -188,26 +188,54 @@ class CadanaUpdateDatabaseController extends Controller
         }elseif($request->owner == "update_authen_settings_details"){
             $authorid = Auth::id();
 
-            $tabledb = "users_primary_details";
-
             $fullname = $request->fullname_frm;
             $phone = $request->phone_frm;
             $email = $request->email_frm;
             $biography = $request->biography_frm;
 
+            // check if this exists in the database before updating.
+            // if it does not exist in the database we create
+            $tabledb = "users_primary_details";
+
             $where_array = [
                 'owner_id' => $authorid,
             ];
+    
+            $check_existence = CrudHelper::Get($tabledb, $where_array);
 
-            $update_array = [
-                'name' => $fullname,
-                'primary_email' => $email,
-                'primary_phone' => $phone,
-                'bio' => $biography,
-                'updated_at' => $currenttime,
-            ];
+            if(count($check_existence) > 0){
+                $tabledb = "users_primary_details";
+    
+                $where_array = [
+                    'owner_id' => $authorid,
+                ];
+    
+                $update_array = [
+                    'name' => $fullname,
+                    'primary_email' => $email,
+                    'primary_phone' => $phone,
+                    'bio' => $biography,
+                    'updated_at' => $currenttime,
+                ];
+    
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+            }else{
+                // we create
+                $create_array = [
+                    'author_id' => $authorid,
+                    'owner_id' => $authorid,
 
-            CrudHelper::Update($tabledb, $where_array, $update_array);
+                    'name' => $fullname,
+                    'primary_email' => $email,
+                    'primary_phone' => $phone,
+                    'bio' => $biography,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+
+                $tabledb = "users_primary_details";
+                CrudHelper::Create($tabledb, $create_array);
+            }
 
             // users
             $tabledb = "users";

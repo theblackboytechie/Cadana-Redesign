@@ -1,4 +1,4 @@
-@if(Auth::user()->accounttype == "donor")
+@if(Auth::user()->accounttype == "donor" || Auth::user()->accounttype == "clinic" || Auth::user()->accounttype == "superadmin" || Auth::user()->accounttype == "professional")
   {{ redirect(route('authenticatedsettings'))->send() }}
 @endif
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">

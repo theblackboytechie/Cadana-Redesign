@@ -76,7 +76,7 @@
                                 <div 
                                   class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary fullname_frm"
                                   id="fullName"
-                                >Devid Jhon</div>
+                                >--</div>
                               @else
                                 <input
                                     class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary fullname_frm"
@@ -99,7 +99,7 @@
                                 class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary phone_frm"
                                 id="phoneNumber"                                
                               >
-                              +990 3343 7865
+                              --
                               </div>
                             @else
                               <input
@@ -150,7 +150,7 @@
                                 class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary email_frm"
                                 id="emailAddress"
                               >
-                                devidjond45@gmail.com
+                                --
                               </div>
                             @else
                               <input
@@ -209,7 +209,7 @@
                                 class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary biography_frm"
                                 id="bio"                              
                               >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet.                              
+                                --
                               </div>
                             @else
                               <textarea
