@@ -1,4 +1,4 @@
-@if(Auth::user()->accounttype == "donor" || Auth::user()->accounttype == "clinic" || Auth::user()->accounttype == "superadmin" || Auth::user()->accounttype == "professional")
+@if(Auth::user()->accounttype == "donor" || Auth::user()->accounttype == "clinic" || Auth::user()->accounttype == "superadminx" || Auth::user()->accounttype == "professional")
   {{ redirect(route('authenticatedsettings'))->send() }}
 @endif
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
@@ -36,9 +36,9 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      $3.456K
+                      00
                     </h4>
-                    <span class="text-sm font-medium">Total views</span>
+                    <span class="text-sm font-medium">Total Accounts</span>
                   </div>
 
                   <span
@@ -98,9 +98,9 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      $45,2K
+                      452
                     </h4>
-                    <span class="text-sm font-medium">Total Profit</span>
+                    <span class="text-sm font-medium">Total Clinics</span>
                   </div>
 
                   <span
@@ -156,9 +156,9 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      2.450
+                      2450
                     </h4>
-                    <span class="text-sm font-medium">Total Product</span>
+                    <span class="text-sm font-medium">Professionals</span>
                   </div>
 
                   <span
@@ -220,7 +220,7 @@
                     >
                       3.456
                     </h4>
-                    <span class="text-sm font-medium">Total Users</span>
+                    <span class="text-sm font-medium">Total Donors</span>
                   </div>
 
                   <span
