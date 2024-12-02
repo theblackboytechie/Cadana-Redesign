@@ -17,7 +17,8 @@
         <!-- Scripts -->
         @vite([
             'resources/css/app.css', 
-            'resources/css/styles.css', 
+            'resources/css/styles.css',
+            'resources/css/chat.css',
             'resources/js/app.js', 
             'resources/js/bundle.js', 
             'resources/js/accountsupdate.js',
