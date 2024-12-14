@@ -1,4 +1,44 @@
 .chat_dashboard_wraps{
-    position: fixed;
-    height: 80vh;
+    /* position: fixed; */
+    display: grid;
+    grid-template-columns: 23% 75%;
+    gap: 2%;
+    height: 70vh;
+    width: 100%;
+    /* background: red; */
+}
+
+.chat_column_1, .chat_column_2{
+    background: white;
+}
+
+.chat_history_each{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat_column_2{
+    position: relative;
+}
+
+.chat_conversation_content{
+    position: absolute;
+    bottom: 0;
+}
+
+.conversation_textarea{
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .chat_column_1 {
+      /* Apply some styles */
+      display: none;
+      margin-bottom: 2vh;
+    }
+
+    .chat_dashboard_wraps{
+        grid-template-columns: 100%;
+        gap: 0%;
+    }
 }
