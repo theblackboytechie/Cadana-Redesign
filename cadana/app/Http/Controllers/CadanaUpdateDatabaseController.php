@@ -783,7 +783,7 @@ class CadanaUpdateDatabaseController extends Controller
             foreach($output as $output){
                 return $output->profile_picture;
             }
-        }elseif($request->owner == "search_cadana_app"){
+        }elseif($request->owner == "search_cadana_app" || $request->owner == "search_cadana_app_forchat"){
             $get_accounttype = $this->get_primary_user_details(Auth::id(), "getaccounttype");
 
             if($get_accounttype == "donor"){
@@ -799,107 +799,210 @@ class CadanaUpdateDatabaseController extends Controller
 
             $thesearchval = $request->thesearchval;
 
-            foreach($allusers as $allusers){
-                $get_primary_address = $this->get_other_user_info($allusers->id, "primary_address");
-                $get_primary_city = $this->get_other_user_info($allusers->id, "primary_city");
-                $get_primary_state = $this->get_other_user_info($allusers->id, "primary_state");
-                $get_primary_country = $this->get_other_user_info($allusers->id, "primary_country");
+            if($request->owner == "search_cadana_app"){
+                foreach($allusers as $allusers){
+                    $get_primary_address = $this->get_other_user_info($allusers->id, "primary_address");
+                    $get_primary_city = $this->get_other_user_info($allusers->id, "primary_city");
+                    $get_primary_state = $this->get_other_user_info($allusers->id, "primary_state");
+                    $get_primary_country = $this->get_other_user_info($allusers->id, "primary_country");
 
-                $get_secondary_address = $this->get_other_user_info($allusers->id, "secondary_address");
-                $get_secondary_city = $this->get_other_user_info($allusers->id, "secondary_city");
-                $get_secondary_state = $this->get_other_user_info($allusers->id, "secondary_state");
-                $get_secondary_country = $this->get_other_user_info($allusers->id, "secondary_country");
+                    $get_secondary_address = $this->get_other_user_info($allusers->id, "secondary_address");
+                    $get_secondary_city = $this->get_other_user_info($allusers->id, "secondary_city");
+                    $get_secondary_state = $this->get_other_user_info($allusers->id, "secondary_state");
+                    $get_secondary_country = $this->get_other_user_info($allusers->id, "secondary_country");
 
-                $get_primary_phone = $this->get_other_user_info($allusers->id, "primary_phone");
-                $get_secondary_phone = $this->get_other_user_info($allusers->id, "secondary_phone");
-    
-                $get_accounttype = $this->get_primary_user_details($allusers->id, "getaccounttype");
-    
-                if($get_accounttype == "superadmin"){
-                    $get_accounttype = "";
-                }
-    
-                // $finalresult .= 
-                $search_name = "$allusers->name $get_primary_city $get_primary_state $get_primary_country $get_secondary_city $get_secondary_state $get_secondary_country $get_accounttype";
-                $position = strpos(strtolower($search_name), strtolower($thesearchval));
-
-                if ($position !== false) {
-                    // $getprofilepicture = $this->get_other_user_info($allusers->id, "profilepicture");
-                    $getprofilepicture = $allusers->profile_picture;
-    
-                    if(empty($getprofilepicture)){
-                        $picture_side = "<div><img src='/storage/uploads/1PhH4asRBK1730911962.png' class='gbpeter-image' /></div>";
-                    }else{
-                        $picture_side = "<div><img src='/storage/uploads/$getprofilepicture' class='gbpeter-image' /></div>";
+                    $get_primary_phone = $this->get_other_user_info($allusers->id, "primary_phone");
+                    $get_secondary_phone = $this->get_other_user_info($allusers->id, "secondary_phone");
+        
+                    $get_accounttype = $this->get_primary_user_details($allusers->id, "getaccounttype");
+        
+                    if($get_accounttype == "superadmin"){
+                        $get_accounttype = "";
                     }
-    
-                    // $finalresult .= "<a href='/profilepage/$allusers->id'><div class='gbpeter-each-row'>";
-                    //     $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
-                    //     $finalresult .= "<div class='gbpeter-name-wraps'><span class='gbpeter-realname'>$allusers->name</span><br><span>$get_accounttype</span></div>";
-                    // $finalresult .= "</div></a>";
+        
+                    // $finalresult .= 
+                    $search_name = "$allusers->name $get_primary_city $get_primary_state $get_primary_country $get_secondary_city $get_secondary_state $get_secondary_country $get_accounttype";
+                    $position = strpos(strtolower($search_name), strtolower($thesearchval));
 
-                    $finalresult .= "<div style='display: grid; grid-template-columns: 10% 79%;gap: 1%;margin-bottom: 2vh;'>";
-                        $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
-                        $finalresult .= "<div>";
-                            $finalresult .= "<span style='font-size: 120%;font-weight: bold;'>$allusers->name</span><br>";
-                            if(!empty($get_primary_address) || !empty($get_primary_city) || !empty($get_primary_state) || !empty($get_primary_country)){
-                                $finalresult .= "<b>Primary Address: </b>";
-                            }
+                    if ($position !== false) {
+                        // $getprofilepicture = $this->get_other_user_info($allusers->id, "profilepicture");
+                        $getprofilepicture = $allusers->profile_picture;
+        
+                        if(empty($getprofilepicture)){
+                            $picture_side = "<div><img src='/storage/uploads/1PhH4asRBK1730911962.png' class='gbpeter-image' /></div>";
+                        }else{
+                            $picture_side = "<div><img src='/storage/uploads/$getprofilepicture' class='gbpeter-image' /></div>";
+                        }
+        
+                        // $finalresult .= "<a href='/profilepage/$allusers->id'><div class='gbpeter-each-row'>";
+                        //     $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
+                        //     $finalresult .= "<div class='gbpeter-name-wraps'><span class='gbpeter-realname'>$allusers->name</span><br><span>$get_accounttype</span></div>";
+                        // $finalresult .= "</div></a>";
 
-                            if(!empty($get_primary_address)){
-                                $finalresult .= "$get_primary_address, ";
-                            }
+                        $finalresult .= "<div style='display: grid; grid-template-columns: 10% 79%;gap: 1%;margin-bottom: 2vh;'>";
+                            $finalresult .= "<div class='gbpeter-profilepicture-wraps'>$picture_side</div>";
+                            $finalresult .= "<div>";
+                                $finalresult .= "<span style='font-size: 120%;font-weight: bold;'>$allusers->name</span><br>";
+                                if(!empty($get_primary_address) || !empty($get_primary_city) || !empty($get_primary_state) || !empty($get_primary_country)){
+                                    $finalresult .= "<b>Primary Address: </b>";
+                                }
 
-                            if(!empty($get_primary_city)){
-                                $finalresult .= "$get_primary_city, ";
-                            }
+                                if(!empty($get_primary_address)){
+                                    $finalresult .= "$get_primary_address, ";
+                                }
 
-                            if(!empty($get_primary_state)){
-                                $finalresult .= "$get_primary_state, ";
-                            }
+                                if(!empty($get_primary_city)){
+                                    $finalresult .= "$get_primary_city, ";
+                                }
 
-                            if(!empty($get_primary_country)){
-                                $finalresult .= "$get_primary_country.";
-                            }
+                                if(!empty($get_primary_state)){
+                                    $finalresult .= "$get_primary_state, ";
+                                }
 
-                            $finalresult .= "<br>";
+                                if(!empty($get_primary_country)){
+                                    $finalresult .= "$get_primary_country.";
+                                }
 
-                            if(!empty($get_secondary_address) || !empty($get_secondary_city) || !empty($get_secondary_state) || !empty($get_secondary_country)){
-                                $finalresult .= "<b>Secondary Address: </b>";
-                            }
+                                $finalresult .= "<br>";
 
-                            if(!empty($get_secondary_address)){
-                                $finalresult .= "$get_secondary_address, ";
-                            }
+                                if(!empty($get_secondary_address) || !empty($get_secondary_city) || !empty($get_secondary_state) || !empty($get_secondary_country)){
+                                    $finalresult .= "<b>Secondary Address: </b>";
+                                }
 
-                            if(!empty($get_secondary_city)){
-                                $finalresult .= "$get_secondary_city, ";
-                            }
+                                if(!empty($get_secondary_address)){
+                                    $finalresult .= "$get_secondary_address, ";
+                                }
 
-                            if(!empty($get_secondary_state)){
-                                $finalresult .= "$get_secondary_state, ";
-                            }
+                                if(!empty($get_secondary_city)){
+                                    $finalresult .= "$get_secondary_city, ";
+                                }
 
-                            if(!empty($get_secondary_country)){
-                                $finalresult .= "$get_secondary_country.";
-                            }
+                                if(!empty($get_secondary_state)){
+                                    $finalresult .= "$get_secondary_state, ";
+                                }
 
-                            $finalresult .= "<br>";
+                                if(!empty($get_secondary_country)){
+                                    $finalresult .= "$get_secondary_country.";
+                                }
 
-                            if(!empty($get_primary_phone)){
-                                $finalresult .= "<b>Primary Phone: </b>$get_primary_phone ";
-                            }
+                                $finalresult .= "<br>";
 
-                            if(!empty($get_secondary_phone)){
-                                $finalresult .= "<b>Secondary Phone: </b>$get_secondary_phone";
-                            }
-                            
+                                if(!empty($get_primary_phone)){
+                                    $finalresult .= "<b>Primary Phone: </b>$get_primary_phone ";
+                                }
+
+                                if(!empty($get_secondary_phone)){
+                                    $finalresult .= "<b>Secondary Phone: </b>$get_secondary_phone";
+                                }
+                                
+                            $finalresult .= "</div>";
                         $finalresult .= "</div>";
-                    $finalresult .= "</div>";
+                    }
                 }
+            }elseif($request->owner == "search_cadana_app_forchat"){
+                $finalresult = "";
+
+                foreach($allusers as $allusers){
+                    $search_name = "$allusers->name $get_accounttype";
+                    $position = strpos(strtolower($search_name), strtolower($thesearchval));
+
+                    if ($position !== false) {
+                        // "<br>";
+                        $finalresult .= 
+                        "<div class='chat_history_each p-2'>
+                            <h5 class='font-medium text-black dark:text-white'>
+                            $allusers->name
+                            </h5>
+                            <p>
+                            <span
+                                class='text-sm font-medium text-black dark:text-white'
+                                >Hello, how are you?</span
+                            >
+                            <span class='text-xs'> . 12 min</span>
+                            </p>
+                        </div>";
+                    }
+                }
+
+                // return $finalresult;
             }
 
             return $finalresult;
+        }elseif($request->owner == "upload_chat_message"){
+            $authorid = Auth::id();
+            // user_id: user_id,
+            // conversation_id:
+            // chat_message: 
+            // if there is no conversation id then we create a new conversation in mast 
+            // before we add the message to the conversation
+            if(empty($request->conversation_id)){
+                $array_perticipants = [];
+
+                array_push($array_perticipants, $request->user_id);
+                array_push($array_perticipants, $authorid);
+
+                $json_perticipants = json_encode($array_perticipants);
+
+                // before creating a new covnersation_id let us check if this exists
+                $tabledb = "chat_mast";
+
+                $create_array = [
+                    'participants' => $json_perticipants,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Create($tabledb, $create_array);
+
+                // return $json_perticipants;
+                // get the conversation id 
+                $tabledb = "chat_mast";
+
+                $where_array = [
+                    'participants' => $json_perticipants
+                ];
+        
+                $get_conv_id = CrudHelper::Get($tabledb, $where_array);
+
+                $conv_id = "";
+                foreach($get_conv_id as $get_conv_id){
+                    $conv_id .= $get_conv_id->id;
+                }
+
+                // add this conversation message to the conversation table
+                $tabledb = "chat_conversation";
+
+                $create_array = [
+                    'conv_id' => $conv_id,
+                    'author_id' => $authorid,
+                    'chat_message' => $request->chat_message,
+                    'chat_message_type' => "text",
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Create($tabledb, $create_array);
+
+                return $conv_id;
+            }else{
+                // 
+                $tabledb = "chat_conversation";
+
+                $create_array = [
+                    'conv_id' => $request->conversation_id,
+                    'author_id' => $authorid,
+                    'chat_message' => $request->chat_message,
+                    'chat_message_type' => "text",
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Create($tabledb, $create_array);
+                // return "000: $request->conversation_id";
+            }
+            // if conversation is empty
+
+            // return "$request->chat_message";
         }
     }
 

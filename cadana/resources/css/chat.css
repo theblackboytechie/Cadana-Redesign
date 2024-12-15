@@ -14,15 +14,53 @@
 
 .chat_history_each{
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .chat_column_2{
     position: relative;
 }
 
+.conversation_chat_search{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .chat_conversation_content{
     position: absolute;
     bottom: 0;
+}
+
+.chat_conversation_content_wraps{
+    position: relative;
+    height: 55vh;
+    overflow-y: scroll;
+}
+
+.chat_conversation_content_each{
+    position: absolute;
+    bottom: 0;
+}
+
+.conversation_auth_user{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-bottom: 2vh;
+    color: white;
+}
+
+.conversation_guest_user{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-bottom: 2vh;
+    color: white;
+}
+
+.conversation_actual_chat{
+    border-radius: 10px;
+}
+
+.conversation_message{
+    font-size: 90%;
 }
 
 .conversation_textarea{

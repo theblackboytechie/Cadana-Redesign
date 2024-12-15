@@ -118,6 +118,53 @@ $('body').on('keyup', '#keyup-trigger-search', function(event) {
     }
 });
 
+// search for chat 
+$('body').on('keyup', '#type_to_search_chat', function(event) {
+    var thesearchval = $(this).val();
+    
+    var owner = "search_cadana_app_forchat";
+    // console.log(searchterm);
+    if(thesearchval == ""){
+        $("#chat_search_result").html("");
+        console.log(thesearchval);
+    }else{
+        var formData = {
+            owner: owner,
+            thesearchval: thesearchval
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+    
+        updateDatabase(theurl, formData);
+    }
+});
+
+$('body').on('keyup', '.conversation_textarea', function(event) {
+    // $('input[type="text"], textarea').keyup(function(event) {
+    // conversation_textarea
+    // send chat to database
+    // the userid is that of the guest user
+    if (event.keyCode === 13) {
+        $(this).attr('disabled', true);
+        
+        var owner = "upload_chat_message";
+        var user_id = $(this).attr("user_id");
+        var conversation_id = $(this).attr("conversation_id");
+        var chat_message = $(this).val();
+
+        var formData = {
+            owner: owner,
+            user_id: user_id,
+            conversation_id: conversation_id,
+            chat_message: chat_message
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");
+    
+        updateDatabase(theurl, formData);
+    }
+});
+
 // update_primary_info1
 $('body').on('click', '#update_primary_info1', function(event) {
     // var account_type = $("#account-type-list").val();
@@ -808,6 +855,18 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "update_authen_settings_details"){
                 // alert("romeo!");
                 $("#settingspage-processing-loading").hide();
+            }else if(formData.owner == "search_cadana_app_forchat"){
+                // console.log(response);
+                $("#chat_search_result").html(response);
+            }else if(formData.owner == "upload_chat_message"){
+                if(formData.conversation_id == ""){
+                    $(".conversation_textarea").attr("conversation_id", response);
+                    $(".conversation_textarea").val("");
+                    $(".conversation_textarea").attr('disabled', false);
+                }else{
+                    alert(response);
+                }
+                // alert(response);
             }
         },
         error: function(response) {

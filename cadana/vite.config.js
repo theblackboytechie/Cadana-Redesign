@@ -12,7 +12,8 @@ export default defineConfig({
                 'resources/js/bundle.js',
                 'resources/js/accountsupdate.js',
                 'resources/js/upon_pageload.js',
-                'resources/js/locations_database.js'
+                'resources/js/locations_database.js',
+                'resources/js/chat.js'
             ],
             refresh: true,
         }),
