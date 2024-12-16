@@ -16,7 +16,7 @@ class CrudHelper
     }
 
     public static function Get($tabledb, $get_array){
-        return DB::table($tabledb)->where($get_array)->orderBy('updated_at', 'desc')->get();
+        return DB::table($tabledb)->where($get_array)->orderBy('updated_at', 'asc')->get();
     }
 
     public static function Geteverything($tabledb){

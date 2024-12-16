@@ -32,13 +32,16 @@
 
 .chat_conversation_content_wraps{
     position: relative;
-    height: 55vh;
-    overflow-y: scroll;
+    /* height: 35vh; */
+    /* background: green; */
 }
 
 .chat_conversation_content_each{
     position: absolute;
+    height: 55vh;
     bottom: 0;
+    /* background: blue; */
+    overflow-y: scroll;
 }
 
 .conversation_auth_user{

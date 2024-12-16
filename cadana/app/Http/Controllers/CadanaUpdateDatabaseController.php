@@ -1003,6 +1003,49 @@ class CadanaUpdateDatabaseController extends Controller
             // if conversation is empty
 
             // return "$request->chat_message";
+        }elseif($request->owner == "update_conversation_realtime"){
+            // return "banda wani sai kai!: $request->conv_id!";
+            $authorid = Auth::id();
+
+            $tabledb = "chat_conversation";
+
+            $where_array = [
+                'conv_id' => $request->conv_id
+            ];
+    
+            $getdata = CrudHelper::Get($tabledb, $where_array);
+
+            $conversation_output = "";
+            foreach($getdata as $getdata){
+                // $authorid
+                if($getdata->author_id == $authorid){
+                    // $conversation_output .= "<div>author: $getdata->chat_message</div>";
+                    $conversation_output .= 
+                    "
+                        <div class='conversation_auth_user w-full'>
+                            <div></div>
+                            <div class='bg-primary p-2 conversation_actual_chat'>
+                                <b>Author Name!</b>
+                                <div class='conversation_message'>$getdata->chat_message</div>
+                            </div>
+                        </div>
+                    ";
+                }else{
+                    // $conversation_output .= "<div>guest: $getdata->chat_message</div>";
+                    $conversation_output .=
+                    "
+                        <div class='conversation_guest_user'>
+                            <div class='bg-primary p-2 conversation_actual_chat'>
+                                <b>Guest Name!</b>
+                                <div class='conversation_message'>$getdata->chat_message</div>
+                            </div>
+                            <div></div>
+                        </div>
+                    ";
+                }
+            }
+
+            return $conversation_output;
         }
     }
 

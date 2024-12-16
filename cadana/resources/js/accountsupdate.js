@@ -165,6 +165,35 @@ $('body').on('keyup', '.conversation_textarea', function(event) {
     }
 });
 
+// loop to load contents of chat conversation
+setInterval(function() {
+    // Code to run every interval
+    if ($(".conversation_textarea").is(":visible")) {
+        // Code to run if .conversation_textarea is visibles
+        // if there is no conversation id don't do anything
+        var conv_id = $(".conversation_textarea").attr("conversation_id");
+        var user_id = $(".conversation_textarea").attr("user_id");
+        
+        if(conv_id != "" && user_id != ""){
+            // console.log("NOT EMPTY!: Yes visible!: "+conv_id+", user_id: "+user_id);
+            // go to database to load chats!
+            var owner = "update_conversation_realtime";
+    
+            var formData = {
+                owner: owner,
+                user_id: user_id,
+                conv_id: conv_id
+            };
+        
+            var theurl = $("#cadanamaps").attr("database_update");
+        
+            updateDatabase(theurl, formData);
+        }
+    }else{
+        console.log("no visible!");
+    }
+}, 1000);
+
 // update_primary_info1
 $('body').on('click', '#update_primary_info1', function(event) {
     // var account_type = $("#account-type-list").val();
@@ -864,9 +893,14 @@ function updateDatabase(theurl, formData) {
                     $(".conversation_textarea").val("");
                     $(".conversation_textarea").attr('disabled', false);
                 }else{
-                    alert(response);
+                    $(".conversation_textarea").val("");
+                    $(".conversation_textarea").attr('disabled', false);
                 }
                 // alert(response);
+            }else if(formData.owner == "update_conversation_realtime"){
+                console.log(response);
+                $(".chat_conversation_content_each").html(response);
+                $(".chat_conversation_content_each").scrollTop($(".chat_conversation_content_each")[0].scrollHeight);
             }
         },
         error: function(response) {
