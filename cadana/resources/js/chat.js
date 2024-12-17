@@ -7,6 +7,11 @@ $(document).ready(function() {
         $(".conversation_textarea").attr("user_id", user_id);
         $(".conversation_textarea").attr("conversation_id", conversation_id);
         // alert("conversation_id: "+conversation_id);
+        $(".chat_conversation_content_each").html("<div style='height: 120vh;'></div>");
+        $(".chat_conversation_content_each").scrollTop($(".chat_conversation_content_each")[0].scrollHeight);
+        setTimeout(function() {
+            $(".chat_conversation_content_each").scrollTop($(".chat_conversation_content_each")[0].scrollHeight);
+        }, 1000);
     });
 });
 

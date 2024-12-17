@@ -900,7 +900,6 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "update_conversation_realtime"){
                 console.log(response);
                 $(".chat_conversation_content_each").html(response);
-                $(".chat_conversation_content_each").scrollTop($(".chat_conversation_content_each")[0].scrollHeight);
             }
         },
         error: function(response) {

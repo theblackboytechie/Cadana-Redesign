@@ -1018,6 +1018,9 @@ class CadanaUpdateDatabaseController extends Controller
             $conversation_output = "";
             foreach($getdata as $getdata){
                 // $authorid
+                $get_name = $this->get_primary_user_details($getdata->author_id, "getname");
+                // $time_chat_was_sent = $getdata->updated_at('dS F, h:i A');
+                $updated_at = Carbon::parse($getdata->updated_at)->format('dS F, h:i A');
                 if($getdata->author_id == $authorid){
                     // $conversation_output .= "<div>author: $getdata->chat_message</div>";
                     $conversation_output .= 
@@ -1025,18 +1028,20 @@ class CadanaUpdateDatabaseController extends Controller
                         <div class='conversation_auth_user w-full'>
                             <div></div>
                             <div class='bg-primary p-2 conversation_actual_chat'>
-                                <b>Author Name!</b>
+                                <b>$get_name</b>
                                 <div class='conversation_message'>$getdata->chat_message</div>
+                                <div style='font-size: 90%;'>$updated_at</div>
                             </div>
                         </div>
                     ";
                 }else{
                     // $conversation_output .= "<div>guest: $getdata->chat_message</div>";
+                    // $get_name = $this->get_primary_user_details($getdata->author_id, "getname");
                     $conversation_output .=
                     "
                         <div class='conversation_guest_user'>
                             <div class='bg-primary p-2 conversation_actual_chat'>
-                                <b>Guest Name!</b>
+                                <b>$get_name</b>
                                 <div class='conversation_message'>$getdata->chat_message</div>
                             </div>
                             <div></div>
