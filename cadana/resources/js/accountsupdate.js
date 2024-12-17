@@ -118,6 +118,20 @@ $('body').on('keyup', '#keyup-trigger-search', function(event) {
     }
 });
 
+// set interval
+setInterval(function() {
+    // Code to run every interval
+    // console.log("shift!");
+    var owner = "update_contact_chat_history";
+    var formData = {
+        owner: owner
+    };
+
+    var theurl = $("#cadanamaps").attr("database_update");
+
+    updateDatabase(theurl, formData);
+}, 1000);
+
 // search for chat 
 $('body').on('keyup', '#type_to_search_chat', function(event) {
     var thesearchval = $(this).val();
@@ -190,7 +204,7 @@ setInterval(function() {
             updateDatabase(theurl, formData);
         }
     }else{
-        console.log("no visible!");
+        // console.log("no visible!");
     }
 }, 1000);
 
@@ -898,8 +912,11 @@ function updateDatabase(theurl, formData) {
                 }
                 // alert(response);
             }else if(formData.owner == "update_conversation_realtime"){
-                console.log(response);
+                // console.log(response);
                 $(".chat_conversation_content_each").html(response);
+            }else if(formData.owner == "update_contact_chat_history"){
+                // console.log(response);
+                $(".contacts_chat_history").html(response);
             }
         },
         error: function(response) {

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CadanaUpdateDatabaseController extends Controller
 {
@@ -783,7 +784,7 @@ class CadanaUpdateDatabaseController extends Controller
             foreach($output as $output){
                 return $output->profile_picture;
             }
-        }elseif($request->owner == "search_cadana_app" || $request->owner == "search_cadana_app_forchat"){
+        }elseif($request->owner == "search_cadana_app" || $request->owner == "search_cadana_app_forchat" || $request->owner == "update_contact_chat_history"){
             $get_accounttype = $this->get_primary_user_details(Auth::id(), "getaccounttype");
 
             if($get_accounttype == "donor"){
@@ -907,11 +908,12 @@ class CadanaUpdateDatabaseController extends Controller
                     $position = strpos(strtolower($search_name), strtolower($thesearchval));
 
                     if ($position !== false) {
+                        $get_conv_chat_id = $this->get_latest_chat($allusers->id);
                         // "<br>";
                         $finalresult .= 
-                        "<div class='chat_history_each p-2'>
+                        "<div class='chat_history_each each_open_chat p-2' user_id='$allusers->id' conversation_id='$get_conv_chat_id'>
                             <h5 class='font-medium text-black dark:text-white'>
-                            $allusers->name
+                            $allusers->name -- $get_conv_chat_id
                             </h5>
                             <p>
                             <span
@@ -924,7 +926,57 @@ class CadanaUpdateDatabaseController extends Controller
                     }
                 }
 
-                // return $finalresult;
+                return $finalresult;
+            }elseif($request->owner == "update_contact_chat_history"){
+                $authorid = Auth::id();
+                // return "$authorid!";
+                // $get_conv_chat_id = $this->get_latest_chat($authorid);
+                $from_masthead = DB::table('chat_mast')
+                    // ->whereJsonContains('participants', "$id")
+                    ->whereJsonContains('participants', $authorid)
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                // return count($from_masthead);
+                $finalresult = "";
+                foreach($from_masthead as $from_masthead){
+                    $user_array = json_decode($from_masthead->participants, true);
+                    foreach($user_array as $chatter_id){
+                        if($authorid != $chatter_id){
+                            $get_name = $this->get_primary_user_details($chatter_id, "getname");
+                            // $finalresult .= $user_array;
+                            $finalresult .= 
+                            "<div class='chat_history_each each_open_chat p-2' user_id='$chatter_id' conversation_id='$from_masthead->id'>
+                                <h5 class='font-medium text-black dark:text-white'>
+                                $get_name
+                                </h5>
+                                <p>
+                                <span
+                                    class='text-sm font-medium text-black dark:text-white'
+                                    >Hello, how are you?</span
+                                >
+                                <span class='text-xs'> . 12 min</span>
+                                </p>
+                            </div>";
+                        }
+                    }
+                    // $finalresult .= $user_array."; $from_masthead->participants<br>";
+                    // $get_conv_chat_id = $this->get_latest_chat($allusers->id);
+                    // $finalresult .= 
+                    // "<div class='chat_history_each each_open_chat p-2' user_id='$allusers->id' conversation_id='$get_conv_chat_id'>
+                    //     <h5 class='font-medium text-black dark:text-white'>
+                    //     $allusers->name -- $get_conv_chat_id
+                    //     </h5>
+                    //     <p>
+                    //     <span
+                    //         class='text-sm font-medium text-black dark:text-white'
+                    //         >Hello, how are you?</span
+                    //     >
+                    //     <span class='text-xs'> . 12 min</span>
+                    //     </p>
+                    // </div>";
+                }
+                return $finalresult;
             }
 
             return $finalresult;
@@ -998,6 +1050,19 @@ class CadanaUpdateDatabaseController extends Controller
                 ];
         
                 CrudHelper::Create($tabledb, $create_array);
+
+                $tabledb = "chat_mast";
+
+                $where_array = [
+                    'id' => $request->conversation_id
+                ];
+        
+                $update_array = [
+                    'updated_at' => $currenttime,
+                ];
+        
+                // this returns either 1 or zero
+                CrudHelper::Update($tabledb, $where_array, $update_array);
                 // return "000: $request->conversation_id";
             }
             // if conversation is empty
@@ -1132,6 +1197,32 @@ class CadanaUpdateDatabaseController extends Controller
 
         // this returns either 1 or zero
         CrudHelper::Update($tabledb, $where_array, $update_array);
+    }
+
+    // get_latest_chat
+    private function get_latest_chat($id)
+    {
+        // $auth_id = auth()->user()->id;
+        // return $id;
+        $authorid = Auth::id();
+
+        // return $id;
+        $from_masthead = DB::table('chat_mast')
+            // ->whereJsonContains('participants', "$id")
+            ->whereJsonContains('participants', "$id")
+            ->whereJsonContains('participants', $authorid)
+            ->get();
+
+        // return count($from_masthead)."; na the count!";
+        if(count($from_masthead) > 0){
+            foreach($from_masthead as $masthead){
+                return $masthead->id;
+            }
+        }else{
+            return "";
+        }
+
+        // return $id;
     }
 
     private function get_primary_user_details($id, $owner_type)

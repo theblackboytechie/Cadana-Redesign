@@ -6,17 +6,20 @@
       <div id="chat_search_result">
 
       </div>
-      <div class="chat_history_each each_open_chat p-2" user_id="4" conversation_id="5">
-        <h5 class="font-medium text-black dark:text-white">
-          Devid Heilo
-        </h5>
-        <p>
-          <span
-            class="text-sm font-medium text-black dark:text-white"
-            >Hello, how are you?</span
-          >
-          <span class="text-xs"> . 12 min</span>
-        </p>
+      <div class="contacts_chat_history">
+        <!--  -->
+        <div class="chat_history_each each_open_chat p-2" user_id="4" conversation_id="6">
+          <h5 class="font-medium text-black dark:text-white">
+            Devid Heilo
+          </h5>
+          <p>
+            <span
+              class="text-sm font-medium text-black dark:text-white"
+              >Hello, how are you?</span
+            >
+            <span class="text-xs"> . 12 min</span>
+          </p>
+        </div>
       </div>
       <!--  -->
     </div>
