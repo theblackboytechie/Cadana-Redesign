@@ -933,17 +933,37 @@ class CadanaUpdateDatabaseController extends Controller
                 // $get_conv_chat_id = $this->get_latest_chat($authorid);
                 $from_masthead = DB::table('chat_mast')
                     // ->whereJsonContains('participants', "$id")
+                    ->whereJsonContains('participants', "$authorid")
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                $from_masthead__ = DB::table('chat_mast')
+                    // ->whereJsonContains('participants', "$id")
                     ->whereJsonContains('participants', $authorid)
                     ->orderBy('updated_at', 'desc')
                     ->get();
 
                 // return count($from_masthead);
+                $mergedResults = $from_masthead->merge($from_masthead__);
                 $finalresult = "";
-                foreach($from_masthead as $from_masthead){
+                foreach($mergedResults as $from_masthead){
                     $user_array = json_decode($from_masthead->participants, true);
                     foreach($user_array as $chatter_id){
                         if($authorid != $chatter_id){
                             $get_name = $this->get_primary_user_details($chatter_id, "getname");
+                            $get_last_conversation = $this->get_latest_conversation_details($from_masthead->id);
+                            $thecount = count($get_last_conversation);
+
+                            // if the count is greater than zero then display the last content else do nothing
+                            if($thecount > 0){
+                                // details of the conversation
+                                foreach($get_last_conversation as $conv){
+                                    $msg = substr($conv->chat_message, 0, 18);//$conv->chat_message;
+                                    $time = Carbon::parse($conv->updated_at)->diffForHumans();
+                                }
+                            }else{
+                                $msg = "";
+                            }
                             // $finalresult .= $user_array;
                             $finalresult .= 
                             "<div class='chat_history_each each_open_chat p-2' user_id='$chatter_id' conversation_id='$from_masthead->id'>
@@ -953,28 +973,13 @@ class CadanaUpdateDatabaseController extends Controller
                                 <p>
                                 <span
                                     class='text-sm font-medium text-black dark:text-white'
-                                    >Hello, how are you?</span
+                                    >$msg</span
                                 >
-                                <span class='text-xs'> . 12 min</span>
+                                <span class='text-xs'> . $time</span>
                                 </p>
                             </div>";
                         }
                     }
-                    // $finalresult .= $user_array."; $from_masthead->participants<br>";
-                    // $get_conv_chat_id = $this->get_latest_chat($allusers->id);
-                    // $finalresult .= 
-                    // "<div class='chat_history_each each_open_chat p-2' user_id='$allusers->id' conversation_id='$get_conv_chat_id'>
-                    //     <h5 class='font-medium text-black dark:text-white'>
-                    //     $allusers->name -- $get_conv_chat_id
-                    //     </h5>
-                    //     <p>
-                    //     <span
-                    //         class='text-sm font-medium text-black dark:text-white'
-                    //         >Hello, how are you?</span
-                    //     >
-                    //     <span class='text-xs'> . 12 min</span>
-                    //     </p>
-                    // </div>";
                 }
                 return $finalresult;
             }
@@ -1223,6 +1228,18 @@ class CadanaUpdateDatabaseController extends Controller
         }
 
         // return $id;
+    }
+
+    // get_latest_conversation_details
+    private function get_latest_conversation_details($conversation_id)
+    {
+        $tabledb = "chat_conversation";
+
+        $where_array = [
+            'conv_id' => $conversation_id
+        ];
+
+        return $getdata = CrudHelper::Get($tabledb, $where_array);
     }
 
     private function get_primary_user_details($id, $owner_type)

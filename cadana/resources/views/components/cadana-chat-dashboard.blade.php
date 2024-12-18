@@ -3,12 +3,12 @@
     <div class="chat_column_1">
       <!--  -->
       <div class="p-1 conversation_chat_search"><input type="text" id="type_to_search_chat" placeholder="Search Cadana Fertility" style="border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 10px;"></div>
-      <div id="chat_search_result">
+        <div id="chat_search_result">
 
-      </div>
+        </div>
       <div class="contacts_chat_history">
         <!--  -->
-        <div class="chat_history_each each_open_chat p-2" user_id="4" conversation_id="6">
+        <!-- <div class="chat_history_each each_open_chat p-2" user_id="4" conversation_id="6">
           <h5 class="font-medium text-black dark:text-white">
             Devid Heilo
           </h5>
@@ -19,7 +19,7 @@
             >
             <span class="text-xs"> . 12 min</span>
           </p>
-        </div>
+        </div> -->
       </div>
       <!--  -->
     </div>
