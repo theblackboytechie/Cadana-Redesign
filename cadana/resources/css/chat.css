@@ -30,6 +30,11 @@
     bottom: 0;
 }
 
+.chats_mobile_toggle{
+    font-size: 150%;
+    cursor: pointer;
+}
+
 .chat_conversation_content_wraps{
     position: relative;
     /* height: 35vh; */

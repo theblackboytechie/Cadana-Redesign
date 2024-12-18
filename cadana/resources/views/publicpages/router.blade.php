@@ -366,6 +366,9 @@
             </span>
           </span>
         </button>
+        @if($accountId == "chats")
+          <span class="chats_mobile_toggle"><i class="fa-solid fa-list"></i></span>
+        @endif
         <!-- Hamburger Toggle BTN -->
         <a class="block flex-shrink-0 lg:hidden" href="index.html">
           <img src="{{ asset('storage/assets/images/cadanalogo.png') }}" class="h-12" alt="Logo" />
