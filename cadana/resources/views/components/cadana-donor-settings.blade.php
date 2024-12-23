@@ -19,7 +19,7 @@
       <nav>
         <ol class="flex items-center gap-1">
           <li>
-            <a class="font-medium" href="index.html">Dashboard /</a>
+            <a class="font-medium" href="/">Dashboard /</a>
           </li>
           <!-- <li> -->
             <!-- <a class="font-medium" href="donors.html">Donorxx /</a> -->

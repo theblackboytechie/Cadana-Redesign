@@ -4,7 +4,7 @@
   $parts = explode('/', $thefullurl);
   $accountId = end($parts);
 @endphp
-@if(Auth::user()->accounttype == "clinic" || Auth::user()->accounttype == "professional")
+@if(Auth::user()->accounttype == "clinicx" || Auth::user()->accounttype == "professionalx")
   <x-app-layout>
     <div style="height: 100vh; width: 100vw;display: flex;align-items: center;justify-content: center;text-align: center;"><div>You aren't authorized to access the <b class="text-primary">Cadana Application!</b></div></div>
   </x-app-layout>
@@ -227,7 +227,7 @@
                 Donors
               </a>
             </li>
-
+            @endif
             <li>
               <a
                 class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"
@@ -251,7 +251,6 @@
                 Chats
               </a>
             </li>
-            @endif
             <li>
               <a
                 class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary/90 hover:text-white"

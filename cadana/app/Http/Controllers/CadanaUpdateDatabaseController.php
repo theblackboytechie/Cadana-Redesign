@@ -901,6 +901,7 @@ class CadanaUpdateDatabaseController extends Controller
                     }
                 }
             }elseif($request->owner == "search_cadana_app_forchat"){
+                $authorid = Auth::id();
                 $finalresult = "";
 
                 foreach($allusers as $allusers){
@@ -908,19 +909,54 @@ class CadanaUpdateDatabaseController extends Controller
                     $position = strpos(strtolower($search_name), strtolower($thesearchval));
 
                     if ($position !== false) {
-                        $get_conv_chat_id = $this->get_latest_chat($allusers->id);
+                        $get_conv_chat_id = $this->get_latest_chat($allusers->id, "conv_id");
+                        $get_viewed_participants = $this->get_latest_chat($allusers->id, "viewed_part");
+                        
+                        // $get_conv_chat_id
+                        $get_last_conversation = $this->get_latest_conversation_details($get_conv_chat_id);
+                        $thecount = count($get_last_conversation);
+
+                        // if the count is greater than zero then display the last content else do nothing
+                        if($thecount > 0){
+                            // details of the conversation
+                            foreach($get_last_conversation as $conv){
+                                $msg = substr($conv->chat_message, 0, 18);//$conv->chat_message;
+                                $time = Carbon::parse($conv->updated_at)->diffForHumans();
+                            }
+                        }else{
+                            $msg = "";
+                            $time = "";
+                        }
+
+                        if(empty($get_conv_chat_id)){
+                            $msg = "";
+                            $time = "";
+                        }
                         // "<br>";
+                        $viewed_participants = json_decode($get_viewed_participants, true);
+
+                        if(empty($viewed_participants) || !in_array($authorid, $viewed_participants)){
+                            // load the last chat
+                            // $lastchat = $this->get_last_chat_item($masthead->chat_id, $getdata->id);
+                            $bgstyle = "";
+                        }else{
+                            // don't load anything
+                            // $lastchat = $this->get_last_chat_item($masthead->chat_id, $getdata->id);
+                            // $bgstyle = "";
+                            $bgstyle = "background: rgba(211, 211, 211, 0.2);";
+                        }
+                        // 
                         $finalresult .= 
-                        "<div class='chat_history_each each_open_chat p-2' user_id='$allusers->id' conversation_id='$get_conv_chat_id'>
+                        "<div class='chat_history_each each_open_chat p-2' user_id='$allusers->id' style='$bgstyle' conversation_id='$get_conv_chat_id'>
                             <h5 class='font-medium text-black dark:text-white'>
-                            $allusers->name -- $get_conv_chat_id
+                                $allusers->name
                             </h5>
                             <p>
                             <span
                                 class='text-sm font-medium text-black dark:text-white'
-                                >Hello, how are you?</span
+                                >$msg</span
                             >
-                            <span class='text-xs'> . 12 min</span>
+                            <span class='text-xs'> . $time</span>
                             </p>
                         </div>";
                     }
@@ -1070,6 +1106,18 @@ class CadanaUpdateDatabaseController extends Controller
                 CrudHelper::Update($tabledb, $where_array, $update_array);
                 // return "000: $request->conversation_id";
             }
+
+            // update viewed_participants to empty
+            $where_array = [
+                'id' => $request->conversation_id
+            ];
+
+            $update_array = [
+                'viewed_participants' => "",
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
             // if conversation is empty
 
             // return "$request->chat_message";
@@ -1205,7 +1253,7 @@ class CadanaUpdateDatabaseController extends Controller
     }
 
     // get_latest_chat
-    private function get_latest_chat($id)
+    private function get_latest_chat($id, $thetype)
     {
         // $auth_id = auth()->user()->id;
         // return $id;
@@ -1219,12 +1267,22 @@ class CadanaUpdateDatabaseController extends Controller
             ->get();
 
         // return count($from_masthead)."; na the count!";
-        if(count($from_masthead) > 0){
-            foreach($from_masthead as $masthead){
-                return $masthead->id;
+        if($thetype == "conv_id"){
+            if(count($from_masthead) > 0){
+                foreach($from_masthead as $masthead){
+                    return $masthead->id;
+                }
+            }else{
+                return "";
             }
-        }else{
-            return "";
+        }elseif($thetype == "viewed_part"){
+            if(count($from_masthead) > 0){
+                foreach($from_masthead as $masthead){
+                    return $masthead->viewed_participants;
+                }
+            }else{
+                return "";
+            }
         }
 
         // return $id;
