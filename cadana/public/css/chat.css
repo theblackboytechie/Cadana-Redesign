@@ -1,0 +1,90 @@
+.chat_dashboard_wraps{
+    /* position: fixed; */
+    display: grid;
+    grid-template-columns: 23% 75%;
+    gap: 2%;
+    height: 70vh;
+    width: 100%;
+    /* background: red; */
+}
+
+.chat_column_1, .chat_column_2{
+    background: white;
+}
+
+.chat_history_each{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.chat_column_2{
+    position: relative;
+}
+
+.conversation_chat_search{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat_conversation_content{
+    position: absolute;
+    bottom: 0;
+}
+
+.chats_mobile_toggle{
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.chat_conversation_content_wraps{
+    position: relative;
+    /* height: 35vh; */
+    /* background: green; */
+}
+
+.chat_conversation_content_each{
+    position: absolute;
+    height: 55vh;
+    bottom: 0;
+    /* background: blue; */
+    overflow-y: scroll;
+}
+
+.conversation_auth_user{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-bottom: 2vh;
+    color: white;
+}
+
+.conversation_guest_user{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-bottom: 2vh;
+    color: white;
+}
+
+.conversation_actual_chat{
+    border-radius: 10px;
+}
+
+.conversation_message{
+    font-size: 90%;
+}
+
+.conversation_textarea{
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .chat_column_1 {
+      /* Apply some styles */
+      display: none;
+      margin-bottom: 2vh;
+    }
+
+    .chat_dashboard_wraps{
+        grid-template-columns: 100%;
+        gap: 0%;
+    }
+}

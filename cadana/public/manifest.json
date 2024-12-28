@@ -1,0 +1,15 @@
+{
+  "name": "Cadana Fertility",
+  "theme_color": "#ff3b3b",
+  "background_color": "#ff6a6a",
+  "short_name": "CADANA|FERTILITY",
+  "id": "cadanafertility",
+  "description": "Connect with credible fertility clinics and verified semen donors through our trusted platform. Our app streamlines the donor selection process, providing a safe and confidential environment for individuals and couples seeking fertility assistance. Browse profiles, filter matches, and connect with clinics to take the first step towards building your family.",
+  "display_override": [
+    "fullscreen",
+    "window-controls-overlay"
+  ],
+  "categories": [
+    "health"
+  ]
+}

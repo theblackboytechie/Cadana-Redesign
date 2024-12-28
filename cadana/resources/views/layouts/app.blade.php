@@ -27,6 +27,5 @@
             'resources/js/chat.js'
         ])
     </head>
-
     {{ $slot }}
 </html>
