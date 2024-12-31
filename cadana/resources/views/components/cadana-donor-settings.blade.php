@@ -123,7 +123,7 @@
         @if(Auth::user()->accounttype == 'superadmin' || Auth::user()->accounttype == 'professional' || Auth::user()->accounttype == 'clinic')
         <a
           href="/accountsverification/{{$accountId}}"
-          class="group flex items-center gap-3.5 font-medium hidden for_donors_only"
+          class="group flex items-center gap-3.5 font-medium for_donors_only"
         >
           <div
             class="@if($theowner_from_url == 'accountsverification') bg-primary text-white @else text-black-2 @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
@@ -138,7 +138,7 @@
 
         <a
           href="/medicalrecords/{{$accountId}}"
-          class="group flex items-center gap-3.5 font-medium hidden for_donors_only"
+          class="group flex items-center gap-3.5 font-medium for_donors_only"
         >
           <div
             class="@if($theowner_from_url == 'medicalrecords') bg-primary text-white @else text-black-2 @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
@@ -154,7 +154,7 @@
         <a
           href="/donationrecords/{{$accountId}}"
           @click="formStep = 6"
-          class="group flex items-center gap-3.5 font-medium hidden for_donors_only"
+          class="group flex items-center gap-3.5 font-medium for_donors_only"
         >
           <div
             class="@if($theowner_from_url == 'donationrecords') bg-primary text-white @else text-black-2 @endif flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"

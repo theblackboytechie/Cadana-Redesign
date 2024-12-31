@@ -12,10 +12,10 @@
                 <nav>
                   <ol class="flex items-center gap-2">
                     <li>
-                      <a class="font-medium" href="index.html">Dashboard /</a>
+                      <a class="font-medium" href="/">Dashboard /</a>
                     </li>
                     <li>
-                      <a class="font-medium" href="donors.html">Donor /</a>
+                      <a class="font-medium" href="">Donor /</a>
                     </li>
                     <li class="text-primary">Settings</li>
                   </ol>

@@ -863,7 +863,7 @@
                     <option value="donor">Donor</option>
                     <option value="professional">Professional</option>
                     <option value="clinic">Clinic</option>
-                    <option value="superadmin">Superadmin</option>
+                    <!-- <option value="superadmin">Superadmin</option> -->
                   </select>
                   <br>
                   <button

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'V1.0.0';
+const CACHE_NAME = 'v1.0.0';
 
 const cacheAssets = [
     '/favicon.ico',
@@ -16,7 +16,7 @@ self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keyList => {
             return Promise.all(keyList.map(key => {
-                if(key !== CACHE_NAME){
+                if (key !== CACHE_NAME) {
                     return caches.delete(key);
                 }
             }));
@@ -31,5 +31,5 @@ self.addEventListener('fetch', event => {
                 return response || fetch(event.request);
             });
         })
-    )
+    );
 });
