@@ -170,6 +170,7 @@ class CadanaDashboardPages extends Controller
         $owner = "viewdonationrecords";
 
         return $this->get_alldetails_for_settings($request->x, $owner);
+        return "show me tuuuuuu";
     }
 
     // edit_medical_history
@@ -315,6 +316,7 @@ class CadanaDashboardPages extends Controller
                 ];
         
                 $params2 = CrudHelper::Get($tabledb, $where_array);
+                // return "$x; $tabledb";
                 
                 return view('/publicpages/router', compact('owner', 'params', 'params2', 'thegender', 'verify_status'));
             }

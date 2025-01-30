@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    var urlPath = window.location.pathname;
+
+    var path = urlPath.split("/");
+    var secondToLast = path[path.length - 2];
+    var thirdToLast = path[path.length - 3];//alert("secondToLast: "+secondToLast);
+
+    var lastparam = urlPath.split("/").pop();
+
 $('body').on('click', '#update-account-type', function() {
     var account_type = $("#account-type-list").val();
     var owner = "update_account_type";
@@ -415,6 +423,8 @@ $('body').on('click', '#update_edited_medical_hist', function(event) {
 $('body').on('click', '#update_edited_male_donor_form', function(event) {
     event.preventDefault();
 
+    $(".processingdonations").show();
+
     var url = window.location.href;
     var ownerid = url.substring(url.lastIndexOf('/') + 1);
     var owner = "update_edited_male_donor_record";
@@ -577,6 +587,8 @@ $('body').on('click', '.trigger-return-to-donation-history', function() {
 // update_male_donor_form
 $('body').on('click', '#update_male_donor_form', function(event) {
     event.preventDefault();
+
+    $(".processingdonations").show();
 
     var url = window.location.href;
     var ownerid = url.substring(url.lastIndexOf('/') + 1);
@@ -834,6 +846,7 @@ function updateDatabase(theurl, formData) {
         url: theurl,
         data: formData,
         success: function (response) {
+            // processingdonations
             if(formData.owner == "update_account_type"){
                 // refresh current page
                 if(response == 1){
@@ -873,7 +886,10 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "update_edited_medical_hist"){
                 $("#processing-medical-history").hide();
             }else if(formData.owner == "update_male_donor_record"){
-                // alert(response);
+                // alert(lastparam);
+                $(".processingdonations").hide();
+                window.location.assign('/donatinghistory/edit/'+response);
+                // window.location.assign('/donationrecords/edit/'+lastparam);
             }else if(formData.owner == "update_female_donor_record"){
                 // alert("female: "+response);
             }else if(formData.owner == "verification_toggle"){
@@ -917,6 +933,9 @@ function updateDatabase(theurl, formData) {
             }else if(formData.owner == "update_contact_chat_history"){
                 // console.log(response);
                 $(".contacts_chat_history").html(response);
+            }else if(formData.owner == "update_edited_male_donor_record"){
+                // alert("updated to database!");
+                $(".processingdonations").hide();
             }
         },
         error: function(response) {

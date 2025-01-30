@@ -3323,6 +3323,7 @@
                       class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                       id="update_male_donor_form"
                     >Update</button>
+                    <span class="processingdonations hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
                   </div>
                 </div>
 

@@ -17,6 +17,20 @@ $(document).ready(function() {
     var thirdToLast = path[path.length - 3];//alert("secondToLast: "+secondToLast);
 
     var ownerid = urlPath.split("/").pop();
+
+    // alert(ownerid);
+    if(ownerid === ""){
+        // alert("this is dashboard because it is empty!");
+        // $("#dashboard-total-accounts-count").text("90");
+        var owner = "load_accounts_stats_dashboard";
+        var formData = {
+            owner: owner
+        };
+    
+        var theurl = $("#cadanamaps").attr("database_update");//alert("ownerid: "+ownerid);
+        
+        getFromDatabase(theurl, formData);
+    }
     
     if(thirdToLast == "donatinghistory"){
         // load the gender of this user
@@ -144,7 +158,13 @@ function getFromDatabase(theurl, formData) {
         url: theurl,
         data: formData,
         success: function (response) {
-            if(formData.owner == "download_latest_user_details"){
+            if(formData.owner == "load_accounts_stats_dashboard"){
+                // alert();
+                $("#dashboard-total-accounts-count").text(response.totalaccounts);
+                $("#dashboard-total-clinics-accounts-count").text(response.totalclinics);
+                $("#dashboard-total-professionals-accounts-count").text(response.totalprofessionals);
+                $("#dashboard-total-donors-accounts-count").text(response.totaldonors);
+            }else if(formData.owner == "download_latest_user_details"){
                 // alert(response[1]);//firstItem = array
                 $("#donor_name").val(response[1]);
                 $("#donor_gender").val(response[2]);

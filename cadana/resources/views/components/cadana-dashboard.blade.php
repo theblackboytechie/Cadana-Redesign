@@ -35,13 +35,14 @@
                   <div>
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
+                      id="dashboard-total-accounts-count"
                     >
                       00
                     </h4>
                     <span class="text-sm font-medium">Total Accounts</span>
                   </div>
 
-                  <span
+                  <!-- <span
                     class="flex items-center gap-1 text-sm font-medium text-meta-3"
                   >
                     0.43%
@@ -58,7 +59,7 @@
                         fill=""
                       />
                     </svg>
-                  </span>
+                  </span> -->
                 </div>
               </div>
               <!-- Card Item End -->
@@ -87,13 +88,14 @@
                   <div>
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
+                      id="dashboard-total-clinics-accounts-count"
                     >
                       452
                     </h4>
                     <span class="text-sm font-medium">Total Clinics</span>
                   </div>
 
-                  <span
+                  <!-- <span
                     class="flex items-center gap-1 text-sm font-medium text-meta-3"
                   >
                     4.35%
@@ -110,7 +112,7 @@
                         fill=""
                       />
                     </svg>
-                  </span>
+                  </span> -->
                 </div>
               </div>
               <!-- Card Item End -->
@@ -139,13 +141,14 @@
                   <div>
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
+                      id="dashboard-total-professionals-accounts-count"
                     >
                       2450
                     </h4>
                     <span class="text-sm font-medium">Professionals</span>
                   </div>
 
-                  <span
+                  <!-- <span
                     class="flex items-center gap-1 text-sm font-medium text-meta-3"
                   >
                     2.59%
@@ -161,7 +164,7 @@
                         d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
                         fill=""
                       />
-                    </svg>
+                    </svg> -->
                   </span>
                 </div>
               </div>
@@ -191,13 +194,14 @@
                   <div>
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
+                      id="dashboard-total-donors-accounts-count"
                     >
                       456
                     </h4>
                     <span class="text-sm font-medium">Total Donors</span>
                   </div>
 
-                  <span
+                  <!-- <span
                     class="flex items-center gap-1 text-sm font-medium text-meta-5"
                   >
                     0.95%
@@ -214,7 +218,7 @@
                         fill=""
                       />
                     </svg>
-                  </span>
+                  </span> -->
                 </div>
               </div>
               <!-- Card Item End -->
@@ -238,7 +242,7 @@
           ></span>
         </span>
         <div class="w-full">
-          <p class="font-semibold text-primary">Total Donations</p>
+          <p class="font-semibold text-primary">Total Donors Accounts</p>
           <p class="text-sm font-medium">12.04.2022 - 12.05.2022</p>
         </div>
       </div>
@@ -251,7 +255,7 @@
           ></span>
         </span>
         <div class="w-full">
-          <p class="font-semibold text-secondary">Total Positives</p>
+          <p class="font-semibold text-secondary">Total Professionals Accounts</p>
           <p class="text-sm font-medium">12.04.2022 - 12.05.2022</p>
         </div>
       </div>
@@ -292,7 +296,7 @@
   <div class="mb-4 justify-between gap-4 sm:flex">
     <div>
       <h4 class="text-xl font-bold text-black dark:text-white">
-        Profit this week
+        Accounts Created this week
       </h4>
     </div>
     <div>
@@ -338,7 +342,7 @@
 
               <!-- ====== Chart Three Start -->
               <div
-  class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5"
+  class="hidden col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5"
 >
   <div class="mb-3 justify-between gap-4 sm:flex">
     <div>
@@ -442,7 +446,7 @@
 
               <!-- ====== Map One Start -->
               <div
-  class="col-span-12 rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-7"
+  class="hidden col-span-12 rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-7"
 >
   <h4 class="mb-2 text-xl font-bold text-black dark:text-white">
     Region labels
@@ -455,7 +459,7 @@
               <!-- ====== Table One Start -->
               <div class="col-span-12 xl:col-span-8">
                 <div
-  class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 hiddenx"
+  class="hidden rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 hiddenx"
 >
   <h4 class="mb-6 text-xl font-bold text-black dark:text-white">
     Top Channels
@@ -516,7 +520,7 @@
 
               <!-- ====== Chat Card Start -->
               <div
-                class="col-span-12 rounded-sm border border-stroke bg-white py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4"
+                class="hidden col-span-12 rounded-sm border border-stroke bg-white py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4"
               >
                 <h4
                   class="mb-6 px-7.5 text-xl font-bold text-black dark:text-white"

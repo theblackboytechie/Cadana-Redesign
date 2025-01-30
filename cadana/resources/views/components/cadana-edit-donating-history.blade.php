@@ -1,6 +1,8 @@
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <!-- {{$params}} -->
         @foreach($params as $params)
             <div class="mx-auto w-full">
+            {{$params->collection_date}}
               <!-- Breadcrumb Start -->
               <div
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
@@ -22,7 +24,7 @@
                 </nav>
               </div>
               <!-- Breadcrumb End -->
-              <form x-data="{ formStep: 1 }" class="flex items-start gap-8">
+              <form class="flex items-start gap-8">
                 <div
                   class="w-4/12 space-y-6 rounded-sm border border-stroke bg-white p-6.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                 >
@@ -32,7 +34,6 @@
                   >
                     <div
                       class="flex h-8 w-8 items-center justify-center rounded-full border border-primary text-center text-sm transition group-hover:bg-primary group-hover:text-white"
-                      :class="formStep === 1 ? 'bg-primary text-white' : 'text-black-2'"
                     >
                       0
                     </div>
@@ -50,10 +51,11 @@
                     <div
                       class="p-6.5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
-                    
+                    <!-- deepseek! <br> -->
+                    <!-- {{$thegender}}!{{$params->collection_date}} -->
                     @if($thegender == "male")
                         <!--  -->
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -82,7 +84,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -90,7 +92,6 @@
                               Duration of Abstinence
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -133,7 +134,6 @@
                               Difficulty in Producing
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -170,7 +170,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -178,7 +178,6 @@
                               Was All the Sample Collected
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -220,7 +219,6 @@
                               Time of Production
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -258,7 +256,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -279,7 +277,6 @@
                               Volume of Production
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -317,7 +314,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -325,7 +322,6 @@
                               Liquefaction
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -368,7 +364,6 @@
                               Debris
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -406,7 +401,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -414,7 +409,6 @@
                               Sperm Agglutination
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -457,7 +451,6 @@
                               Sperm Concentration
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -498,7 +491,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -506,7 +499,6 @@
                               Total Count in Ejaculate
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -557,7 +549,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -586,7 +578,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -615,7 +607,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -636,7 +628,6 @@
                               Other Cells (X10^6/ml)
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -673,7 +664,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -702,11 +693,11 @@
                           </div>
                         </div>
 
-                        <h3 class="text-lg font-semibold text-black-2 male-donation-form">
+                        <h3 class="text-lg font-semibold text-black-2">
                           Morphology
                         </h3>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -734,7 +725,7 @@
                             />
                           </div>
                         </div>
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -763,7 +754,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full xl:w-1/2">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -784,7 +775,6 @@
                               Antisperm Antibody
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -821,7 +811,7 @@
                           </div>
                         </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row male-donation-form">
+                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -840,13 +830,14 @@
                                 ownerid="{{$params->owner_id}}"
                                 postid="{{$params->id}}"
                             >Update</button>
+                            <span class="processingdonations hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
                           </div>
                         </div>
 
                         <hr class="hr-donor-settings" />
                         <!-- Female Form -->
                         @elseif($thegender == "female")
-                        <div class="mt-4 flex flex-col gap-4 female-donation-form">
+                        <div class="mt-4 flex flex-col gap-4">
                           <div class="w-full">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -854,7 +845,6 @@
                               Down Regulation Protocol Used
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -896,7 +886,6 @@
                               Antagonant Protocol Used
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -943,7 +932,6 @@
                               Human Chorionic Gonadotropin (hCG) Used
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -990,7 +978,6 @@
                               Used
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1036,7 +1023,6 @@
                               Used
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1085,7 +1071,6 @@
                               Duration of Drugs
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1129,7 +1114,6 @@
                               Number of Follicles Generated
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1173,7 +1157,6 @@
                               Number of Positives
                             </label>
                             <div
-                              x-data="{ isOptionSelected: false }"                                                                                                                                                                 
                               class="relative z-20 bg-transparent dark:bg-form-input"
                             >
                               <select
@@ -1228,6 +1211,7 @@
                                 ownerid="{{$params->owner_id}}"
                                 postid="{{$params->id}}"
                               >Update</button>
+                              <i class="fa-solid fa-circle-notch fa-spin"></i>
                             </div>
                           </div>
                         </div>

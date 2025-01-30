@@ -17,7 +17,45 @@ class CadanaUpdateDatabaseController extends Controller
         // return $request->account_type;
         $currenttime = Carbon::now();
 
-        if($request->owner == "download_latest_user_details"){
+        if($request->owner == "load_accounts_stats_dashboard"){
+            // return "God is good!";
+            $tabledb = "users";
+
+            $where_array = [
+                'accounttype' => "donor",
+            ];
+    
+            $donoroutput = CrudHelper::Get($tabledb, $where_array);
+
+            $donorcount = count($donoroutput);
+
+            // 
+            $where_array = [
+                'accounttype' => "clinic",
+            ];
+    
+            $clinicoutput = CrudHelper::Get($tabledb, $where_array);
+
+            $cliniccount = count($clinicoutput);
+
+            // 
+            $where_array = [
+                'accounttype' => "professional",
+            ];
+    
+            $professionaloutput = CrudHelper::Get($tabledb, $where_array);
+
+            $professionalcount = count($professionaloutput);
+
+            $totalaccounts = $cliniccount + $professionalcount + $donorcount;
+
+            return response()->json([
+                'totalaccounts' => $totalaccounts,
+                'totalclinics' => $cliniccount,
+                'totalprofessionals' => $professionalcount,
+                'totaldonors' => $donorcount,
+            ]);
+        }elseif($request->owner == "download_latest_user_details"){
             $tabledb = "users_primary_details";
 
             $where_array = [
@@ -571,10 +609,21 @@ class CadanaUpdateDatabaseController extends Controller
                 CrudHelper::Create($tabledb, $create_array);
 
                 // return "room for improvement!";
+                // get the most recent
+                $tabledb = "male_donation_report";
+                CrudHelper::Get($tabledb, $where_array);
             }else{
                 $tabledb = "male_donation_report";
 
                 CrudHelper::Create($tabledb, $create_array);
+
+                $tabledb = "male_donation_report";
+
+                $getid = CrudHelper::Get($tabledb, $create_array);
+
+                foreach($getid as $getid){
+                    return $getid->id;
+                }
             }
         }elseif($request->owner == "update_female_donor_record" || $request->owner == "update_edited_female_donor_record"){
             // return "flow!";
